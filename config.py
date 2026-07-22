@@ -1,0 +1,10 @@
+APP_NAME = "AI Donghua Studio"
+VERSION = "0.1.0"
+
+WINDOW_WIDTH = 1600
+WINDOW_HEIGHT = 900
+
+SIDEBAR_WIDTH = 240
+
+THEME = "dark"
+COLOR_THEME = "blue"
