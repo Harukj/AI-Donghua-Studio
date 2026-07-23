@@ -89,6 +89,13 @@ class Dashboard(ctk.CTkFrame):
             # Nhúng toàn quyền khung quản lý Character Bible lấp đầy vùng content_frame bên phải
             self.character_view.pack(fill="both", expand=True, padx=10, pady=10)
 
+        		# Mở file gui/dashboard.py, tìm tới hàm on_category_click và chèn đoạn code này vào ngay phía dưới khối "Environment":
+		elif category_name == "Storyboard":
+			from gui.storyboard.storyboard_window.py import StoryboardWindow
+			# Khởi tạo và hiển thị khung nhìn kịch bản phân cảnh phim hoạt hình
+			self.storyboard_view = StoryboardWindow(self.content_frame)
+			self.storyboard_view.pack(fill="both", expand=True, padx=10, pady=10)
+
         elif category_name == "Environment":
             from gui.environment.environment_window import EnvironmentWindow
             self.environment_view = EnvironmentWindow(self.content_frame)
