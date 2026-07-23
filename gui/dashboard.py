@@ -25,9 +25,9 @@ class Dashboard(ctk.CTkFrame):
 		# Danh sách các danh mục Menu được cập nhật chính xác theo đặc tả mới của ChatGPT
 		self.categories = [
 			"Project",
-			"Novel",
 			"Characters",
 			"Environment",
+			"Novel",
 			"Camera",
 			"Storyboard",
 			"LTX Prompt",
