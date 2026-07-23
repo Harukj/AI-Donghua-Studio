@@ -82,10 +82,18 @@ class NovelPipeline:
 				duration=5.0
 			)
 			
-			# Nạp thực thể Object sạch vào danh sách để gửi trả về cho giao diện GUI hiển thị
+			# TÍCH HỢP GỌI PROMPT ENGINE V1.0 TỰ ĐỘNG TRỘN THEO ĐÚNG SƠ ĐỒ MỚI
+			# Hệ thống truyền trực tiếp thực thể đối tượng scene_object sạch vào bộ trộn
+			from services.prompt_engine import PromptEngine
+			prompt_engine = PromptEngine(self.db)
+			
+			# Sinh câu lệnh prompt nghệ thuật và gán trực tiếp vào thuộc tính của Object/Model
+			final_ltx_prompt = prompt_engine.generate_from_scene_object(scene_object)
+			
+			# Đẩy dữ liệu Object sạch vào danh sách trả về
 			processed_scenes.append(scene_object)
 			
-			# --- BƯỚC 9: DATABASE (LƯU TRỮ TRỰC TIẾP TỪNG PHÂN CẢNH) ---
+			# Lưu bản ghi an toàn xuống file SQLite dữ liệu
 			db_scene = StoryboardSceneModel(
 				scene_number=scene_object.id,
 				raw_text=scene_content,
@@ -94,19 +102,10 @@ class NovelPipeline:
 				time_frame="Day",
 				mood_atmosphere="Epic",
 				action_description=scene_object.summary,
+				generated_prompt=final_ltx_prompt, # Lưu chuỗi Prompt đã trộn sạch vào Database
 				project_id=project_id
 			)
 			self.db.add(db_scene)
-
-		# Lưu thông tin metadata tổng quan của tác phẩm truyện chữ vào bảng novels [Bước 9]
-		filename = os.path.basename(file_path)
-		db_novel = NovelModel(
-			project_id=project_id,
-			title=filename.replace(".docx", "").replace("_", " "),
-			filename=filename,
-			chapter_count=1
-		)
-		self.db.add(db_novel)
 		
 		# Thực thi lưu trữ tất cả các bản ghi xuống file SQLite an toàn
 		self.db.commit()
