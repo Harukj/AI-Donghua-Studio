@@ -54,11 +54,13 @@ class NovelPipeline:
 			
 			# --- BƯỚC 5: CHARACTER DETECTOR ---
 			char_detector = CharacterDetector(scene_content)
-			characters = char_detector.detect_characters()
+			char_json = char_detector.detect_characters()
+			characters = char_json["characters"]
 			
 			# --- BƯỚC 6: ENVIRONMENT DETECTOR ---
 			env_detector = EnvironmentDetector(scene_content)
-			environment = env_detector.detect_environment()
+			env_json = env_detector.detect_environment()
+			environment = env_json["environment"]
 			
 			# --- BƯỚC 7: PROPS DETECTOR ---
 			prop_detector = PropDetector(scene_content)
