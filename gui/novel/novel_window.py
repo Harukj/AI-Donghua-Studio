@@ -59,10 +59,44 @@ class NovelWindow(ctk.CTkFrame):
 		print(f"Hệ thống: Đã kích hoạt không gian xử lý tệp văn bản cho: {name}")
 
 	def handle_docx_import(self):
-		"""Hàm xử lý khi click nút [ Import DOCX ] để nạp file từ hệ điều hành"""
-		from tkinter import filedialog
-		file_path = filedialog.askopenfilename(filetypes=[("Word Documents", "*.docx"), ("Text Files", "*.txt")])
+		"""
+		[BƯỚC 3 - IMPORT DOCX]
+		Kích hoạt hộp thoại chọn file Word và đổ toàn bộ nội dung thực tế lên màn hình giao diện
+		"""
+		from tkinter import filedialog, messagebox
+		from core.services.novel_service import NovelService
+		
+		# 1. Mở hộp thoại hệ điều hành để người dùng chọn tệp .docx chuẩn theo ảnh mẫu
+		file_path = filedialog.askopenfilename(
+			filetypes=[("Word Documents", "*.docx")]
+		)
+		
 		if file_path:
-			import os
-			filename = os.path.basename(file_path)
-			messagebox.showinfo("Novel Import System", f"Đã nạp tệp truyện '{filename}' thành công!\nHệ thống sẵn sàng bóc tách tự động phân chương.")
+			try:
+				# 2. Khởi tạo service xử lý
+				novel_service = NovelService()
+				
+				# Tạm thời gán dự án làm việc hiện tại
+				current_project = "ToanDanTaoPhong"
+				
+				# 3. Thực hiện đọc file thực tế, nhân bản tệp vào thư mục dự án và bóc tách phân chương
+				result = novel_service.process_novel_import(current_project, file_path)
+				
+				# 4. Đổ tên tác phẩm được trích xuất từ tên file lên ô nhập liệu
+				self.novel_form.entry_novel_title.delete(0, "end")
+				self.novel_form.entry_novel_title.insert(0, result["novel_title"])
+				
+				# 5. Ghi đè danh sách chương giả lập bằng bộ dữ liệu thật bóc tách từ file Word
+				self.novel_form.mock_chapters = result["chapters"]
+				self.novel_form.render_chapters()
+				
+				# 6. Tự động tải nội dung chương đầu tiên lên bảng Textbox bên phải cho người dùng đọc
+				self.novel_form.load_chapter_content(0)
+				
+				messagebox.showinfo(
+					"Novel Import System", 
+					f"Nạp thành công tệp truyện chữ điện ảnh!\nĐã lưu bản sao biệt lập vào thư mục của Project."
+				)
+				
+			except Exception as e:
+				messagebox.showerror("Lỗi hệ thống", f"Không thể đọc hoặc lưu file Word: {e}")
