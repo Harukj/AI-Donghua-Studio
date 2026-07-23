@@ -101,29 +101,42 @@ class EnvironmentWindow(ctk.CTkFrame):
 			btn.pack(fill="x", pady=2, padx=5)
 
 	def load_environment_profile(self, name):
-		"""Đọc thông tin chi tiết từ DB đưa ngược lên các ô nhập liệu"""
+		"""Đọc thông tin chi tiết từ DB và ánh xạ chuẩn xác lên EnvironmentForm"""
 		self.selected_env = name
-		self.form_title.configure(text=f"Bối cảnh: {name}")
 		
-		env = self.env_service.get_env_by_name(name)
+		# Gọi Controller để truy vấn dữ liệu từ SQLite
+		env = self.controller.handle_load_environment(name)
 		if not env:
 			return
 			
-		# Xóa dữ liệu cũ trên form
-		for field, widget in self.inputs.items():
-			if isinstance(widget, ctk.CTkTextbox):
-				widget.delete("1.0", "end")
-			else:
-				widget.delete(0, "end")
-				
-		# Điền dữ liệu thật
-		self.inputs["Tên bối cảnh"].insert(0, env.name or "")
-		self.inputs["Thời gian (Time)"].insert(0, env.time_of_day or "")
-		self.inputs["Thời tiết (Weather)"].insert(0, env.weather or "")
-		self.inputs["Phong cách kiến trúc"].insert(0, env.architecture_style or "")
-		self.inputs["Prompt mô tả cảnh"].insert("1.0", env.description_prompt or "")
-		self.inputs["Style"].insert(0, env.style or "")
-		self.inputs["Negative Prompt"].insert("1.0", env.negative_prompt or "")
+		self.environment_form.form_title.configure(text=f"Bối cảnh: {env.name}")
+		
+		# Xóa sạch dữ liệu cũ đang hiển thị trên form biểu mẫu
+		self.environment_form.clear_form()
+		
+		# Ánh xạ bộ dữ liệu Dictionary khớp hoàn toàn với các trường của EnvironmentForm mới
+		form_data = {
+			"Tên": env.name or "",
+			"Loại": env.category or "",
+			"Prompt": env.prompt or "",
+			"Negative Prompt": env.negative_prompt or "",
+			"Lighting": env.lighting or "",
+			"Weather": env.weather or "",
+			"Time": env.time_of_day or "",
+			"Default Camera": env.camera_default or "",
+			"Seed": env.seed or "",
+			"Thumbnail": env.thumbnail or ""
+		}
+		
+		# Tiến hành đổ dữ liệu thực tế lên các ô nhập liệu (Widgets) của Form
+		for field, value in form_data.items():
+			if field in self.environment_form.inputs:
+				widget = self.environment_form.inputs[field]
+				if isinstance(widget, ctk.CTkTextbox):
+					widget.insert("1.0", value)
+				else:
+					widget.insert(0, value)
+
 
 	def open_add_env_dialog(self):
 		"""Hộp thoại thêm nhanh bối cảnh mẫu"""
