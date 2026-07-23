@@ -3,85 +3,75 @@ import json
 from datetime import datetime
 
 class ProjectManager:
-    def __init__(self, base_dir="projects"):
-        """
-        Khởi tạo thư mục gốc chứa tất cả các dự án (mặc định là thư mục 'projects')
-        """
-        self.base_dir = base_dir
-        if not os.path.exists(self.base_dir):
-            os.makedirs(self.base_dir)
+	def __init__(self, base_dir="projects"):
+		"""
+		Khởi tạo thư mục gốc chứa tất cả các dự án (mặc định là thư mục 'projects')
+		"""
+		self.base_dir = base_dir
+		if not os.path.exists(self.base_dir):
+			os.makedirs(self.base_dir)
 
-    def create_project(self, project_name: str, author: str = "Harukj") -> str:
-        """
-        Tự động tạo cấu trúc thư mục và file cấu hình cho một dự án mới.
-        """
-        # 1. Chuẩn hóa tên thư mục (Xóa khoảng trắng thừa, thay khoảng trắng bằng dấu gạch dưới hoặc giữ nguyên)
-        # Ví dụ: "Toan Dan Tao Phong" -> "Toan_Dan_Tao_Phong" hoặc giữ nguyên tùy bạn chọn
-        folder_name = project_name.replace(" ", "_")
-        project_path = os.path.join(self.base_dir, folder_name)
+	def create_project(self, project_name: str, author: str = "Harukj") -> str:
+		"""
+		Tự động tạo cấu trúc thư mục độc lập và các asset con chuẩn AI Donghua Studio.
+		"""
+		folder_name = project_name.replace(" ", "_")
+		project_path = os.path.join(self.base_dir, folder_name)
 
-        if os.path.exists(project_path):
-            raise FileExistsError(f"Dự án '{project_name}' đã tồn tại!")
+		if os.path.exists(project_path):
+			raise FileExistsError(f"Dự án '{project_name}' đã tồn tại!")
 
-        # 2. Danh sách các thư mục con cần tự động sinh ra theo sơ đồ
-        sub_folders = [
-            "characters",
-            "environment",
-            "storyboard",
-            "episodes",
-            "audio",
-            "video",
-            "exports",
-            "cache"
-        ]
+		# --- CẬP NHẬT CẤU TRÚC ASSET THƯƠNG MẠI CHUẨN THEO ẢNH ---
+		# Tạo thư mục assets gốc trước
+		assets_path = os.path.join(project_path, "assets")
+		os.makedirs(assets_path)
 
-        # 3. Tiến hành tạo các thư mục
-        os.makedirs(project_path)
-        for folder in sub_folders:
-            os.makedirs(os.path.join(project_path, folder))
+		# Danh sách các thư mục tài nguyên con nằm bên trong thư mục assets/
+		commercial_assets = [
+			"characters",
+			"environments",
+			"props",
+			"fx",
+			"music",
+			"sounds"
+		]
 
-        # 4. Khởi tạo nội dung mặc định cho file project.json
-        project_metadata = {
-            "project_name": project_name,
-            "folder_name": folder_name,
-            "created_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "author": author,
-            "version": "1.0.0",
-            "status": "In Progress",
-            "settings": {
-                "resolution": "1920x1080",
-                "fps": 24
-            }
-        }
+		# Tự động quét và sinh hàng loạt các thư mục asset con
+		for folder in commercial_assets:
+			os.makedirs(os.path.join(assets_path, folder))
+		# --------------------------------------------------------
 
-        # 5. Ghi dữ liệu vào file project.json
-        json_path = os.path.join(project_path, "project.json")
-        with open(json_path, "w", encoding="utf-8") as f:
-            json.dump(project_metadata, f, ensure_ascii=False, indent=4)
+		# Khởi tạo nội dung file cấu hình meta-data dự án
+		project_metadata = {
+			"project_name": project_name,
+			"folder_name": folder_name,
+			"created_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+			"author": author,
+			"version": "1.0.0",
+			"status": "In Progress"
+		}
 
-        print(f" Đã khởi tạo thành công cấu trúc dự án tại: {project_path}")
-        return project_path
-    def save_character_image(self, current_project_name: str, source_image_path: str) -> str:
-        """
-        Tự động sao chép file ảnh từ máy tính vào thư mục projects/{project_name}/assets/characters/
-        Trả về: Đường dẫn tương đối để lưu vào Database
-        """
-        import shutil
-        
-        # Xác định thư mục dự án hiện tại
-        folder_name = current_project_name.replace(" ", "_")
-        project_assets_dir = os.path.join(self.base_dir, folder_name, "assets", "characters")
-        
-        # Tự động tạo thư mục nếu chưa tồn tại theo sơ đồ của ChatGPT
-        if not os.path.exists(project_assets_dir):
-            os.makedirs(project_assets_dir)
-            
-        # Lấy tên file gốc (Ví dụ: "tomoc.png")
-        image_name = os.path.basename(source_image_path)
-        destination_path = os.path.join(project_assets_dir, image_name)
-        
-        # Tiến hành sao chép file thực tế
-        shutil.copy2(source_image_path, destination_path)
-        
-        # Trả về đường dẫn chuẩn hóa để ghi nhận vào SQLite
-        return destination_path
+		json_path = os.path.join(project_path, "project.json")
+		with open(json_path, "w", encoding="utf-8") as f:
+			json.dump(project_metadata, f, ensure_ascii=False, indent=4)
+
+		print(f"Hệ thống: Đã khởi tạo cấu trúc Asset thương mại tại: {project_path}")
+		return project_path
+	
+	def save_environment_image(self, current_project_name: str, source_image_path: str) -> str:
+		"""
+		Tự động sao chép file ảnh bối cảnh từ máy tính vào đúng thư mục assets/environments/ của dự án
+		"""
+		import shutil
+		folder_name = current_project_name.replace(" ", "_")
+		env_assets_dir = os.path.join(self.base_dir, folder_name, "assets", "environments")
+		
+		if not os.path.exists(env_assets_dir):
+			os.makedirs(env_assets_dir)
+			
+		image_name = os.path.basename(source_image_path)
+		destination_path = os.path.join(env_assets_dir, image_name)
+		
+		shutil.copy2(source_image_path, destination_path)
+		return destination_path
+
