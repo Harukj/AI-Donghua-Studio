@@ -88,6 +88,12 @@ class Dashboard(ctk.CTkFrame):
             
             # Nhúng toàn quyền khung quản lý Character Bible lấp đầy vùng content_frame bên phải
             self.character_view.pack(fill="both", expand=True, padx=10, pady=10)
+
+        elif category_name == "Environment":
+            from gui.environment.environment_window import EnvironmentWindow
+            self.environment_view = EnvironmentWindow(self.content_frame)
+            self.environment_view.pack(fill="both", expand=True, padx=10, pady=10)
+
         else:
             # Đối với các danh mục khác chưa xây dựng giao diện chi tiết, hiển thị text thông báo tạm thời
             self.status_label.configure(
@@ -95,3 +101,5 @@ class Dashboard(ctk.CTkFrame):
                 font=ctk.CTkFont(size=15, weight="bold")
             )
             self.status_label.pack(expand=True)
+        		# Mở file gui/dashboard.py, tìm tới hàm on_category_click và thêm đoạn này vào bên dưới phần xử lý "Characters":
+     
