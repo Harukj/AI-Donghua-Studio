@@ -104,14 +104,14 @@ class NovelPipeline:
 		self.db.add(db_scene)
 			
 			# Gom dữ liệu để trả về nạp trực tiếp lên bảng biểu hiển thị giao diện người dùng
-			processed_scenes.append({
-				"scene_number": scene_num,
-				"text": scene_content,
-				"characters": characters,
-				"environment": environment,
-				"props": props,
-				"dialogues": dialogues
-			})
+		processed_scenes.append({
+			"scene_number": scene_num,
+			"text": scene_content,
+			"characters": characters,
+			"environment": environment,
+			"props": props,
+			"dialogues": dialogues
+		})
 
 		# Lưu metadata tổng quan của bộ truyện chữ vào bảng novels [Bước 9]
 		filename = os.path.basename(file_path)
