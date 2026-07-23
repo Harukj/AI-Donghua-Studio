@@ -1,7 +1,7 @@
 import os
 from sqlalchemy.orm import Session
 
-# Import toàn bộ các bộ quét thực thể từ gói analyzer
+# Import các bộ quét thực thể từ analyzer
 from analyzer.chapter_analyzer import ChapterAnalyzer
 from analyzer.scene_analyzer import SceneAnalyzer
 from analyzer.character_detector import CharacterDetector
@@ -9,23 +9,18 @@ from analyzer.environment_detector import EnvironmentDetector
 from analyzer.prop_detector import PropDetector
 from analyzer.dialogue_detector import DialogueDetector
 
-# Import mô hình Class Scene Object v1.0 để ép kiểu dữ liệu hướng đối tượng
+# Import mô hình Class Scene Object v1.0
 from analyzer.scene_object import Scene
 
-# Import các model cơ sở dữ liệu để ghi nhận dữ liệu xuống SQLite
+# Import các model cơ sở dữ liệu
 from database.models.novel import NovelModel
 from database.models.storyboard import StoryboardSceneModel
 
 class NovelPipeline:
 	def __init__(self, db_session: Session):
-		"""Khởi tạo luồng Pipeline kết nối với phiên làm việc dữ liệu SQLite"""
 		self.db = db_session
 
 	def run_pipeline(self, project_id: str, file_path: str) -> dict:
-		"""
-		[NOVEL PIPELINE v1.0 CORE]
-		Điều phối luồng chạy tuần tự qua các bộ lọc analyzer để sinh ra các Scene Object sạch.
-		"""
 		print(f"\n[START] Kích hoạt luồng Novel Pipeline cho tệp tin: {os.path.basename(file_path)}")
 		
 		# --- BƯỚC 1 & 2: DOCX & PARSER ---
@@ -45,16 +40,16 @@ class NovelPipeline:
 
 		processed_scenes = []
 		
-		# Duyệt qua từng đoạn văn bản để tiến hành bóc tách thực thể AI chuyên sâu
+		# Duyệt qua từng đoạn văn bản để tiến hành bóc tách thực thể
 		for index, scene_content in enumerate(raw_scenes, start=1):
 			scene_num = f"Scene {index:02d}"
 			
-			# --- BƯỚC 5: CHARACTER DETECTOR (Đầu ra JSON) ---
+			# --- BƯỚC 5: CHARACTER DETECTOR ---
 			char_detector = CharacterDetector(scene_content)
 			char_json = char_detector.detect_characters()
 			characters = char_json["characters"]
 			
-			# --- BƯỚC 6: ENVIRONMENT DETECTOR (Đầu ra JSON) ---
+			# --- BƯỚC 6: ENVIRONMENT DETECTOR ---
 			env_detector = EnvironmentDetector(scene_content)
 			env_json = env_detector.detect_environment()
 			environments = [env_json["environment"]]
@@ -63,13 +58,12 @@ class NovelPipeline:
 			prop_detector = PropDetector(scene_content)
 			props = prop_detector.detect_props()
 			
-			# --- BƯỚC 8: DIALOGUE DETECTOR (Đầu ra JSON) ---
+			# --- BƯỚC 8: DIALOGUE DETECTOR ---
 			dialogue_detector = DialogueDetector(scene_content)
 			dialogue_json = dialogue_detector.extract_dialogues()
-			dialogues = [dialogue_json] # Đóng gói dictionary thoại vào mảng list theo quy chuẩn Class
+			dialogues = [dialogue_json]
 			
 			# --- ÉP KIỂU SANG ĐỐI TƯỢNG SCENE OBJECT CHUẨN V1.0 ---
-			# Thay thế hoàn toàn cho việc dùng Dict lỏng lẻo báo lỗi gạch đỏ của bạn
 			scene_object = Scene(
 				id=scene_num,
 				chapter=1,
@@ -82,18 +76,14 @@ class NovelPipeline:
 				duration=5.0
 			)
 			
-			# TÍCH HỢP GỌI PROMPT ENGINE V1.0 TỰ ĐỘNG TRỘN THEO ĐÚNG SƠ ĐỒ MỚI
-			# Hệ thống truyền trực tiếp thực thể đối tượng scene_object sạch vào bộ trộn
+			# TÍCH HỢP GỌI PROMPT ENGINE V1.0 TỰ ĐỘNG TRỘN
 			from services.prompt_engine import PromptEngine
 			prompt_engine = PromptEngine(self.db)
-			
-			# Sinh câu lệnh prompt nghệ thuật và gán trực tiếp vào thuộc tính của Object/Model
 			final_ltx_prompt = prompt_engine.generate_from_scene_object(scene_object)
 			
-			# Đẩy dữ liệu Object sạch vào danh sách trả về
 			processed_scenes.append(scene_object)
 			
-			# Lưu bản ghi an toàn xuống file SQLite dữ liệu
+			# --- BƯỚC 9: DATABASE (LƯU TRỮ TỪNG PHÂN CẢNH) ---
 			db_scene = StoryboardSceneModel(
 				scene_number=scene_object.id,
 				raw_text=scene_content,
@@ -102,10 +92,20 @@ class NovelPipeline:
 				time_frame="Day",
 				mood_atmosphere="Epic",
 				action_description=scene_object.summary,
-				generated_prompt=final_ltx_prompt, # Lưu chuỗi Prompt đã trộn sạch vào Database
+				generated_prompt=final_ltx_prompt,
 				project_id=project_id
 			)
 			self.db.add(db_scene)
+
+		# --- BỔ SUNG LẠI KHỐI ĐỊNH NGHĨA DB_NOVEL BỊ THIẾU MẤT CỦA BẠN ---
+		filename = os.path.basename(file_path)
+		db_novel = NovelModel(
+			project_id=project_id,
+			title=filename.replace(".docx", "").replace("_", " "),
+			filename=filename,
+			chapter_count=1
+		)
+		self.db.add(db_novel)
 		
 		# Thực thi lưu trữ tất cả các bản ghi xuống file SQLite an toàn
 		self.db.commit()

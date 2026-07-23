@@ -65,10 +65,10 @@ class NovelWindow(ctk.CTkFrame):
 		from tkinter import filedialog, messagebox
 		from pipeline.novel_pipeline import NovelPipeline  # Import bộ điều phối luồng mới
 		from core.logger import studio_logger
-				import os
+		import os
 				
-				# Kích hoạt bộ ghi nhật ký chuẩn Unreal Engine
-				studio_logger.log_import_novel(filename=os.path.basename(file_path), status="SUCCESS")
+			# Kích hoạt bộ ghi nhật ký chuẩn Unreal Engine
+		studio_logger.log_import_novel(filename=os.path.basename(file_path), status="SUCCESS")
 		# 1. Cho người dùng lựa chọn tệp .docx từ hệ điều hành máy tính
 		file_path = filedialog.askopenfilename(filetypes=[("Word Documents", "*.docx")])
 		if file_path:
@@ -78,17 +78,15 @@ class NovelWindow(ctk.CTkFrame):
 				current_project = "ToanDanTaoPhong"
 				
 				# 3. Chạy kích hoạt toàn bộ luồng 9 bước tự động
-				result = pipeline.run_pipeline(current_project, file_path)
+			result = pipeline.run_pipeline(current_project, file_path)
 				
-				# 4. Đổ dữ liệu đồng bộ lên form giao diện
 				self.novel_form.entry_novel_title.delete(0, "end")
 				self.novel_form.entry_novel_title.insert(0, result["novel_title"])
 				
-				# Ánh xạ kết quả phân cảnh sang cấu trúc chương để nạp hiển thị lên giao diện
 				chapters_ui_data = []
 				for scene in result["scenes"]:
 					chapters_ui_data.append({
-						"title": f"#{scene.id.lower()}", # Truy cập dạng thuộc tính Object .id
+						"title": f"#{scene.id.lower()}",
 						"text": f"Nhân vật: {', '.join(scene.characters)}\nBối cảnh: {', '.join(scene.environments)}\nThời lượng: {scene.duration}s\n\nKịch bản văn học:\n{scene.summary}"
 					})
 				
