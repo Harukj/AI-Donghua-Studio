@@ -64,7 +64,11 @@ class NovelWindow(ctk.CTkFrame):
 		"""Kích hoạt động cơ lõi 9 bước NovelPipeline khi Import file truyện chữ"""
 		from tkinter import filedialog, messagebox
 		from pipeline.novel_pipeline import NovelPipeline  # Import bộ điều phối luồng mới
-		
+		from core.logger import studio_logger
+				import os
+				
+				# Kích hoạt bộ ghi nhật ký chuẩn Unreal Engine
+				studio_logger.log_import_novel(filename=os.path.basename(file_path), status="SUCCESS")
 		# 1. Cho người dùng lựa chọn tệp .docx từ hệ điều hành máy tính
 		file_path = filedialog.askopenfilename(filetypes=[("Word Documents", "*.docx")])
 		if file_path:
