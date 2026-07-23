@@ -1,4 +1,5 @@
 import os
+from analyzer.scene_object import Scene  # Import thực thể Class mới
 from sqlalchemy.orm import Session
 
 # Import toàn bộ 6 module phân tích cốt lõi từ gói analyzer
@@ -41,13 +42,24 @@ class NovelPipeline:
 		print(f"-> Bước 3: Đã phân tích tổng quan chương. Đếm được {chapter_info['word_count']} từ chữ thô.")
 
 		# --- BƯỚC 4: SCENE SPLITTER ---
+		scene_object = Scene(
+			id=scene_num,
+			chapter=1, # Tạm gán chương 1
+			title=f"Phân cảnh {scene_num}",
+			summary=scene_content[:150],
+			characters=characters,
+			environments=[environment],
+			props=props,
+			dialogues=dialogues,
+			duration=5.0 # Mặc định ước lượng mỗi shot phim AI dài 5 giây thương mại
+		)
 		# Bẻ nhỏ chương văn học thành từng phân cảnh hành động độc lập
 		scene_analyzer = SceneAnalyzer(raw_text)
 		raw_scenes = scene_analyzer.split_scenes()
 		print(f"-> Bước 4: Bộ bẻ cảnh (Scene Splitter) đã chia nhỏ thành {len(raw_scenes)} phân cảnh điện ảnh.")
 
 		processed_scenes = []
-		
+		processed_scenes.append(scene_object)
 		# Duyệt qua từng phân cảnh để tiến hành trích xuất thực thể AI chuyên sâu
 		for index, scene_content in enumerate(raw_scenes, start=1):
 			scene_num = f"Scene {index:02d}"
@@ -80,16 +92,16 @@ class NovelPipeline:
 			# --- BƯỚC 9: DATABASE (LƯU TRỮ TRỰC TIẾP TỪNG PHÂN CẢNH) ---
 			# Đóng gói và lưu trữ cấu trúc kịch bản phân cảnh thô vào SQLite
 			db_scene = StoryboardSceneModel(
-				scene_number=scene_num,
-				raw_text=scene_content,
-				character_name=", ".join(characters),
-				environment_name=environment,
-				time_frame="Day", # Mặc định thiết lập
-				mood_atmosphere="Epic", # Mặc định sắc thái nghệ thuật
-				action_description=f"Hành động bóc tách: {scene_content[:100]}...",
-				project_id=project_id
-			)
-			self.db.add(db_scene)
+			scene_number=scene_object.id,
+			raw_text=scene_content,
+			character_name=", ".join(scene_object.characters),
+			environment_name=", ".join(scene_object.environments),
+			time_frame="Day",
+			mood_atmosphere="Epic",
+			action_description=scene_object.summary,
+			project_id=project_id
+		)
+		self.db.add(db_scene)
 			
 			# Gom dữ liệu để trả về nạp trực tiếp lên bảng biểu hiển thị giao diện người dùng
 			processed_scenes.append({

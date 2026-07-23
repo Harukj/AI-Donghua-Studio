@@ -84,8 +84,8 @@ class NovelWindow(ctk.CTkFrame):
 				chapters_ui_data = []
 				for scene in result["scenes"]:
 					chapters_ui_data.append({
-						"title": f"#{scene['scene_number'].lower()}",
-						"text": f"Nhân vật: {', '.join(scene['characters'])}\nBối cảnh: {scene['environment']}\nVật phẩm: {', '.join(scene['props'])}\n\nNội dung văn học:\n{scene['text']}"
+						"title": f"#{scene.id.lower()}", # Truy cập dạng thuộc tính Object .id
+						"text": f"Nhân vật: {', '.join(scene.characters)}\nBối cảnh: {', '.join(scene.environments)}\nThời lượng: {scene.duration}s\n\nKịch bản văn học:\n{scene.summary}"
 					})
 				
 				self.novel_form.mock_chapters = chapters_ui_data
