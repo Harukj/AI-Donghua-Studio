@@ -14,44 +14,40 @@ class PromptEngine:
 			return camera.camera_prompt
 		return f"{camera_name.lower()} shot"
 
-	def generate_from_scene_object(self, scene: Scene, default_lighting: str = "Golden Hour", default_mood: str = "Epic") -> str:
+	def generate_from_scene_object(self, scene) -> str:
 		"""
-		[PROMPT ENGINE v1.0 ARCHITECTURE]
-		Hàm nhận đầu vào duy nhất là thực thể Class Scene Object sạch.
-		Tự động bóc tách mảng thuộc tính và trộn thành câu lệnh LTX Prompt thương mại hoàn chỉnh.
+		[PROMPT ENGINE UPGRADED WITH AI DIRECTOR]
+		Nhận Scene Object -> Gọi Đạo diễn AI tự phân tích -> Trộn prompt điện ảnh tối ưu
 		"""
-		# 1. Trích xuất danh sách nhân vật và bối cảnh từ thuộc tính đối tượng Object
-		# Sử dụng dấu phẩy để nối chuỗi nếu phân cảnh xuất hiện nhiều thực thể
+		# Khởi động bộ não Đạo diễn AI độc quyền xử lý kịch bản chữ thô của phân cảnh
+		from analyzer.ai_director import AIDirector
+		ai_director = AIDirector(scene.summary)
+		ai_decisions = ai_director.make_cinematic_decisions()
+		
+		# Trích xuất các quyết định nghệ thuật tự động từ AI Director
+		detected_emotion = ai_decisions["emotion"]
+		camera_prompt = ai_decisions["camera"]
+		lens_prompt = ai_decisions["lens"]
+		lighting_prompt = ai_decisions["lighting"]
+		
+		# Trích xuất các thực thể cơ bản có sẵn trong Object
 		characters_part = ", ".join(scene.characters) if scene.characters else "Default Character"
 		environments_part = ", ".join(scene.environments) if scene.environments else "Default Environment"
-		
-		# 2. Xử lý trích xuất danh sách vật phẩm/vũ khí (Props) từ Object
 		props_part = f"holding {', '.join(scene.props).lower()}" if scene.props and "none" not in [p.lower() for p in scene.props] else ""
 
-		# 3. Lấy thông số góc máy điện ảnh mặc định
-		# Nếu danh sách phân cảnh chưa có cấu hình góc máy, mặc định sử dụng Medium Shot
-		camera_name = "Medium Shot"
-		camera_prompt = self.get_camera_prompt(camera_name)
-		
-		# 4. Thiết lập bộ lọc nghệ thuật nâng cao (Ánh sáng & Bầu không khí cảm xúc)
-		lighting_prompt = f"{default_lighting.lower()} lighting"
-		mood_prompt = f"{default_mood.lower()} mood"
-		
-		# 5. Tiến hành lắp ráp chuỗi Mixer điện ảnh theo đúng sơ đồ luồng v1.0 của ChatGPT
-		# Cấu trúc chuỗi: Phong cách hoạt hình gốc, Góc máy, Nhân vật, Vũ khí, Bối cảnh không gian, Ánh sáng, Cảm xúc cảnh
+		# Tiến hành lắp ráp Mixer điện ảnh 5 sao theo chuẩn v1.0 của Studio
 		prompt_elements = [
-			"Chinese Donghua style",
-			camera_prompt,
-			characters_part,
+			"Chinese Donghua 3D animation style",
+			f"{camera_prompt}",
+			f"{lens_prompt}",
+			f"character {characters_part} showing {detected_emotion.lower()} emotion",
 			props_part,
-			f"in {environments_part}",
-			lighting_prompt,
-			mood_prompt,
+			f"scene takes place in {environments_part}",
+			f"{lighting_prompt}",
 			"masterpiece",
 			"cinematic composition",
-			"16:9 aspect ratio"
+			"highly detailed texture",
+			"16:9 cinematic aspect ratio"
 		]
 		
-		# Lọc bỏ các chuỗi rỗng và nối lại một cách sạch sẽ bằng dấu phẩy
-		ltx_prompt = ", ".join([element.strip() for element in prompt_elements if element])
-		return ltx_prompt
+		return ", ".join([element.strip() for element in prompt_elements if element])
