@@ -3,24 +3,24 @@ from datetime import datetime
 from database.base import Base
 
 class StoryboardSceneModel(Base):
-	__tablename__ = "scenes" # Đổi tên bảng thành 'scenes' theo đúng chuẩn hóa của ChatGPT
+	__tablename__ = "scenes" # Khớp chính xác tên bảng trong đặc tả v1.0
 
 	id = Column(Integer, primary_key=True, autoincrement=True)
-	scene_id = Column(String(50), nullable=False)              # Mã phân cảnh (Ví dụ: SCENE_01)
-	chapter_id = Column(Integer, nullable=False)               # Thuộc chương số mấy (Liên kết bảng Chapters)
-	title = Column(String(200), nullable=True)                 # Tiêu đề phân cảnh
-	summary = Column(Text, nullable=True)                      # Tóm tắt kịch bản phân cảnh
-	
-	# Các trường Assets lưu trữ dạng chuỗi phân tách bằng dấu phẩy (hoặc JSON Text) để map với Object
-	characters = Column(Text, nullable=True)                   # Các nhân vật xuất hiện
-	environments = Column(Text, nullable=True)                 # Các bối cảnh không gian
-	props = Column(Text, nullable=True)                        # Vũ khí, bảo vật sử dụng
-	dialogues = Column(Text, nullable=True)                    # Danh sách lời thoại cấu trúc
-	
+	chapter_id = Column(Integer, nullable=False)               # Thuộc chương số mấy
+	index = Column(Integer, nullable=False)                    # Số thứ tự phân cảnh (Ví dụ: 1, 2, 3...)
+	title = Column(String(200), nullable=True)                 # Tiêu đề ngắn gọn của phân cảnh
+	summary = Column(Text, nullable=False)                     # Nội dung kịch bản chữ/hành động thô của cảnh
 	duration = Column(Float, default=5.0)                      # Thời lượng shot phim AI (giây)
-	generated_prompt = Column(Text, nullable=True)             # Trường chứa LTX Prompt sinh từ Prompt Engine
-	project_id = Column(String(100), nullable=False)           # Định danh cô lập theo dự án
+	camera = Column(String(100), nullable=True)                # Góc máy điện ảnh mặc định (Close up, Wide...)
+	mood = Column(String(100), nullable=True)                  # Bầu không khí cảm xúc cảnh (Wonder, Epic...)
+	prompt = Column(Text, nullable=True)                       # Câu lệnh prompt nghệ thuật gộp cuối cùng
+	
+	# Trường quản lý luồng trạng thái sản xuất thương mại chuẩn thiết kế ChatGPT
+	# Nhận các giá trị nghiêm ngặt: 'draft', 'Approved', 'Rendering', 'Completed'
+	status = Column(String(50), nullable=False, default="draft")
+	
+	project_id = Column(String(100), nullable=False, default="default") # Cô lập dữ liệu theo Project
 	created_at = Column(DateTime, default=datetime.utcnow)
 
 	def __repr__(self):
-		return f"<SceneModel(id={self.scene_id}, project='{self.project_id}')>"
+		return f"<SceneModel(id={self.id}, index={self.index}, status='{self.status}')>"
