@@ -61,24 +61,27 @@ class NovelWindow(ctk.CTkFrame):
 		print(f"Hệ thống: Đã kích hoạt không gian xử lý tệp văn bản cho: {name}")
 
 	def handle_docx_import(self):
+		"""Kích hoạt chuỗi xử lý Pipeline tuần tự khi người dùng import file Word"""
 		from tkinter import filedialog, messagebox
 		from core.services.novel_service import NovelService
 		
 		file_path = filedialog.askopenfilename(filetypes=[("Word Documents", "*.docx")])
 		if file_path:
 			try:
-				# Truyền self.db vào để nạp dữ liệu thật xuống SQLite
+				# Khởi tạo lớp dịch vụ xử lý chuỗi Pipeline tuần tự
 				novel_service = NovelService(self.db)
 				current_project = "ToanDanTaoPhong"
 				
-				result = novel_service.process_novel_import(current_project, file_path)
+				# Kích hoạt toàn bộ 6 bước xử lý dữ liệu
+				result = novel_service.execute_novel_pipeline(current_project, file_path)
 				
+				# Đổ dữ liệu đồng bộ lên form giao diện người dùng
 				self.novel_form.entry_novel_title.delete(0, "end")
 				self.novel_form.entry_novel_title.insert(0, result["novel_title"])
 				self.novel_form.mock_chapters = result["chapters"]
 				self.novel_form.render_chapters()
 				self.novel_form.load_chapter_content(0)
 				
-				messagebox.showinfo("Novel Import System", f"Đã đồng bộ thành công cấu trúc tệp truyện và dữ liệu bảng SQLite!")
+				messagebox.showinfo("AI Donghua Studio", "Hệ thống Pipeline đã hoàn thành xử lý 6 bước tuần tự thành công!")
 			except Exception as e:
-				messagebox.showerror("Lỗi", f"Không thể xử lý tệp: {e}")
+				messagebox.showerror("Lỗi Pipeline", f"Luồng xử lý tệp tin gặp sự cố: {e}")
