@@ -1,41 +1,33 @@
 import os
+import shutil
+from datetime import datetime
+from sqlalchemy.orm import Session
 from docx import Document
-from core.project_manager import ProjectManager
+from database.models.novel import NovelModel
 
 class NovelService:
-	def __init__(self, db_session=None):
+	def __init__(self, db_session: Session):
+		"""Khởi tạo service kết nối với phiên làm việc dữ liệu SQLite"""
 		self.db = db_session
-		self.project_manager = ProjectManager()
 
 	def extract_text_from_docx(self, file_path: str) -> str:
-		"""
-		[BƯỚC 4 - ĐỌC DOCX] 
-		Sử dụng thư viện python-docx để trích xuất toàn bộ văn bản từ file Word
-		"""
+		"""[Bước 4] Trích xuất toàn bộ văn bản từ file Word"""
 		if not os.path.exists(file_path):
 			raise FileNotFoundError(f"Không tìm thấy tệp tin: {file_path}")
-			
 		doc = Document(file_path)
-		full_text = []
-		
-		# Duyệt qua từng đoạn văn bản trong file theo cấu trúc gợi ý của ChatGPT
-		for p in doc.paragraphs:
-			full_text.append(p.text)
-			
-		# Nối các đoạn văn lại bằng dấu xuống dòng
-		return "\n".join(full_text)
+		return "\n".join([p.text for p in doc.paragraphs])
 
-	def process_novel_import(self, current_project: str, source_file_path: str) -> dict:
+	def process_novel_import(self, project_id: str, source_file_path: str) -> dict:
 		"""
-		[BƯỚC 5 - LƯU VÀO PROJECT]
-		Sao chép file vào thư mục dự án và bóc tách nội dung thô
+		[Bước 5 & Bước 6] 
+		Sao chép file vật lý vào thư mục gốc của Project và lưu bản ghi vào Database.
 		"""
-		# Đọc toàn bộ nội dung chữ trước
+		# 1. Trích xuất nội dung văn bản thô từ file Word
 		raw_content = self.extract_text_from_docx(source_file_path)
 		
-		# Xác định thư mục đích để cô lập tài nguyên theo Project (projects/{project_name}/assets/novel/)
-		folder_name = current_project.replace(" ", "_")
-		target_dir = os.path.join("projects", folder_name, "assets", "novel")
+		# 2. Xử lý lưu file vật lý biệt lập theo đúng sơ đồ [Bước 5]: projects/{project_name}/novel/
+		folder_name = project_id.replace(" ", "_")
+		target_dir = os.path.join("projects", folder_name, "novel")
 		
 		if not os.path.exists(target_dir):
 			os.makedirs(target_dir)
@@ -43,30 +35,36 @@ class NovelService:
 		filename = os.path.basename(source_file_path)
 		destination_path = os.path.join(target_dir, filename)
 		
-		# Lưu bản sao file Word vào thư mục dự án
-		import shutil
+		# Luôn luôn copy file mới vào dự án để bảo vệ file gốc của người dùng
 		shutil.copy2(source_file_path, destination_path)
 		
-		# Giả lập thuật toán tự tách chương dựa theo từ khóa "Chương" hoặc dấu ngắt dòng lớn
-		# Để đồng bộ tạm thời với giao diện Bước 2 của bạn
+		# 3. Thuật toán giả lập phân đoạn và đếm số chương truyện chữ
 		paragraphs = [p.strip() for p in raw_content.split("\n\n") if p.strip()]
 		chapters_data = []
 		
 		if len(paragraphs) <= 3:
-			# Nếu file ngắn, đưa toàn bộ vào 1 chương giả lập
-			chapters_data = [
-				{"title": "#1 Khởi đầu", "text": raw_content}
-			]
+			chapters_data = [{"title": "#1 khởi đầu", "text": raw_content}]
 		else:
-			# Chia nhỏ văn bản để nạp lên danh sách chương
 			chapters_data = [
-				{"title": "#1 Khởi đầu", "text": "\n\n".join(paragraphs[:max(1, len(paragraphs)//3)])},
-				{"title": "#2 Thiên tài", "text": "\n\n".join(paragraphs[len(paragraphs)//3 : 2*len(paragraphs)//3])},
-				{"title": "#3 Tiến vào mộng võng", "text": "\n\n".join(paragraphs[2*len(paragraphs)//3:])}
+				{"title": "#1 khởi đầu", "text": "\n\n".join(paragraphs[:len(paragraphs)//3])},
+				{"title": "#2 thiên tài", "text": "\n\n".join(paragraphs[len(paragraphs)//3 : 2*len(paragraphs)//3])},
+				{"title": "#3 tiến vào mộng võng", "text": "\n\n".join(paragraphs[2*len(paragraphs)//3:])}
 			]
-			
+		
+		# 4. Ghi nhận dữ liệu metadata vào bảng database SQLite chuẩn [Bước 6]
+		db_novel = NovelModel(
+			project_id=project_id,
+			title=filename.replace(".docx", "").replace("_", " "),
+			filename=filename,
+			chapter_count=len(chapters_data)
+		)
+		self.db.add(db_novel)
+		self.db.commit()
+		self.db.refresh(db_novel)
+		
+		print(f"Hệ thống: Đã ghi nhận tác phẩm '{db_novel.title}' vào Database với ID: {db_novel.id}")
+		
 		return {
-			"novel_title": filename.replace(".docx", "").replace("_", " "),
-			"saved_file_path": destination_path,
+			"novel_title": db_novel.title,
 			"chapters": chapters_data
 		}
