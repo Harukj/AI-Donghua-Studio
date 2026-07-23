@@ -68,7 +68,14 @@ class NovelPipeline:
 			
 			# --- BƯỚC 8: DIALOGUE DETECTOR ---
 			dialogue_detector = DialogueDetector(scene_content)
-			dialogues = dialogue_detector.extract_dialogues()
+			dialogue_json = dialogue_detector.extract_dialogues()
+			
+			# Lấy thông tin đã cấu trúc hóa từ JSON
+			speaker_name = dialogue_json["speaker"]
+			dialogue_line = dialogue_json["dialogue"]
+			
+			# Bạn có thể in ra màn hình Terminal để kiểm tra luồng phân tích thực tế:
+			print(f"   [AI Phân vai] Nhân vật: {speaker_name} -> Thoại: '{dialogue_line}'")
 			
 			# --- BƯỚC 9: DATABASE (LƯU TRỮ TRỰC TIẾP TỪNG PHÂN CẢNH) ---
 			# Đóng gói và lưu trữ cấu trúc kịch bản phân cảnh thô vào SQLite
