@@ -54,9 +54,13 @@ class NovelPipeline:
 			env_json = env_detector.detect_environment()
 			environments = [env_json["environment"]]
 			
-			# --- BƯỚC 7: PROPS DETECTOR ---
-			prop_detector = PropDetector(scene_content)
-			props = prop_detector.detect_props()
+			# --- BƯỚC 7: ASSET DETECTOR NÂNG CẤP ĐỒNG BỘ ---
+			from analyzer.asset_detector import AssetDetector
+			asset_detector = AssetDetector(scene_content)
+			detected_assets = asset_detector.detect_and_sync_assets()
+			
+			# Trích xuất vật phẩm phụ trợ sạch từ bộ quét tự động
+			props = [detected_assets["prop"]]
 			
 			# --- BƯỚC 8: DIALOGUE DETECTOR ---
 			dialogue_detector = DialogueDetector(scene_content)
