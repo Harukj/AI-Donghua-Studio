@@ -61,27 +61,37 @@ class NovelWindow(ctk.CTkFrame):
 		print(f"Hệ thống: Đã kích hoạt không gian xử lý tệp văn bản cho: {name}")
 
 	def handle_docx_import(self):
-		"""Kích hoạt chuỗi xử lý Pipeline tuần tự khi người dùng import file Word"""
+		"""Kích hoạt động cơ lõi 9 bước NovelPipeline khi Import file truyện chữ"""
 		from tkinter import filedialog, messagebox
-		from core.services.novel_service import NovelService
+		from pipeline.novel_pipeline import NovelPipeline  # Import bộ điều phối luồng mới
 		
+		# 1. Cho người dùng lựa chọn tệp .docx từ hệ điều hành máy tính
 		file_path = filedialog.askopenfilename(filetypes=[("Word Documents", "*.docx")])
 		if file_path:
 			try:
-				# Khởi tạo lớp dịch vụ xử lý chuỗi Pipeline tuần tự
-				novel_service = NovelService(self.db)
+				# 2. Khởi tạo Pipeline nạp phiên làm việc dữ liệu SQLite
+				pipeline = NovelPipeline(self.db)
 				current_project = "ToanDanTaoPhong"
 				
-				# Kích hoạt toàn bộ 6 bước xử lý dữ liệu
-				result = novel_service.execute_novel_pipeline(current_project, file_path)
+				# 3. Chạy kích hoạt toàn bộ luồng 9 bước tự động
+				result = pipeline.run_pipeline(current_project, file_path)
 				
-				# Đổ dữ liệu đồng bộ lên form giao diện người dùng
+				# 4. Đổ dữ liệu đồng bộ lên form giao diện
 				self.novel_form.entry_novel_title.delete(0, "end")
 				self.novel_form.entry_novel_title.insert(0, result["novel_title"])
-				self.novel_form.mock_chapters = result["chapters"]
+				
+				# Ánh xạ kết quả phân cảnh sang cấu trúc chương để nạp hiển thị lên giao diện
+				chapters_ui_data = []
+				for scene in result["scenes"]:
+					chapters_ui_data.append({
+						"title": f"#{scene['scene_number'].lower()}",
+						"text": f"Nhân vật: {', '.join(scene['characters'])}\nBối cảnh: {scene['environment']}\nVật phẩm: {', '.join(scene['props'])}\n\nNội dung văn học:\n{scene['text']}"
+					})
+				
+				self.novel_form.mock_chapters = chapters_ui_data
 				self.novel_form.render_chapters()
 				self.novel_form.load_chapter_content(0)
 				
-				messagebox.showinfo("AI Donghua Studio", "Hệ thống Pipeline đã hoàn thành xử lý 6 bước tuần tự thành công!")
+				messagebox.showinfo("AI Donghua Studio", "Hệ thống Đ đạo diễn AI đã hoàn thành bóc tách 9 bước tuần tự thành công!")
 			except Exception as e:
-				messagebox.showerror("Lỗi Pipeline", f"Luồng xử lý tệp tin gặp sự cố: {e}")
+				messagebox.showerror("Lỗi hệ thống", f"Luồng xử lý Pipeline v1.0 gặp sự cố: {e}")
