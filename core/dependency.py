@@ -1,21 +1,39 @@
-import sys
-from core.logger import logger
+from sqlalchemy.orm import Session
+from database.session import SessionLocal
 
-def check_dependencies():
-	"""Kiểm tra tính sẵn sàng của các thư viện cốt lõi"""
-	required_modules = ["customtkinter", "sqlalchemy", "docx", "PIL"]
-	missing_modules = []
-	
-	for module in required_modules:
-		try:
-			__import__(module)
-		except ImportError:
-			missing_modules.append(module)
-			
-	if missing_modules:
-		logger.error(f"Thiếu các thư viện phụ thuộc bắt buộc: {missing_modules}")
-		logger.info("Vui lòng chạy lệnh: pip install -r requirements.txt")
-		return False
+# Import toàn bộ các Service Layer cốt lõi của Studio
+from services.character_service import CharacterService
+from services.environment_service import EnvironmentService
+from core.project_manager import ProjectManager
+
+class DependencyProvider:
+	def __init__(self):
+		"""Khởi tạo phiên làm việc kết nối Database dùng chung cho các dịch vụ"""
+		self.db: Session = SessionLocal()
 		
-	logger.info("Tất cả thư viện hệ thống (Dependencies) đã sẵn sàng 100%.")
-	return True
+		# Khởi tạo tập trung các Service (Dependency Injection Boilerplate)
+		self._character_service = CharacterService(self.db)
+		self._environment_service = EnvironmentService(self.db)
+		self._project_manager = ProjectManager()
+
+	def get_character_service(self) -> CharacterService:
+		"""Cung cấp dịch vụ quản lý nhân vật"""
+		return self._character_service
+
+	def get_environment_service(self) -> EnvironmentService:
+		"""Cung cấp dịch vụ quản lý bối cảnh"""
+		return self._environment_service
+
+	def get_project_manager(self) -> ProjectManager:
+		"""Cung cấp dịch vụ quản lý cấu trúc dự án"""
+		return self._project_manager
+
+	def close_all(self):
+		"""Giải phóng kết nối khi đóng ứng dụng phần mềm"""
+		try:
+			self.db.close()
+		except Exception:
+			pass
+
+# Khởi tạo một đối tượng Provider duy nhất cho toàn bộ hệ thống (Singleton Pattern)
+ioc_container = DependencyProvider()
