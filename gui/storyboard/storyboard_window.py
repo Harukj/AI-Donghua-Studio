@@ -46,7 +46,12 @@ class StoryboardWindow(ctk.CTkFrame):
 		self.detail_title = ctk.CTkLabel(
 			self.right_panel, text="Thông số góc quay & AI Prompt", font=ctk.CTkFont(size=16, weight="bold")
 		)
-		self.detail_title.pack(padx=20, pady=20, anchor="w")
+		self.detail_title.pack(padx=20, pady=15, anchor="w")
+		
+		# Nhúng trực tiếp biểu mẫu cấu hình StoryboardForm vào vùng nhìn bên phải
+		from gui.storyboard.storyboard_form import StoryboardForm
+		self.storyboard_form = StoryboardForm(self.right_frame_layout_container(), approve_callback=self.approve_current_scene)
+		# Tạm thời ẩn form đi, chỉ hiển thị khi người dùng chọn scene thực tế
 		
 		self.status_lbl = ctk.CTkLabel(
 			self.right_panel, text="Vui lòng click chọn một phân cảnh kịch bản ở lề trái\nđể cấu hình thông số điện ảnh AI chi tiết.",
@@ -99,25 +104,36 @@ class StoryboardWindow(ctk.CTkFrame):
 			btn.pack(fill="x", pady=3, padx=5)
 
 	def load_scene_details(self, scene_db_id):
-		"""Hành động khi click chọn vào một Scene cụ thể: Chuẩn bị nạp form thuộc tính ở bước sau"""
 		self.selected_scene_id = scene_db_id
-		
-		# Highlight nút đang chọn trong danh sách cuộn
-		for idx, btn in enumerate(self.scenes_scroll.winfo_children()):
-			if db_scene := self.db.query(self.storyboard_repo.model).filter_by(chapter_id=1).order_by(self.storyboard_repo.model.index.asc()).all():
-				if db_scene[idx].id == scene_db_id:
-					btn.configure(fg_color=("#3B8ED0", "#1F6AA5"))
-				else:
-					btn.configure(fg_color="transparent")
-
 		scene = self.storyboard_repo.get_by_id(scene_db_id)
+		
 		if scene:
-			for widget in self.right_panel.winfo_children():
-				if widget != self.detail_title: widget.pack_forget()
-				
+			# Ẩn nhãn thông báo mặc định
+			self.status_lbl.pack_forget()
 			self.detail_title.configure(text=f"Cấu hình: Scene {scene.index:03d}")
-			self.status_lbl.configure(text=f"Hành động thô: '{scene.summary}'\n\n[Trạng thái sản xuất: {scene.status.upper()}]\n\nCơ chế nạp Form thuộc tính chi tiết đang chờ đặc tả từ nút cuộn ở Bước 3...")
-			self.status_lbl.pack(expand=True)
+			
+			# Đóng gói dữ liệu bóc tách từ SQLite khớp 100% với form của ChatGPT
+			ui_data = {
+				"character": scene.characters or "Tô Mộc",
+				"environment": scene.environments or "Ký túc xá",
+				"camera": scene.camera or "Wide Shot",
+				"mood": scene.mood or "Mysterious",
+				"duration": scene.duration or 5.0,
+				"prompt": scene.prompt or f"Masterpiece, Chinese Donghua style, wide shot, Tô Mộc in dormitory, mysterious atmosphere, cinematic lighting, 16:9",
+				"status": scene.status
+			}
+			
+			# Gọi form tự động cập nhật hiển thị lên màn hình phải
+			self.storyboard_form.update_form_display(ui_data)
+			self.storyboard_form.pack(fill="both", expand=True, padx=10, pady=5)
+
+	def approve_current_scene(self):
+		"""Hành động khi người dùng nhấn nút Duyệt phim: Đẩy trạng thái sang Approved"""
+		if self.selected_scene_id:
+			self.storyboard_repo.update_scene_status(self.selected_scene_id, "Approved")
+			messagebox.showinfo("AI Donghua Studio", "Đã phê duyệt phân cảnh kịch bản điện ảnh!\nPhân cảnh đã được chuyển trạng thái chờ gửi sang LTX Render Queue.")
+			self.load_scene_details(self.selected_scene_id)
+
 
 	def __del__(self):
 		try: self.db.close()
