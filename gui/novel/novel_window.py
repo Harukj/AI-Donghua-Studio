@@ -78,7 +78,7 @@ class NovelWindow(ctk.CTkFrame):
 				current_project = "ToanDanTaoPhong"
 				
 				# 3. Chạy kích hoạt toàn bộ luồng 9 bước tự động
-			result = pipeline.run_pipeline(current_project, file_path)
+				result = pipeline.run_pipeline(current_project, file_path)
 				
 				self.novel_form.entry_novel_title.delete(0, "end")
 				self.novel_form.entry_novel_title.insert(0, result["novel_title"])
@@ -94,6 +94,6 @@ class NovelWindow(ctk.CTkFrame):
 				self.novel_form.render_chapters()
 				self.novel_form.load_chapter_content(0)
 				
-				messagebox.showinfo("AI Donghua Studio", "Hệ thống Đ đạo diễn AI đã hoàn thành bóc tách 9 bước tuần tự thành công!")
+				messagebox.showinfo("AI Donghua Studio", "Hệ thống Đạo diễn AI đã hoàn thành bóc tách 9 bước tuần tự thành công!")
 			except Exception as e:
 				messagebox.showerror("Lỗi hệ thống", f"Luồng xử lý Pipeline v1.0 gặp sự cố: {e}")
