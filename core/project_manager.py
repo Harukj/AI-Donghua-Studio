@@ -61,3 +61,27 @@ class ProjectManager:
 
         print(f" Đã khởi tạo thành công cấu trúc dự án tại: {project_path}")
         return project_path
+    def save_character_image(self, current_project_name: str, source_image_path: str) -> str:
+        """
+        Tự động sao chép file ảnh từ máy tính vào thư mục projects/{project_name}/assets/characters/
+        Trả về: Đường dẫn tương đối để lưu vào Database
+        """
+        import shutil
+        
+        # Xác định thư mục dự án hiện tại
+        folder_name = current_project_name.replace(" ", "_")
+        project_assets_dir = os.path.join(self.base_dir, folder_name, "assets", "characters")
+        
+        # Tự động tạo thư mục nếu chưa tồn tại theo sơ đồ của ChatGPT
+        if not os.path.exists(project_assets_dir):
+            os.makedirs(project_assets_dir)
+            
+        # Lấy tên file gốc (Ví dụ: "tomoc.png")
+        image_name = os.path.basename(source_image_path)
+        destination_path = os.path.join(project_assets_dir, image_name)
+        
+        # Tiến hành sao chép file thực tế
+        shutil.copy2(source_image_path, destination_path)
+        
+        # Trả về đường dẫn chuẩn hóa để ghi nhận vào SQLite
+        return destination_path
