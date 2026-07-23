@@ -3,65 +3,87 @@ from database.models.character import CharacterModel
 
 class CharacterService:
     def __init__(self, db_session: Session):
-        """Khởi tạo service với một phiên kết nối Database (Session)"""
+        """Khởi tạo service nhận vào một Session kết nối Database"""
         self.db = db_session
 
-    def add_character(self, character_data: dict) -> CharacterModel:
-        """Thêm một nhân vật mới vào Cơ sở dữ liệu SQLite"""
+    def create_character(self, character_data: dict) -> CharacterModel:
+        """[Create Character] Thêm một nhân vật mới vào hệ thống dữ liệu"""
         db_character = CharacterModel(
             name=character_data.get("Tên"),
+            alias=character_data.get("Biệt danh"),
             gender=character_data.get("Giới tính"),
             age=character_data.get("Tuổi"),
+            height=character_data.get("Chiều cao"),
+            weight=character_data.get("Cân nặng"),
             hair=character_data.get("Tóc"),
             eyes=character_data.get("Mắt"),
-            clothes=character_data.get("Trang phục"),
+            face=character_data.get("Khuôn mặt"),
+            skin=character_data.get("Màu da"),
+            costume=character_data.get("Trang phục"),
+            weapon=character_data.get("Vũ khí"),
             personality=character_data.get("Tính cách"),
-            style=character_data.get("Prompt Style", "Chinese Donghua style"),
+            voice=character_data.get("Giọng nói"),
+            style=character_data.get("Style"),
+            positive_prompt=character_data.get("Positive Prompt"),
             negative_prompt=character_data.get("Negative Prompt"),
-            notes=character_data.get("Ghi chú")
+            notes=character_data.get("Ghi chú"),
+            seed=character_data.get("Mã Seed"),
+            image=character_data.get("Ảnh đại diện")
         )
         self.db.add(db_character)
         self.db.commit()
         self.db.refresh(db_character)
         return db_character
 
-    def get_character_by_name(self, name: str) -> CharacterModel:
-        """Truy vấn hồ sơ nhân vật từ Database dựa trên tên gọi"""
-        return self.db.query(CharacterModel).filter(CharacterModel.name == name).first()
+    def load_character(self, character_name: str) -> CharacterModel:
+        """[Load Character] Tải thông tin hồ sơ của một nhân vật cụ thể theo tên"""
+        return self.db.query(CharacterModel).filter(CharacterModel.name == character_name).first()
 
-    def build_ai_prompt(self, character_name: str) -> str:
-        """
-        [PROMPT BUILDER LOGIC]
-        Tự động truy vấn thuộc tính thô và lắp ghép thành chuỗi Prompt AI hoàn chỉnh
-        """
-        character = self.get_character_by_name(character_name)
-        if not character:
-            return f"Character '{character_name}' not found."
+    def update_character(self, character_name: str, new_data: dict) -> CharacterModel:
+        """[Update Character / Save Character] Cập nhật và lưu lại dữ liệu thay đổi của nhân vật"""
+        character = self.load_character(character_name)
+        if character:
+            character.name = new_data.get("Tên", character.name)
+            character.alias = new_data.get("Biệt danh", character.alias)
+            character.gender = new_data.get("Giới tính", character.gender)
+            character.age = new_data.get("Tuổi", character.age)
+            character.height = new_data.get("Chiều cao", character.height)
+            character.weight = new_data.get("Cân nặng", character.weight)
+            character.hair = new_data.get("Tóc", character.hair)
+            character.eyes = new_data.get("Mắt", character.eyes)
+            character.face = new_data.get("Khuôn mặt", character.face)
+            character.skin = new_data.get("Màu da", character.skin)
+            character.costume = new_data.get("Trang phục", character.costume)
+            character.weapon = new_data.get("Vũ khí", character.weapon)
+            character.personality = new_data.get("Tính cách", character.personality)
+            character.voice = new_data.get("Giọng nói", character.voice)
+            character.style = new_data.get("Style", character.style)
+            character.positive_prompt = new_data.get("Positive Prompt", character.positive_prompt)
+            character.negative_prompt = new_data.get("Negative Prompt", character.negative_prompt)
+            character.seed = new_data.get("Mã Seed", character.seed)
+            character.image = new_data.get("Ảnh đại diện", character.image)
+            character.notes = new_data.get("Ghi chú", character.notes)
+            
+            self.db.commit()
+            self.db.refresh(character)
+        return character
 
-        # Tạo mảng danh sách chứa các thuộc tính thô để nối chuỗi (như thiết kế của ChatGPT)
-        prompt_parts = []
+    def delete_character(self, character_name: str) -> bool:
+        """[Delete Character] Xóa hoàn toàn một hồ sơ nhân vật khỏi SQLite"""
+        character = self.load_character(character_name)
+        if character:
+            self.db.delete(character)
+            self.db.commit()
+            return True
+        return False
+
+    def search_character(self, keyword: str) -> list[CharacterModel]:
+        """[Search Character] Tìm kiếm nhân vật theo từ khóa gần đúng (Tên hoặc Biệt danh)"""
+        return self.db.query(CharacterModel).filter(
+            (CharacterModel.name.like(f"%{keyword}%")) | 
+            (CharacterModel.alias.like(f"%{keyword}%"))
+        ).all()
         
-        if character.name:
-            prompt_parts.append(f"Character: {character.name}")
-        if character.age and character.gender:
-            prompt_parts.append(f"{character.age}-year-old {character.gender.lower()}")
-        elif character.gender:
-            prompt_parts.append(character.gender)
-            
-        if character.hair:
-            prompt_parts.append(f"{character.hair.lower()} hair")
-        if character.eyes:
-            prompt_parts.append(f"{character.eyes.lower()} eyes")
-        if character.clothes:
-            prompt_parts.append(character.clothes)
-        if character.personality:
-            prompt_parts.append(f"{character.personality.lower()} expression")
-        if character.style:
-            prompt_parts.append(character.style)
-            
-        # Thêm các thẻ bổ trợ chất lượng mặc định cho AI Art
-        prompt_parts.extend(["masterpiece", "cinematic lighting", "anime"])
-
-        # Nối tất cả lại bằng dấu phẩy để ra đoạn prompt hoàn chỉnh cho AI tạo ảnh
-        full_prompt = ", ".join([part.strip() for part in prompt_parts if part])
-        return full_prompt
+    def get_all_characters(self) -> list[CharacterModel]:
+        """Lấy toàn bộ danh sách để tải lên danh mục UI lề trái"""
+        return self.db.query(CharacterModel).all()
