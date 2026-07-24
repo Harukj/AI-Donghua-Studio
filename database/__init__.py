@@ -1,6 +1,6 @@
 from database.base import Base
 from database.engine import engine
-from database.models.asset import AssetManagerModel
+from database.models.asset import AssetModel
 from database.models.version import AssetVersionModel
 from database.models.shot import ShotModel
 from database.models.dependency import CharacterDependencyModel

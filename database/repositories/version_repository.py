@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 # Sửa chính xác đường dẫn import trỏ vào file database/base.py trong dự án của bạn
-from database.base import BaseRepository
+from database.repositories.base_repository import BaseRepository
 from database.models.version import AssetVersionModel
 
 class AssetVersionRepository(BaseRepository[AssetVersionModel]):

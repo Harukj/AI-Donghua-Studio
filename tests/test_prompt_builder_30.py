@@ -1,10 +1,19 @@
 import unittest
 from database.session import SessionLocal
 from ai.prompt_builder.builder_v3 import PromptBuilder30
-
+# Sửa lại dòng import trỏ thẳng vào Class AssetModel sạch chuẩn v1.0 của ChatGPT
+from database.models.asset import AssetModel
 class TestPromptBuilder30(unittest.TestCase):
 	def setUp(self):
 		"""Thiết lập phiên kết nối cơ sở dữ liệu SQLite trước khi test"""
+		from database.session import SessionLocal
+		# Nạp bộ công cụ tự động sinh cấu trúc bảng hệ thống DreamForge
+		from database.base import Base
+		from database.engine import engine
+		
+		# Ép lệnh SQLAlchemy tự động quét Model và tạo toàn bộ bảng nếu chưa có
+		Base.metadata.create_all(bind=engine)
+		
 		self.db = SessionLocal()
 		self.builder = PromptBuilder30(self.db)
 

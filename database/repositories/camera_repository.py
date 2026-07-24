@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from database.base import BaseRepository
+from database.repositories.base_repository import BaseRepository
 from database.models.camera import CameraModel
 
 class CameraRepository(BaseRepository[CameraModel]):

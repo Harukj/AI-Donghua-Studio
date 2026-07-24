@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 # Sửa đường dẫn import chính xác trỏ thẳng vào lớp BaseRepository định nghĩa trong file database/base.py
-from database.base import BaseRepository
+from database.repositories.base_repository import BaseRepository
 from database.models.asset import AssetModel
 
 class AssetRepository(BaseRepository[AssetModel]):

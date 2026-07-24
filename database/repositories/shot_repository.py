@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from database.base import BaseRepository
+from database.repositories.base_repository import BaseRepository
 from database.models.shot import ShotModel
 
 class ShotRepository(BaseRepository[ShotModel]):
