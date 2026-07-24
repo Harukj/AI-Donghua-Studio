@@ -79,25 +79,21 @@ class Dashboard(ctk.CTkFrame):
 				
 		# Xóa bỏ các Widget cũ đang hiển thị ở khung nội dung bên phải để chuẩn bị nạp giao diện mới
 		for widget in self.content_frame.winfo_children():
-			widget.pack_forget()  # Tạm ẩn hoặc xóa trạng thái xếp lớp cũ
+			widget.pack_forget()
 
-		# LOGIC XỬ LÝ KHI NGƯỜI DÙNG BẤM VÀO "Characters" THEO ĐẶC TẢ TRONG ẢNH
-		if category_name == "Characters":
-			if self.character_view is None:
-				# Khởi tạo giao diện CharacterWindow thực tế đã code ở các bước trước
-				self.character_view = CharacterWindow(self.content_frame)
+		if category_name == "Assets":
+			from gui.asset.asset_browser_window import AssetBrowserWindow
+			# Khởi tạo và hiển thị trình quản lý tài nguyên tập trung chuẩn Unity
+			self.asset_browser_view = AssetBrowserWindow(self.content_frame)
+			self.asset_browser_view.pack(fill="both", expand=True, padx=10, pady=10)
 			
-			# Nhúng toàn quyền khung quản lý Character Bible lấp đầy vùng content_frame bên phải
-			self.character_view.pack(fill="both", expand=True, padx=10, pady=10)
 		elif category_name == "Novel":
 			from gui.novel.novel_window import NovelWindow
-			# Khởi tạo và hiển thị phân hệ nạp tiểu thuyết truyện chữ
 			self.novel_view = NovelWindow(self.content_frame)
 			self.novel_view.pack(fill="both", expand=True, padx=10, pady=10)
-				# Mở file gui/dashboard.py, tìm tới hàm on_category_click và chèn đoạn code này vào ngay phía dưới khối "Environment":
+			
 		elif category_name == "Storyboard":
-			from gui.storyboard.storyboard_window.py import StoryboardWindow
-			# Khởi tạo và hiển thị khung nhìn kịch bản phân cảnh phim hoạt hình
+			from gui.storyboard.storyboard_window import StoryboardWindow
 			self.storyboard_view = StoryboardWindow(self.content_frame)
 			self.storyboard_view.pack(fill="both", expand=True, padx=10, pady=10)
 
@@ -105,6 +101,12 @@ class Dashboard(ctk.CTkFrame):
 			from gui.environment.environment_window import EnvironmentWindow
 			self.environment_view = EnvironmentWindow(self.content_frame)
 			self.environment_view.pack(fill="both", expand=True, padx=10, pady=10)
+
+		elif category_name == "Render Queue":
+			from gui.render.render_queue_window import RenderQueueWindow
+			# Nhúng giao diện hàng đợi kết xuất Clip hoạt hình vào khung nội dung chính
+			self.render_queue_view = RenderQueueWindow(self.content_frame)
+			self.render_queue_view.pack(fill="both", expand=True, padx=10, pady=10)
 
 		else:
 			# Đối với các danh mục khác chưa xây dựng giao diện chi tiết, hiển thị text thông báo tạm thời
