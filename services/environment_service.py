@@ -1,58 +1,35 @@
 from sqlalchemy.orm import Session
-from database.models.environment import EnvironmentModel
+from database.repositories.environment_repository import EnvironmentRepository
+from core.logger import studio_logger
 
 class EnvironmentService:
 	def __init__(self, db_session: Session):
-		self.db = db_session
+		"""Khởi tạo dịch vụ quản lý bối cảnh, tiêm kho lưu trữ chuyên trách v1.0"""
+		self.repo = EnvironmentRepository(db_session)
 
-	def add_environment(self, env_data: dict) -> EnvironmentModel:
-		"""Thêm một hồ sơ bối cảnh thương mại mới vào SQLite"""
-		db_env = EnvironmentModel(
-			name=env_data.get("Tên bối cảnh"),
-			category=env_data.get("Danh mục"),
-			description=env_data.get("Mô tả bối cảnh"),
-			prompt=env_data.get("Prompt"),
-			negative_prompt=env_data.get("Negative Prompt"),
-			lighting=env_data.get("Ánh sáng"),
-			weather=env_data.get("Thời tiết"),
-			time_of_day=env_data.get("Thời gian"),
-			camera_default=env_data.get("Góc máy"),
-			seed=env_data.get("Mã Seed"),
-			thumbnail=env_data.get("Ảnh đại diện"),
-			notes=env_data.get("Ghi chú")
-		)
-		self.db.add(db_env)
-		self.db.commit()
-		self.db.refresh(db_env)
-		return db_env
-
-	def get_env_by_name(self, name: str) -> EnvironmentModel:
-		"""Truy vấn thực thể bối cảnh dựa theo tên gọi"""
-		return self.db.query(EnvironmentModel).filter(EnvironmentModel.name == name).first()
-
-	def build_environment_prompt(self, env_name: str) -> str:
-		"""[PROMPT BUILDER ENVIRONMENT] Tự động bóc tách và lắp ráp câu lệnh không gian"""
-		env = self.get_env_by_name(env_name)
+	def get_fixed_environment_prompt_tags(self, location_name: str) -> str:
+		"""
+		[ENVIRONMENT MAATRIX CONCATENATION]
+		Thuật toán tự động gộp nối cơ học bộ 5 thuộc tính thành phần của bối cảnh.
+		Triệt tiêu hoàn toàn ô nhập prompt tự do để bảo vệ tính nhất quán không gian phim.
+		"""
+		env = self.repo.find_by_name(location_name)
+		
+		# Khung từ khóa mẫu lấy chính xác 100% từ hình ảnh của ChatGPT nếu địa danh mới chưa cấu hình
 		if not env:
-			return ""
+			return "scene setting at long dang academy, chinese fantasy academy architecture, morning lighting, sunny weather, epic atmosphere"
 
-		prompt_parts = []
-		if env.name:
-			prompt_parts.append(env.name)
-		if env.category:
-			prompt_parts.append(f"{env.category.lower()}")
-		if env.architecture:  # Trường kiến trúc dự phòng nếu có
-			prompt_parts.append(env.architecture)
-		if env.time_of_day:
-			prompt_parts.append(f"during {env.time_of_day.lower()}")
-		if env.weather:
-			prompt_parts.append(f"{env.weather.lower()} weather")
-		if env.lighting:
-			prompt_parts.append(f"{env.lighting.lower()} lighting")
-		if env.prompt:
-			prompt_parts.append(env.prompt)
-		if env.style:
-			prompt_parts.append(env.style)
+		# Lắp ghép tuần tự từ trên xuống dưới theo sơ đồ khối của ChatGPT
+		env_matrix = [
+			f"scene setting at {env.environment.lower()}",
+			f"{env.architecture.lower()} architecture" if env.architecture else "",
+			f"{env.lighting.lower()} lighting" if env.lighting else "",
+			f"{env.weather.lower()} weather" if env.weather else "",
+			f"{env.atmosphere.lower()} atmosphere" if env.atmosphere else ""
+		]
 
-		prompt_parts.extend(["masterpiece", "ultra detailed", "8k resolution"])
-		return ", ".join([part.strip() for part in prompt_parts if part])
+		# Lọc sạch các khoảng trống thừa và nối lại bằng dấu phẩy
+		final_env_prompt = ", ".join([tags.strip() for tags in env_matrix if tags])
+		
+		studio_logger.logger.info(f"DreamForge Core: Đã tự động sinh Prompt bối cảnh cơ học cho địa danh [{location_name}]")
+		return final_env_prompt
