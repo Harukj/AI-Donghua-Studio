@@ -1,0 +1,14 @@
+{
+	"style": "3D Chinese Donghua animation style, highly detailed 3D render",
+	"camera_presets": {
+		"wide": "wide cinematic shot",
+		"medium": "medium shot",
+		"closeup": "closeup dynamic shot"
+	},
+	"lighting_presets": {
+		"morning": "morning sunlight",
+		"sunset": "sunset lighting",
+		"neon": "neon cyberpunk light"
+	},
+	"negative": "low quality, blurry, distorted, extra limbs, deformed face, bad anatomy, text, watermark"
+}
