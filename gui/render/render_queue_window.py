@@ -90,7 +90,8 @@ class RenderQueueWindow(ctk.CTkFrame):
 
 		# --- KÍCH HOẠT ĐỘNG CƠ HẬU KỲ EPISODE BUILDER KHI TẤT CẢ SHOT HOÀN THÀNH ---
 		builder = EpisodeBuilder(project_id="ToanDanTaoPhong", episode_number=1)
-		final_video = builder.stitch_shots_into_episode(completed_paths)
+		# Gọi hàm gộp phân cảnh mới cập nhật
+		final_video = builder.stitch_scenes_into_episode(["scene 01", "scene 02", "scene 03"])
 		
 		self.is_rendering = False
-		messagebox.showinfo("AI Donghua Studio", f"Dây chuyền sản xuất v0.6 hoàn tất xuất phim dài tập!\n\nĐường dẫn tệp phim: {final_video}")
+		messagebox.showinfo("AI Donghua Studio", f"Dây chuyền sản xuất v0.6 hoàn tất xuất phim dài tập!\n\nTệp kịch bản đóng gói: {final_video}")
