@@ -31,9 +31,13 @@ class ProjectManager:
 
 		engine_assets_dirs = [
 			"Characters",
-			"Environments",
+			"Environment",
 			"Props",
-			"Audio"
+			"Weapons",
+			"Effects",
+			"Audio",
+			"Voice",
+			"Reference_Images" # Thư mục chứa ảnh tư liệu concept
 		]
 
 		for sub_folder in engine_assets_dirs:
