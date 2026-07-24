@@ -5,7 +5,11 @@ from database.session import SessionLocal
 from services.character_service import CharacterService
 from services.environment_service import EnvironmentService
 from core.project_manager import ProjectManager
-
+from core.plugins.plugin_manager import plugin_registry
+from core.plugins.ltx_video_plugin import LTXVideoPlugin
+from core.plugins.elevenlabs_audio_plugin import ElevenLabsAudioPlugin
+plugin_registry.register_plugin(LTXVideoPlugin())
+plugin_registry.register_plugin(ElevenLabsAudioPlugin())
 class DependencyProvider:
 	def __init__(self):
 		"""Khởi tạo phiên làm việc kết nối Database dùng chung cho các dịch vụ"""
