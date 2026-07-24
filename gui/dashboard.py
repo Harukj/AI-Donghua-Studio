@@ -108,6 +108,12 @@ class Dashboard(ctk.CTkFrame):
 			self.render_queue_view = RenderQueueWindow(self.content_frame)
 			self.render_queue_view.pack(fill="both", expand=True, padx=10, pady=10)
 
+		elif category_name == "Export":
+			from gui.export.export_window import ExportWindow
+			# Khởi tạo và hiển thị phân hệ cấu hình xuất bản phim lên YouTube
+			self.export_view = ExportWindow(self.content_frame)
+			self.export_view.pack(fill="both", expand=True, padx=10, pady=10)
+
 		else:
 			# Đối với các danh mục khác chưa xây dựng giao diện chi tiết, hiển thị text thông báo tạm thời
 			self.status_label.configure(
