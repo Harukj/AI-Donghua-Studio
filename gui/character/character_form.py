@@ -93,15 +93,22 @@ class CharacterForm(ctk.CTkFrame):
 			
 			if file_path:
 				try:
-					# 2. Khởi tạo ProjectManager để thực hiện sao chép tệp tin
+					# Nạp đầy đủ các thư viện hệ thống và module quản lý dự án nội bộ
+					import shutil
+					import os
+					from core.project_manager import ProjectManager
+					
+					current_project = "ToanDanTaoPhong"
 					pm = ProjectManager()
 					
-					# Tạm thời lấy tên dự án mặc định là "ToanDanTaoPhong" như ảnh mẫu của bạn
-					# Sau này khi làm phân hệ Project bạn sẽ truyền tên dự án đang mở vào đây
-					current_project = "ToanDanTaoPhong" 
+					# Lấy đường dẫn thư mục Characters chuẩn từ bộ quản lý Engine mới
+					target_dir = pm.get_asset_path(current_project, "Characters")
 					
-					# 3. Sao chép ảnh vào thư mục dự án và lấy đường dẫn đích
-					saved_path = pm.save_character_image(current_project, file_path)
+					image_name = os.path.basename(file_path)
+					saved_path = os.path.join(target_dir, image_name)
+					
+					# Tiến hành nhân bản tệp tin ảnh vào thư mục cô lập của Project
+					shutil.copy2(file_path, saved_path)
 					
 					# 4. Ghi đường dẫn tệp tin vào ô nhập liệu 'Ảnh đại diện' hoặc biến lưu trữ
 					if "Ảnh đại diện" in self.inputs:
