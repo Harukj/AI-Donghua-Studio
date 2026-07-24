@@ -18,7 +18,7 @@ def run_sprint8_integration_test():
 
 	print("Kết quả cỗ máy Engine tự động phân rã cấu trúc hướng đối tượng:\n")
 	for shot in shots_output:
-		print(f" -> Khởi tạo: Shot [ID: {shot.id}] Index: {shot.index}")
+		print(f" -> Khởi tạo: Shot [ID: {shot.id}] Index: {shot.index} | Ngữ cảnh: {shot.context_type.upper()}")
 		print(f"    Góc máy chỉ định: {shot.camera} ({shot.lens}) | Chuyển động: {shot.movement}")
 		print(f"    Mã Prompt gộp: '{shot.prompt}'\n")
 		

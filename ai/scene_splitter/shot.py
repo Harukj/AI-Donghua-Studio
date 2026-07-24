@@ -3,13 +3,13 @@ from dataclasses import dataclass
 @dataclass
 class Shot:
 	"""
-	[SHOT OBJECT COMMERCIAL STANDARD]
-	Class định nghĩa cấu trúc một cú máy điện ảnh ảo theo đặc tả v0.6 của ChatGPT.
-	Ép kiểu dữ liệu nghiêm ngặt để tối ưu hóa token truyền dữ liệu cho hàng đợi Render.
+	[SHOT OBJECT UPGRADED v0.6]
+	Class định nghĩa cấu trúc cú máy hoạt hình tích hợp phân lớp ngữ cảnh điện ảnh.
 	"""
 	id: int
 	scene_id: int
 	index: int
+	context_type: str  # Trường dữ liệu mới: 'establishing', 'action', 'reaction', 'dialogue'
 	camera: str
 	lens: str
 	movement: str
