@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+# Sửa lại đường dẫn import chính xác trỏ thẳng vào thư mục package database viết thường
 from database.repositories.character_repository import CharacterRepository
 from core.logger import studio_logger
 
@@ -34,7 +35,7 @@ class CharacterService:
 		if not character:
 			return f"character {character_name}"
 
-		# Lắp ghép tuần tự theo đúng sơ đồ khối từ trên xuống dưới của ChatGPT trên hình ảnh
+		# Lắp ghép tuần tự theo đúng sơ đồ khối từ trên xuống dưới của ChatGPT
 		components_matrix = [
 			f"character {character.name}",
 			character.hair,
@@ -48,8 +49,11 @@ class CharacterService:
 		if character.accessories and "none" not in character.accessories.lower():
 			components_matrix.append(f"holding {character.accessories.lower()}")
 
-		# Lọc bỏ khoảng trống thừa và kết chuỗi sạch cách nhau bằng dấu phẩy
-		final_profile_prompt = ", ".join([tags.strip().lower() for tags in components_matrix if tags])
+		# Bỏ khoảng trống thừa và kết chuỗi sạch cách nhau bằng dấu phẩy
+		final_prompt = ", ".join([tags.strip().lower() for tags in components_matrix if tags])
 		
+		# Kích hoạt bộ ghi nhật ký ghi nhận tiến trình Engine
+		from core.logger import studio_logger
 		studio_logger.logger.info(f"DreamForge Core: Đã tự động sinh Prompt chân dung cơ học cho [{character_name}]")
-		return final_prompt_profile_prompt if 'final_prompt_profile_prompt' in locals() else final_profile_prompt
+		
+		return final_prompt
