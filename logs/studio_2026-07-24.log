@@ -9,3 +9,10 @@
 2026-07-24 13:46:01 [INFO] -> Prompt Builder 2.0: Đã cấu trúc hóa Prompt cho [10101] thành công.
 2026-07-24 13:46:01 [INFO] -> Prompt Builder 2.0: Đã cấu trúc hóa Prompt cho [10102] thành công.
 2026-07-24 13:46:01 [INFO] -> Prompt Builder 2.0: Đã cấu trúc hóa Prompt cho [10103] thành công.
+2026-07-24 16:06:43 [INFO] -> [AI DIRECTOR] Đang phân tích chỉ đạo nghệ thuật cho Phân cảnh 007...
+2026-07-24 16:17:15 [INFO] -> [AI DIRECTOR] Đang phân tích chỉ đạo nghệ thuật cho Phân cảnh 007...
+2026-07-24 16:17:16 [INFO] -> Prompt Builder: Đã áp dụng mẫu [ltx_action] tự động cho [SCENE_01_002]
+2026-07-24 16:17:16 [INFO] -> Prompt Builder: Đã áp dụng mẫu [ltx_dialogue] tự động cho [SCENE_01_001]
+2026-07-24 16:19:11 [INFO] -> [AI DIRECTOR] Đang phân tích chỉ đạo nghệ thuật cho Phân cảnh 007...
+2026-07-24 16:19:11 [INFO] -> Prompt Builder: Đã áp dụng mẫu [ltx_action] tự động cho [SCENE_01_002]
+2026-07-24 16:19:11 [INFO] -> Prompt Builder: Đã áp dụng mẫu [ltx_dialogue] tự động cho [SCENE_01_001]
