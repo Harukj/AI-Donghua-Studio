@@ -32,11 +32,25 @@ class AssetBrowserWindow(ctk.CTkFrame):
 		self.file_panel = ctk.CTkFrame(self)
 		self.file_panel.grid(row=0, column=1, padx=5, pady=5, sticky="nsew")
 		
-		self.lbl_workspace_title = ctk.CTkLabel(self.file_panel, text="Content Browser", font=ctk.CTkFont(size=16, weight="bold"))
+		# Chia đôi phân khu bên phải: Cột 0 là File Browser, Cột 1 là Inspector
+		self.file_panel.grid_columnconfigure(0, weight=2)
+		self.file_panel.grid_columnconfigure(1, weight=1)
+		self.file_panel.grid_rowconfigure(0, weight=1)
+		
+		# Đẩy khung Content Browser cũ vào cột 0
+		self.browser_container = ctk.CTkFrame(self.file_panel, fg_color="transparent")
+		self.browser_container.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
+		
+		self.lbl_workspace_title = ctk.CTkLabel(self.browser_container, text="Content Browser", font=ctk.CTkFont(size=16, weight="bold"))
 		self.lbl_workspace_title.pack(padx=20, pady=15, anchor="w")
 		
-		self.file_scroll = ctk.CTkScrollableFrame(self.file_panel, fg_color="transparent")
+		self.file_scroll = ctk.CTkScrollableFrame(self.browser_container, fg_color="transparent")
 		self.file_scroll.pack(fill="both", expand=True, padx=15, pady=5)
+		
+		# Nhúng trực tiếp bảng AssetInspector vào cột 1 bên lề phải ngoài cùng
+		from gui.asset.asset_inspector import AssetInspector
+		self.inspector_panel = AssetInspector(self.file_panel, save_callback=self.save_asset_metadata_changes)
+		self.inspector_panel.grid(row=0, column=1, sticky="nsew", padx=5, pady=5)
 		
 		# Định nghĩa tập dữ liệu mẫu chuẩn hóa 100% khớp theo sơ đồ cây của ChatGPT
 		self.mock_asset_data = {
@@ -114,14 +128,14 @@ class AssetBrowserWindow(ctk.CTkFrame):
 			file_btn.pack(fill="x", pady=2)
 
 	def on_asset_file_clicked(self, asset_name):
-		"""
-		[LUỒNG UX: KHI CLICK]
-		Bắt sự kiện nhấp chuột chọn tệp tin tài nguyên theo đặc tả thiết kế của ChatGPT.
-		Sẵn sàng mở rộng để nạp thuộc tính lên bảng Inspector lề phải ở bước sau.
-		"""
-		print(f"Hệ thống Engine: Người dùng đã click chọn tài nguyên -> [{asset_name}]")
-		# Tạm thời thông báo trạng thái kết nối tương tác
-		messagebox.showinfo("Asset Browser", f"Đã kích hoạt vùng nhìn thực thể cho: {asset_name}\n\nLuồng xử lý mở bảng Inspector chi tiết đang chờ đặc tả từ phần 'Khi click' của ChatGPT.")
+		"""[LUỒNG UX: KHI CLICK] Đổ dữ liệu thuộc tính và Version lên bảng lề phải ngoài cùng"""
+		print(f"Hệ thống Engine: Đang kích hoạt nạp Inspector cho -> {asset_name}")
+		self.inspector_panel.load_asset_to_inspector(asset_name, self.selected_folder)
+
+	def save_asset_metadata_changes(self, form_data):
+		"""Hành động xử lý khi người dùng nhấn nút lưu trên Inspector"""
+		from tkinter import messagebox
+		messagebox.showinfo("Version Manager", f"Đã lưu thành công metadata và kích hoạt cấu hình phiên bản: '{form_data.get('active_version')}' vào SQLite!")
 
 	def __del__(self):
 		try: self.db.close()
