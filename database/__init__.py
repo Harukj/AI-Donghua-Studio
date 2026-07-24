@@ -1,7 +1,7 @@
 from database.base import Base
 from database.engine import engine
 from database.models.asset import AssetManagerModel
-
+from database.models.version import AssetVersionModel
 # Khai báo ép kiểu để SQLAlchemy nhận diện toàn bộ các bảng trong hệ thống dữ liệu mới
 from database.models.novel import NovelModel
 from database.models.chapter import ChapterModel
