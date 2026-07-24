@@ -80,11 +80,21 @@ class NovelPipeline:
 				duration=5.0
 			)
 			
-			# TÍCH HỢP GỌI PROMPT ENGINE V1.0 TỰ ĐỘNG TRỘN
+			# Bổ sung gán các thuộc tính điện ảnh nâng cao phục vụ bộ trộn v1.0
+			scene_object.camera = "Wide Shot"
+			scene_object.mood = "Mysterious"
+			scene_object.lighting = "Morning"
+			scene_object.style = "Chinese Donghua 3D animation style"
+			
+			# KÍCH HOẠT BỘ TRỘN 7 THÀNH PHẦN THƯƠNG MẠI
 			from services.prompt_engine import PromptEngine
 			prompt_engine = PromptEngine(self.db)
 			final_ltx_prompt = prompt_engine.generate_from_scene_object(scene_object)
 			
+			# Ghi nhận chuỗi Prompt đã trộn sạch xuống Database SQLite
+			db_scene.generated_prompt = final_ltx_prompt
+			
+			# Nạp đối tượng sạch vào danh sách trả về
 			processed_scenes.append(scene_object)
 			
 			# --- BƯỚC 9: DATABASE (LƯU TRỮ TỪNG PHÂN CẢNH) ---

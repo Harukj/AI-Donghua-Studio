@@ -2,39 +2,47 @@ from sqlalchemy.orm import Session
 
 class PromptEngine:
 	def __init__(self, db_session: Session):
+		"""Khởi tạo engine kết nối cơ sở dữ liệu SQLite"""
 		self.db = db_session
 
-	def build_final_ltx_prompt(self, scene_obj) -> str:
+	def generate_from_scene_object(self, scene) -> str:
 		"""
-		[SPRINT 7 - PROMPT BUILDER TEMPLATE]
-		Tự động bóc tách và lắp ráp 5 tầng thông tin điện ảnh cơ học từ đối tượng kịch bản.
-		Triệt tiêu sự ngẫu nhiên của AI, xuất chuỗi prompt chuẩn hóa 100% cho LTX Studio.
+		[PROMPT ENGINE v1.0 - STATIC MIXER CORES]
+		Nhận vào thực thể Scene Object -> Bóc tách cơ học bộ 7 thành phần điện ảnh 
+		khớp 100% theo đúng sơ đồ khối đặc tả của ChatGPT để sinh câu lệnh LTX Studio.
 		"""
-		# 1. Trích xuất tầng Character và Environment từ thuộc tính đối tượng
-		character = scene_obj.characters if hasattr(scene_obj, 'characters') and scene_obj.characters else "Tô Mộc"
+		# 1. TRÍCH XUẤT BỘ 3 THÀNH PHẦN TÀI NGUYÊN (ASSETS LAYER)
+		character = getattr(scene, 'characters', 'Tô Mộc')
 		if isinstance(character, list): character = ", ".join(character)
 			
-		environment = scene_obj.environments if hasattr(scene_obj, 'environments') and scene_obj.environments else "Học viện Long Dạng"
+		environment = getattr(scene, 'environments', 'Ký túc xá')
 		if isinstance(environment, list): environment = ", ".join(environment)
+			
+		props = getattr(scene, 'props', '')
+		if isinstance(props, list): props = ", ".join(props)
+		props_prompt = f"holding {props.lower()}" if props and "none" not in props.lower() else ""
 
-		# 2. Trích xuất tầng thông số điện ảnh nâng cao (Camera, Lighting, Mood)
-		camera_shot = getattr(scene_obj, 'camera', 'Wide Shot')
-		lighting_setup = getattr(scene_obj, 'lighting', 'Morning')
-		mood_atmosphere = getattr(scene_obj, 'mood', 'Epic')
+		# 2. TRÍCH XUẤT BỘ 4 THÀNH PHẦN THÔNG SỐ ĐIỆN ẢNH (CINEMATIC LAYER)
+		camera_shot = getattr(scene, 'camera', 'Wide Shot')
+		mood_atmosphere = getattr(scene, 'mood', 'Mysterious')
+		lighting_setup = getattr(scene, 'lighting', 'Morning')
+		art_style = getattr(scene, 'style', 'Chinese Donghua 3D animation style')
 
-		# 3. Lắp ráp chuỗi Prompt theo Template cố định của Sprint 7
-		prompt_template = [
-			"masterpiece",
-			"3D Chinese Donghua animation style",
+		# 3. TIẾN HÀNH GHÉP PROMPT CƠ HỌC (STATIC CONCATENATION) THEO TEMPLATE CỐ ĐỊNH
+		prompt_elements = [
+			f"{art_style.strip()}",
 			f"{camera_shot.lower()}",
 			f"character {character}",
-			f"at {environment.lower()}",
+			f"{props_prompt}",
+			f"inside {environment.lower()}",
 			f"{lighting_setup.lower()} lighting",
 			f"{mood_atmosphere.lower()} atmosphere",
+			"masterpiece",
 			"cinematic composition",
-			"high detailed texture",
+			"ultra detailed texture",
 			"16:9 aspect ratio"
 		]
-
-		# Nối chuỗi bằng dấu phẩy
-		return ", ".join([tags.strip() for tags in prompt_template if tags])
+		
+		# Lọc sạch các khoảng trống thừa và nối lại bằng dấu phẩy
+		final_ltx_prompt = ", ".join([element.strip() for element in prompt_elements if element])
+		return final_ltx_prompt
