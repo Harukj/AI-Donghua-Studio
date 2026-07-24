@@ -1,0 +1,10 @@
+{
+	"style": "3D Chinese Donghua animation style, highly detailed textures",
+	"camera_presets": {
+		"dialogue": "medium close-up shot, intense character eye contact, subtle facial expressions, synchronous lip movement"
+	},
+	"lighting_presets": {
+		"interior": "soft dramatic three-point lighting, ambient occlusion"
+	},
+	"negative": "low quality, blurry, static lips, deformed face, missing eyes, bad anatomy"
+}

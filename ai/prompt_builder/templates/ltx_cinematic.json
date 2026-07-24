@@ -1,14 +1,10 @@
 {
-	"style": "Cinematic epic Chinese Donghua style, photorealistic textures, unreal engine 5 render, ray tracing",
+	"style": "Grand epic Chinese Donghua style, photorealistic environment textures, unreal engine 5 render, ray tracing",
 	"camera_presets": {
-		"wide": "grand cinematic wide establishing shot, anamorphic lens",
-		"medium": "cinematic medium shot, perfect composition",
-		"closeup": "intense closeup portrait shot, catching facial micro-expressions"
+		"establishing": "grand cinematic wide establishing shot, slow drone tracking camera, anamorphic lens wide view"
 	},
 	"lighting_presets": {
-		"morning": "volumetric morning light rays, golden particles",
-		"sunset": "dramatic golden hour sunset, high contrast specular highlights",
-		"neon": "volumetric high-contrast dramatic neon chiaroscuro lighting"
+		"volumetric": "volumetric morning light rays, golden hour glow, cinematic atmospheric haze particles"
 	},
-	"negative": "anime, sketch, low quality, 2d style, blurry, bad lighting, deformed eyes, extra fingers, text"
+	"negative": "indoor close-up, cropped view, flat lighting, low resolution, 2d sketch style"
 }

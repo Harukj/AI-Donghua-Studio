@@ -1,0 +1,10 @@
+{
+	"style": "Action dynamic 3D Chinese Donghua animation style, fast-paced cinematic render",
+	"camera_presets": {
+		"combat": "fast tracking dynamic panning shot, low angle action composition, high shutter speed blur effect"
+	},
+	"lighting_presets": {
+		"dramatic": "high contrast chiaroscuro lighting, flash sparks, directional dynamic light rays"
+	},
+	"negative": "slow motion, peaceful atmosphere, blurry motion, low details, static stance"
+}
