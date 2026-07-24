@@ -1,0 +1,14 @@
+{
+	"style_prefix": "3D Chinese Donghua animation style, highly detailed textures",
+	"camera_presets": {
+		"wide": "wide cinematic establishing shot",
+		"medium": "medium shot, cinematic composition",
+		"closeup": "extreme closeup shot, detailed facial expressions"
+	},
+	"lighting_presets": {
+		"morning": "soft morning sunlight, volumetric lighting",
+		"sunset": "cinematic dramatic sunset golden hour lighting",
+		"neon": "cyberpunk volumetric neon night lighting"
+	},
+	"quality_suffixes": "masterpiece, unreal engine 5 render, ray tracing, 8k resolution, 16:9 aspect ratio"
+}
