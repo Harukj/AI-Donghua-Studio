@@ -4,66 +4,66 @@ from datetime import datetime
 
 class ProjectManager:
 	def __init__(self, base_dir="projects"):
-		"""Khởi tạo thư mục gốc chứa toàn bộ các dự án phim hoạt hình"""
+		"""Khởi tạo thư mục gốc chứa tất cả các dự án (mặc định là thư mục 'projects')"""
 		self.base_dir = base_dir
 		if not os.path.exists(self.base_dir):
 			os.makedirs(self.base_dir)
 
 	def create_project(self, project_name: str, author: str = "Harukj") -> str:
 		"""
-		[AI DONGHUA STUDIO v0.5 - CORE ENGINE]
-		Tự động khởi tạo cấu trúc cây thư mục độc lập cô lập tài nguyên.
-		Khớp chính xác 100% theo sơ đồ khối cấu trúc mới của ChatGPT.
+		[AI DONGHUA STUDIO v1.0]
+		Tự động tạo cấu trúc thư mục độc lập cô lập tài nguyên cho từng dự án phim.
+		Đồng bộ chính xác 100% theo sơ đồ cây viết thường (lowercase) của ChatGPT.
 		"""
-		# Chuẩn hóa tên thư mục viết liền không dấu gạch ngang/khoảng trắng
+		# Chuẩn hóa tên thư mục dự án viết liền cách nhau bằng dấu gạch dưới
 		folder_name = project_name.replace(" ", "_")
 		project_path = os.path.join(self.base_dir, folder_name)
 
 		if os.path.exists(project_path):
-			raise FileExistsError(f"Dự án phim '{project_name}' đã tồn tại sẵn trong Engine!")
+			raise FileExistsError(f"Dự án '{project_name}' đã tồn tại sẵn trong hệ thống!")
 
-		# 1. TẠO PHÂN TẦNG 1: THƯ MỤC NOVEL (Chứa tệp truyện chữ kịch bản gốc)
-		os.makedirs(os.path.join(project_path, "Novel"))
+		# 1. TẠO CÁC PHÂN KHU LOGIC SẢN XUẤT CẤP CAO (NOVEL, STORYBOARD, CACHE, EXPORTS)
+		production_dirs = ["novel", "storyboard", "cache", "exports"]
+		for p_dir in production_dirs:
+			os.makedirs(os.path.join(project_path, p_dir))
 
-		# 2. TẠO PHÂN TẦNG 2: THƯ MỤC ASSETS GỐC & CÁC THƯ MỤC CON BIỆT LẬP
-		assets_base_path = os.path.join(project_path, "Assets")
+		# 2. TẠO THƯ MỤC ASSETS GỐC VÀ CÁC PHÂN KHU TÀI NGUYÊN CON VIẾT THƯỜNG
+		assets_base_path = os.path.join(project_path, "assets")
 		os.makedirs(assets_base_path)
 
-		engine_assets_dirs = [
-			"Characters",
-			"Environment",
-			"Props",
-			"Weapons",
-			"Effects",
-			"Audio",
-			"Voice",
-			"Reference_Images" # Thư mục chứa ảnh tư liệu concept
+		lowercase_assets = [
+			"characters",
+			"environment",
+			"props",
+			"audio",
+			"fx"
 		]
+		for a_dir in lowercase_assets:
+			os.makedirs(os.path.join(assets_base_path, a_dir))
 
-		for sub_folder in engine_assets_dirs:
-			os.makedirs(os.path.join(assets_base_path, sub_folder))
-
-		# 3. KHỞI TẠO FILE ĐỊNH DANH CẤU HÌNH META-DATA (project.json)
+		# 3. KHỞI TẠO NỘI DUNG FILE CẤU HÌNH META-DATA (project.json)
 		project_metadata = {
 			"project_name": project_name,
 			"folder_name": folder_name,
 			"created_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
 			"author": author,
-			"engine_version": "v0.5",
-			"pipeline_status": "Ready"
+			"version": "1.0.0",
+			"status": "In Production"
 		}
 
-		json_config_path = os.path.join(project_path, "project.json")
-		with open(json_config_path, "w", encoding="utf-8") as f:
+		json_path = os.path.join(project_path, "project.json")
+		with open(json_path, "w", encoding="utf-8") as f:
 			json.dump(project_metadata, f, ensure_ascii=False, indent=4)
 
-		print(f"[ENGINE SUCCESS] Đã sinh hạ tầng cô lập dự án tại: {project_path}")
+		print(f"Hệ thống Engine: Đã sinh hạ tầng dự án thương mại sạch tại: {project_path}")
 		return project_path
 
-	def get_asset_path(self, project_name: str, asset_category: str) -> str:
-		"""Hàm tiện ích giúp các module khác lấy nhanh đường dẫn thư mục lưu file cứng"""
+	def get_production_path(self, project_name: str, module_name: str) -> str:
+		"""Hàm tiện ích lấy nhanh đường dẫn của các phân khu: 'novel', 'storyboard', 'cache', 'exports'"""
 		folder_name = project_name.replace(" ", "_")
-		# asset_category nhận các giá trị: 'Characters', 'Environments', 'Props', 'Audio', 'Novel'
-		if asset_category == "Novel":
-			return os.path.join(self.base_dir, folder_name, "Novel")
-		return os.path.join(self.base_dir, folder_name, "Assets", asset_category)
+		return os.path.join(self.base_dir, folder_name, module_name.lower())
+
+	def get_asset_path(self, project_name: str, asset_type: str) -> str:
+		"""Hàm tiện ích lấy nhanh đường dẫn của kho assets: 'characters', 'environment', 'props', 'audio', 'fx'"""
+		folder_name = project_name.replace(" ", "_")
+		return os.path.join(self.base_dir, folder_name, "assets", asset_type.lower())

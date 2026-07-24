@@ -102,7 +102,7 @@ class CharacterForm(ctk.CTkFrame):
 					pm = ProjectManager()
 					
 					# Lấy đường dẫn thư mục Characters chuẩn từ bộ quản lý Engine mới
-					target_dir = pm.get_asset_path(current_project, "Characters")
+					target_dir = pm.get_asset_path(current_project, "characters")
 					
 					image_name = os.path.basename(file_path)
 					saved_path = os.path.join(target_dir, image_name)
