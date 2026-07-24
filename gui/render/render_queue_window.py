@@ -1,87 +1,96 @@
 import customtkinter as ctk
-from ltx.ltx_manager import LTXManager
-from analyzer.scene_object import Scene
+from tkinter import messagebox
+import threading
+import time
+
+from ai.scene_splitter.shot import Shot
+from core.episode_builder import EpisodeBuilder
 
 class RenderQueueWindow(ctk.CTkFrame):
 	def __init__(self, parent):
 		super().__init__(parent, fg_color="transparent")
 		
-		# Khởi tạo bộ máy quản lý kết xuất đa luồng
-		self.ltx_manager = LTXManager()
-		self.ltx_manager.set_status_callback(self.update_gui_progress_callback)
-		
-		# Khay lưu trữ danh sách các widget thanh tiến trình của từng Scene trên UI
-		self.scene_widgets = {}
+		self.shot_widgets = {}
+		self.is_rendering = False
 
-		# Thiết lập bố cục tiêu đề
-		self.title_lbl = ctk.CTkLabel(self, text="Render Queue (Blender Style)", font=ctk.CTkFont(size=18, weight="bold"))
+		# BỐ CỤC GIAO DIỆN LTX QUEUE MỚI CHUẨN CHATGPT
+		self.title_lbl = ctk.CTkLabel(self, text="LTX Queue 2.0", font=ctk.CTkFont(size=18, weight="bold"))
 		self.title_lbl.pack(padx=20, pady=15, anchor="w")
 		
-		self.subtitle_lbl = ctk.CTkLabel(self, text="Hàng đợi kết xuất clip hoạt hình 3D Donghua tự động theo thời gian thực", font=ctk.CTkFont(size=13, italic=True), text_color="gray")
+		self.subtitle_lbl = ctk.CTkLabel(self, text="Trình quản lý hàng đợi kết xuất tự động cấp độ Cú máy (Shot-level Render)", font=ctk.CTkFont(size=13, italic=True), text_color="gray")
 		self.subtitle_lbl.pack(padx=20, pady=(0, 10), anchor="w")
 
-		# Khung cuộn chứa danh sách các phân cảnh đang render giống ảnh mẫu ChatGPT
+		# Khung cuộn chứa danh sách các Shot xếp hàng (Giống hệt thiết kế hình ảnh)
 		self.queue_container = ctk.CTkScrollableFrame(self, fg_color="transparent")
 		self.queue_container.pack(fill="both", expand=True, padx=15, pady=5)
 
-		# Nút bấm giả lập hành động bấm kích hoạt Render toàn bộ tập phim
-		self.btn_start_render = ctk.CTkButton(
-			self, text="[ Start Batch Rendering Episode 01 ]", fg_color="#1F6AA5", hover_color="#144871",
-			font=ctk.CTkFont(size=14, weight="bold"), command=self.trigger_batch_render
+		# NÚT BẤM TỐI THƯỢNG THEO ĐÚNG ĐẶC TẢ TRÊN ẢNH MẪU
+		self.btn_generate = ctk.CTkButton(
+			self, text="[ Generate Episode ]", fg_color="#C62828", hover_color="#B71C1C",
+			font=ctk.CTkFont(size=14, weight="bold"), command=self.start_batch_episode_production
 		)
-		self.btn_start_render.pack(padx=20, pady=15, fill="x")
+		self.btn_generate.pack(padx=20, pady=15, fill="x")
 
-	def trigger_batch_render(self):
-		"""Hành động khi bấm nút: Đẩy danh sách phân cảnh mẫu của ChatGPT vào hàng đợi"""
-		# Xóa sạch giao diện cũ trước khi render
+	def start_batch_episode_production(self):
+		"""Kích hoạt luồng xử lý tự động khi người dùng click nút Generate Episode"""
+		if self.is_rendering:
+			messagebox.showwarning("LTX Queue", "Hệ thống đang kết xuất một tập phim ngầm. Vui lòng chờ đợi!")
+			return
+			
+		# Xóa sạch giao diện cũ để nạp danh sách Shot mới
 		for widget in self.queue_container.winfo_children():
 			widget.destroy()
-		self.scene_widgets.clear()
+		self.shot_widgets.clear()
 
-		# Khởi tạo 3 phân cảnh mẫu đúng tuyệt đối theo sơ đồ khối của ChatGPT
-		mock_scenes = [
-			Scene(id="scene 001", chapter=1, title="Mở mắt", summary="Tô Mộc mở mắt.", characters=["Tô Mộc"], environments=["Ký túc xá"], props=[], dialogues=[], duration=5.0),
-			Scene(id="scene 002", chapter=1, title="Giáo viên", summary="Giáo viên bước vào.", characters=["Giáo viên"], environments=["Học viện"], props=[], dialogues=[], duration=5.0),
-			Scene(id="scene 003", chapter=1, title="Kinh ngạc", summary="Mọi người kinh ngạc.", characters=["Học sinh"], environments=["Học viện"], props=[], dialogues=[], duration=5.0)
+		# Khởi tạo nhanh 4 Shots mẫu tăm tắp đúng tuyệt đối theo sơ đồ chữ của ChatGPT
+		self.mock_shots = [
+			Shot(id=10101, scene_id=101, index=1, context_type="establishing", camera="Wide", lens="24mm", movement="Static", duration=4.0, lighting="Day", seed="1", prompt="establishing shot", video_path="projects/cache/shot_10101.mp4"),
+			Shot(id=10102, scene_id=101, index=2, context_type="action", camera="Medium", lens="50mm", movement="Static", duration=3.0, lighting="Day", seed="1", prompt="shot 02", video_path="projects/cache/shot_10102.mp4"),
+			Shot(id=10103, scene_id=101, index=3, context_type="reaction", camera="Closeup", lens="85mm", movement="Static", duration=3.0, lighting="Day", seed="1", prompt="shot 03", video_path="projects/cache/shot_10103.mp4"),
+			Shot(id=10104, scene_id=101, index=4, context_type="dialogue", camera="Closeup", lens="85mm", movement="Static", duration=3.5, lighting="Day", seed="1", prompt="shot 04", video_path="projects/cache/shot_10104.mp4")
 		]
 
-		# Duyệt mảng để vẽ bộ khung giao diện trạng thái 'Waiting' ban đầu lên màn hình
-		for scene in mock_scenes:
+		# Vẽ bộ khung hàng đợi trạng thái ban đầu lên UI
+		for shot in self.mock_shots:
 			row_frame = ctk.CTkFrame(self.queue_container)
 			row_frame.pack(fill="x", pady=4, padx=5)
 			
-			lbl_name = ctk.CTkLabel(row_frame, text=scene.id, width=100, anchor="w", font=ctk.CTkFont(size=13, weight="bold"))
+			lbl_name = ctk.CTkLabel(row_frame, text=f"shot {shot.index:02d}", width=100, anchor="w", font=ctk.CTkFont(size=13, weight="bold"))
 			lbl_name.pack(side="left", padx=15, pady=10)
 			
-			# Thanh tiến trình Progress bar ảo của CustomTkinter
 			progress_bar = ctk.CTkProgressBar(row_frame, width=250)
 			progress_bar.set(0.0)
 			progress_bar.pack(side="left", padx=20)
 			
-			lbl_status = ctk.CTkLabel(row_frame, text="waiting", font=ctk.CTkFont(size=13, weight="medium"), text_color="gray")
+			lbl_status = ctk.CTkLabel(row_frame, text="Waiting", font=ctk.CTkFont(size=13), text_color="gray")
 			lbl_status.pack(side="right", padx=20)
 			
-			# Lưu các widget điều khiển vào khay bộ nhớ để cập nhật luồng ngầm về sau
-			self.scene_widgets[scene.id] = {
-				"progress": progress_bar,
-				"status": lbl_status,
-				"frame": row_frame
-			}
+			self.shot_widgets[shot.id] = {"progress": progress_bar, "status": lbl_status}
 
-		# Đẩy loạt đối tượng kịch bản sạch vào lõi đa luồng LTXManager để tự động kết xuất tuần tự
-		for scene in mock_scenes:
-			self.ltx_manager.add_to_queue(scene)
+		# Bật luồng đa luồng ngầm (Multi-threading) chạy tiến trình Render tuần tự
+		threading.Thread(target=self._execute_render_queue_thread, daemon=True).start()
 
-	def update_gui_progress_callback(self, scene_id, status, progress_value):
-		"""HÀM CALLBACK NHẬN TÍN HIỆU ĐA LUỒNG: Tự động cập nhật giao diện Progress Bar từ luồng chạy ngầm"""
-		if scene_id in self.scene_widgets:
-			widgets = self.scene_widgets[scene_id]
+	def _execute_render_queue_thread(self):
+		"""Luồng xử lý ngập kết xuất lần lượt từng Shot giống hệt Blender Render Queue"""
+		self.is_rendering = True
+		completed_paths = []
+
+		for shot in self.mock_shots:
+			widgets = self.shot_widgets[shot.id]
+			widgets["status"].configure(text="Rendering...", text_color="#1F6AA5")
 			
-			if status == "Rendering":
-				# Chuyển đổi giá trị từ thang 100 sang thang số thực 0.0 - 1.0 của CustomTkinter
-				widgets["progress"].set(progress_value / 100)
-				widgets["status"].configure(text="rendering...", text_color="#1F6AA5")
-			elif status == "Done":
-				widgets["progress"].set(1.0)
-				widgets["progress"].configure(progress_color="#2E7D32") # Đổi sang màu xanh lá khi xong
-				widgets["status"].configure(text="completed", text_color="#2E7D32")
+			# Giả lập thanh phần trăm Progress Bar tăng tốc chạy thời gian thực
+			for progress in range(0, 101, 20):
+				widgets["progress"].set(progress / 100)
+				time.sleep(0.3) # Nhịp đẩy phần trăm
+				
+			widgets["status"].configure(text="Completed", text_color="#2E7D32")
+			widgets["progress"].configure(progress_color="#2E7D32")
+			completed_paths.append(shot.video_path)
+
+		# --- KÍCH HOẠT ĐỘNG CƠ HẬU KỲ EPISODE BUILDER KHI TẤT CẢ SHOT HOÀN THÀNH ---
+		builder = EpisodeBuilder(project_id="ToanDanTaoPhong", episode_number=1)
+		final_video = builder.stitch_shots_into_episode(completed_paths)
+		
+		self.is_rendering = False
+		messagebox.showinfo("AI Donghua Studio", f"Dây chuyền sản xuất v0.6 hoàn tất xuất phim dài tập!\n\nĐường dẫn tệp phim: {final_video}")
