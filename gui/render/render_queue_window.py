@@ -75,6 +75,8 @@ class RenderQueueWindow(ctk.CTkFrame):
 		self.is_rendering = True
 		completed_paths = []
 
+		from core.episode_builder import EpisodeBuilder
+		
 		for shot in self.mock_shots:
 			widgets = self.shot_widgets[shot.id]
 			widgets["status"].configure(text="Rendering...", text_color="#1F6AA5")
