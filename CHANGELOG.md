@@ -1,18 +1,6 @@
-# CHANGELOG - AI DONGHUA STUDIO
-
-Tất cả các thay đổi và tiến độ nâng cấp kiến trúc của dự án sẽ được ghi nhận chi tiết tại đây.
-
----
-
-## [1.0.0-Sprint7] - 2026-07-24
+## [0.6.0-Sprint8] - 2026-07-24
 ### Added
-- Khởi động **Phase 2: Giai đoạn AI thật sự** kết hợp kiểm soát cấu trúc chặt chẽ.
-- Tích hợp lớp đối tượng cấu trúc điện ảnh nâng cao sử dụng `Dataclass` (`SceneObject`).
-- Phát triển hệ thống quản lý mẫu câu lệnh tập trung `TemplateManager` hỗ trợ nạp cấu hình `.json` độc lập.
-- Nâng cấp `StaticPromptBuilder` tự động điều phối từ khóa và lắp ghép chuỗi token theo ngữ cảnh kịch bản (`ltx_dialogue`, `ltx_action`, `ltx_cinematic`).
-- Khởi tạo hạ tầng cây thư mục hệ thống mở rộng linh hoạt `plugins/` (`ltx`, `elevenlabs`, `capcut`, `comfyui`, `youtube`).
-- Bổ sung tài liệu đặc tả kỹ thuật thiết kế phần mềm `docs/sprint7_ai_scene_analyzer_sdd.md`.
-
-### Fixed
-- Vá dứt điểm lỗi import đường dẫn lớp lưu trữ cơ sở và dọn dẹp các khối lệnh trùng lặp trong luồng Pipeline.
-- Chuẩn hóa toàn bộ cây thư mục lưu tệp vật lý của Project về định dạng chữ viết thường (`lowercase`) để triệt tiêu lỗi nhận diện đường dẫn trên các hệ điều hành khác nhau.
+- Khởi động **Version 0.6 - Production Engine** chuyên trách dây chuyền sản xuất phim hoạt hình dài tập.
+- Thiết lập phân hệ cốt lõi **Sprint 8: Shot Manager** phục vụ bẻ nhỏ phân cảnh (Scene) thành các cú máy (Shots) điện ảnh độc lập.
+- Khởi tạo bảng cơ sở dữ liệu `shots` và cấu hình mối quan hệ khóa ngoại (Foreign Key) nối sang bảng `scenes`.
+- Phát triển lớp kho lưu trữ dữ liệu `ShotRepository` chuyên trách quản lý vòng đời cú máy render.
