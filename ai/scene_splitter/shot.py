@@ -1,28 +1,20 @@
-from dataclasses import dataclass, field
-from datetime import datetime
+from dataclasses import dataclass
 
 @dataclass
-class ShotObject:
+class Shot:
 	"""
-	[SHOT DATACLASS OBJECT COMMERCIAL STANDARD]
-	Mô hình đối tượng cú máy điện ảnh ảo v1.0 theo đặc tả của ChatGPT.
-	Đóng gói khép kín toàn bộ 12 thuộc tính cinematic phục vụ dây chuyền sản xuất phim.
+	[SHOT OBJECT COMMERCIAL STANDARD]
+	Class định nghĩa cấu trúc một cú máy điện ảnh ảo theo đặc tả v0.6 của ChatGPT.
+	Ép kiểu dữ liệu nghiêm ngặt để tối ưu hóa token truyền dữ liệu cho hàng đợi Render.
 	"""
 	id: int
 	scene_id: int
 	index: int
-	
-	camera: str = "Medium Shot"
-	lens: str = "Standard 50mm"
-	movement: str = "Static"
-	duration: float = 3.0
-	lighting: str = "Morning"
-	seed: str = ""
-	
-	prompt: str = ""
-	video_path: str = ""
-	status: str = "waiting"
-	created_at: datetime = field(default_factory=datetime.utcnow)
-
-	def __repr__(self) -> str:
-		return f"<ShotObject [ID: {self.id}] Scene_ID: {self.scene_id} Index: {self.index} Status: {self.status}>"
+	camera: str
+	lens: str
+	movement: str
+	duration: float
+	lighting: str
+	seed: str
+	prompt: str
+	video_path: str
