@@ -22,3 +22,20 @@ class ShotRepository(BaseRepository[ShotModel]):
 			self.db.commit()
 			return True
 		return False
+	def update_shot_duration_linear(self, shot_id: int, new_duration: float) -> bool:
+		"""
+		[TIMELINE ENGINE DYNAMIC DURATION LOGIC]
+		Cập nhật linh hoạt thời lượng (giây) của cú máy khi người dùng kéo giãn trên thanh Timeline.
+		Triệt tiêu hoàn toàn việc cố định khung thời gian cứng, tối ưu hóa nhịp điệu điện ảnh.
+		"""
+		shot = self.get_by_id(shot_id)
+		if shot:
+			# Ràng buộc thời lượng tối thiểu là 0.5 giây và tối đa là 30 giây để tránh lỗi kết xuất của AI Renderer
+			sanitized_duration = max(0.5, min(new_duration, 30.0))
+			shot.duration = sanitized_duration
+			self.db.commit()
+			
+			from core.logger import studio_logger
+			studio_logger.logger.info(f"[TIMELINE ENGINE] Cú máy [Shot ID: {shot_id}] đã được cập nhật thời lượng mới -> {sanitized_duration}s")
+			return True
+		return False
