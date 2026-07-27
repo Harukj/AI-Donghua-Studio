@@ -61,7 +61,37 @@ class ProductionDashboard(ctk.CTkFrame):
 			font=ctk.CTkFont(size=13, weight="bold"), height=35
 		)
 		self.btn_export_hub.pack(fill="x", padx=20, pady=10)
+		self.btn_create_episode = ctk.CTkButton(
+			self.metrics_container, text="[ Create Episode ]", fg_color="#1E88E5", hover_color="#1565C0",
+			font=ctk.CTkFont(size=14, weight="bold"), height=40, command=self.trigger_autonomous_agent_workflow
+		)
+		self.btn_create_episode.pack(fill="x", padx=20, pady=10)
 
+	def trigger_autonomous_agent_workflow(self):
+		"""Kích hoạt luồng chạy đa luồng ngầm cho AI Agent khi người dùng click nút đơn nhất"""
+		import threading
+		self.btn_create_episode.configure(state="disabled", text="[ Agent Running... ]", fg_color="gray")
+		threading.Thread(target=self._async_agent_worker, daemon=True).start()
+
+	def _async_agent_worker(self):
+		"""Luồng ngầm gọi bộ não AI Agent xử lý trọn gói 8 bước điện ảnh"""
+		from tkinter import messagebox
+		try:
+			from ai.dreamforge_agent import DreamForgeAIAgent
+			# Gọi luồng điều phối tự trị xử lý khép kín kịch bản Chương 15
+			agent_engine = DreamForgeAIAgent(self.db)
+			mock_novel_text = "Tô Mộc bước vào học viện. Lâm Uyển nhìn cậu."
+			
+			final_movie = agent_engine.execute_autonomous_production_lifecycle(
+				raw_chapter_text=mock_novel_text, project_id="ToanDanTaoPhong", episode_num=15
+			)
+			
+			# Hiển thị hộp thoại báo cáo kết quả sau khi Agent đã tự chạy xong toàn bộ 8 bước
+			messagebox.showinfo("DreamForge AI Agent", f"Cỗ máy Đ đạo diễn tự trị đã hoàn tất xuất bản phim!\n\nĐường dẫn tệp tin phim: {final_movie}")
+		except Exception as e:
+			messagebox.showerror("DreamForge Error", f"Lỗi luồng xử lý tự trị của Agent: {e}")
+		finally:
+			self.btn_create_episode.configure(state="normal", text="[ Create Episode ]", fg_color="#1E88E5")
 	def create_header_node(self, text_str):
 		lbl = ctk.CTkLabel(self.metrics_container, text=text_str, font=ctk.CTkFont(size=14, weight="bold"))
 		lbl.pack(anchor="w", padx=20, pady=4)
