@@ -1,0 +1,48 @@
+2026-07-27 09:50:31 [INFO] -> =============================================================================
+2026-07-27 09:50:31 [INFO] -> [DREAMFORGE ENGINE] BẮT ĐẦU DÂY CHUYỀN SẢN XUẤT TỰ ĐỘNG KHÉP KÍN EPISODE 15...
+2026-07-27 09:50:31 [INFO] -> =============================================================================
+2026-07-27 09:50:31 [INFO] -> [NODE 1 & 2] Đang đọc tệp kịch bản gốc: projects/ToanDanTaoPhong/novel/chuong_15.docx
+2026-07-27 09:50:32 [INFO] ->  -> [✓] Khởi tạo thực thể cấu trúc: Chapter 15
+2026-07-27 09:50:32 [INFO] -> [NODE 3 & 4] Phân rã Chapter 15 thành các phân cảnh Scene & Cú máy Shot Object...
+2026-07-27 09:50:32 [INFO] -> [AI DIRECTOR] Đang phân tích chỉ đạo nghệ thuật cho Phân cảnh 001...
+2026-07-27 09:50:32 [INFO] -> [DREAMFORGE ENGINE] Ma trận 3.0 đang lắp ráp câu lệnh từ chỉ đạo của AI Director...
+2026-07-27 09:50:32 [INFO] -> [NODE 7] LTX Studio Renderer: Đang kết xuất video clip thô từ chuỗi Prompt ma trận...
+2026-07-27 09:50:33 [INFO] ->  -> [✓] Render hoàn tất file clip: projects/ToanDanTaoPhong/cache/shot_150101.mp4
+2026-07-27 09:50:33 [INFO] -> [NODE 8] ElevenLabs Plugin: Sinh file âm thanh lồng tiếng: projects/ToanDanTaoPhong/cache/tomoc_voice_150101.mp3
+2026-07-27 09:50:33 [INFO] -> [PLUGIN SYSTEM] Plugin '[openai_whisper] v1.0.0' đã được kích hoạt thành công vào Engine!
+2026-07-27 09:50:33 [INFO] -> [WHISPER AI] Đang xử lý bóc tách sóng âm tệp tin: projects/ToanDanTaoPhong/cache/tomoc_voice_150101.mp3
+2026-07-27 09:50:33 [INFO] -> [NODE 9] Whisper Subtitle Generated:
+"00:00:01,000 --> 00:00:04,500
+[Tô Mộc]: Bước vào học viện Long Dạng."
+2026-07-27 09:50:33 [INFO] -> [NODE 10] Timeline Sync: Đồng bộ Video + Voice + Subtitle lên Premiere-style Sequencer.
+2026-07-27 09:50:34 [INFO] -> [EPISODE BUILDER] Kích hoạt luồng đóng gói Tập phim 15...
+2026-07-27 09:50:34 [INFO] ->  -> Danh sách phân cảnh tích hợp: ['scene_01', 'scene_02']
+2026-07-27 09:50:36 [INFO] -> [SUCCESS] Quy trình đóng gói hoàn tất. Tệp phim dài sẵn sàng: 'projects\ToanDanTaoPhong\exports\Episode15.mp4'
+2026-07-27 09:50:36 [INFO] -> =============================================================================
+2026-07-27 09:50:36 [INFO] -> [ENGINE SUCCESS] DÂY CHUYỀN SẢN XUẤT HOÀN THÀNH XUẤT SẮC! TIẾN ĐỘ ĐẠT 100% [✓]
+2026-07-27 09:50:36 [INFO] -> =============================================================================
+2026-07-27 09:50:36 [INFO] -> [PLUGIN SYSTEM] Plugin '[openai_whisper]' đã được tạm ngắt kết nối an toàn.
+2026-07-27 09:52:42 [INFO] -> =============================================================================
+2026-07-27 09:52:42 [INFO] -> [DREAMFORGE ENGINE] BẮT ĐẦU DÂY CHUYỀN SẢN XUẤT TỰ ĐỘNG KHÉP KÍN EPISODE 15...
+2026-07-27 09:52:42 [INFO] -> =============================================================================
+2026-07-27 09:52:42 [INFO] -> [NODE 1 & 2] Đang đọc tệp kịch bản gốc: projects/ToanDanTaoPhong/novel/chuong_15.docx
+2026-07-27 09:52:42 [INFO] ->  -> [✓] Khởi tạo thực thể cấu trúc: Chapter 15
+2026-07-27 09:52:42 [INFO] -> [NODE 3 & 4] Phân rã Chapter 15 thành các phân cảnh Scene & Cú máy Shot Object...
+2026-07-27 09:52:42 [INFO] -> [AI DIRECTOR] Đang phân tích chỉ đạo nghệ thuật cho Phân cảnh 001...
+2026-07-27 09:52:42 [INFO] -> [DREAMFORGE ENGINE] Ma trận 3.0 đang lắp ráp câu lệnh từ chỉ đạo của AI Director...
+2026-07-27 09:52:43 [INFO] -> [NODE 7] LTX Studio Renderer: Đang kết xuất video clip thô từ chuỗi Prompt ma trận...
+2026-07-27 09:52:43 [INFO] ->  -> [✓] Render hoàn tất file clip: projects/ToanDanTaoPhong/cache/shot_150101.mp4
+2026-07-27 09:52:43 [INFO] -> [NODE 8] ElevenLabs Plugin: Sinh file âm thanh lồng tiếng: projects/ToanDanTaoPhong/cache/tomoc_voice_150101.mp3
+2026-07-27 09:52:43 [INFO] -> [PLUGIN SYSTEM] Plugin '[openai_whisper] v1.0.0' đã được kích hoạt thành công vào Engine!
+2026-07-27 09:52:43 [INFO] -> [WHISPER AI] Đang xử lý bóc tách sóng âm tệp tin: projects/ToanDanTaoPhong/cache/tomoc_voice_150101.mp3
+2026-07-27 09:52:44 [INFO] -> [NODE 9] Whisper Subtitle Generated:
+"00:00:01,000 --> 00:00:04,500
+[Tô Mộc]: Bước vào học viện Long Dạng."
+2026-07-27 09:52:44 [INFO] -> [NODE 10] Timeline Sync: Đồng bộ Video + Voice + Subtitle lên Premiere-style Sequencer.
+2026-07-27 09:52:44 [INFO] -> [EPISODE BUILDER] Kích hoạt luồng đóng gói Tập phim 15...
+2026-07-27 09:52:44 [INFO] ->  -> Danh sách phân cảnh tích hợp: ['scene_01', 'scene_02']
+2026-07-27 09:52:46 [INFO] -> [SUCCESS] Quy trình đóng gói hoàn tất. Tệp phim dài sẵn sàng: 'projects\ToanDanTaoPhong\exports\Episode15.mp4'
+2026-07-27 09:52:46 [INFO] -> =============================================================================
+2026-07-27 09:52:46 [INFO] -> [ENGINE SUCCESS] DÂY CHUYỀN SẢN XUẤT HOÀN THÀNH XUẤT SẮC! TIẾN ĐỘ ĐẠT 100% [✓]
+2026-07-27 09:52:46 [INFO] -> =============================================================================
+2026-07-27 09:52:46 [INFO] -> [PLUGIN SYSTEM] Plugin '[openai_whisper]' đã được tạm ngắt kết nối an toàn.
