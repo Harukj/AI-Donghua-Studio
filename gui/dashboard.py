@@ -26,8 +26,8 @@ class Dashboard(ctk.CTkFrame):
 		self.categories = [
 			"Project",
 			"Novel",
-			"Assets",          # <-- Phân hệ quản lý tài nguyên tập trung mới thay cho Character/Environment cũ
-			"Storyboard",
+			"Assets",
+			"Timeline Editor", # <-- Sửa tên nhãn hiển thị khớp giao diện Premiere mới
 			"Prompt Engine",
 			"Render Queue",
 			"Export",
@@ -91,6 +91,12 @@ class Dashboard(ctk.CTkFrame):
 			from gui.novel.novel_window import NovelWindow
 			self.novel_view = NovelWindow(self.content_frame)
 			self.novel_view.pack(fill="both", expand=True, padx=10, pady=10)
+
+				# 2. Tìm khối điều hướng cũ và sửa lại định tuyến nạp cửa sổ mới:
+		elif category_name == "Timeline Editor":
+			from gui.timeline.timeline_editor_window import TimelineEditorWindow
+			self.timeline_view = TimelineEditorWindow(self.content_frame)
+			self.timeline_view.pack(fill="both", expand=True, padx=10, pady=10)
 			
 		elif category_name == "Storyboard":
 			from gui.storyboard.storyboard_window import StoryboardWindow
