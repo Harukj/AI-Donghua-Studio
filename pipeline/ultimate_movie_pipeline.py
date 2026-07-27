@@ -43,7 +43,7 @@ class UltimateMoviePipeline:
 			char_name="Tô Mộc",
 			location_name="Học viện Long Dạng",
 			raw_action_text=mock_scene_text,
-			directives=directives["cinematic_directives"]
+			context_type="establishing" # Thay thế đối số directives cũ bằng context_type viết thường
 		)
 
 		# 5. NODE: LTX STUDIO (Giả lập gửi lệnh sang Renderer kết xuất tệp tin video clip thô)

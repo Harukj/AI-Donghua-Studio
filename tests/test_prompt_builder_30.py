@@ -25,7 +25,7 @@ class TestPromptBuilder30(unittest.TestCase):
 		action_text = "Vung thần kiếm lao vào quyết đấu."
 
 		# Kích hoạt động cơ trộn ma trận v3.0
-		result = self.builder.build_matrix_prompt(char_name, location_name, camera_preset, action_text)
+		result = self.builder.build_matrix_prompt_v3(char_name, location_name, camera_preset, "action")
 		
 		print("\n============ KẾT QUẢ XUẤT BẢN MA TRẬN PROMPT BUILDER 3.0 ============")
 		print(f" Positive Prompt:\n \"{result['positive']}\"\n")

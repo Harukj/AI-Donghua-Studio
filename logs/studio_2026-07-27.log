@@ -58,3 +58,63 @@
 2026-07-27 10:08:36 [INFO] ->  -> Khởi tạo thành công: [Shot 04] Ngữ cảnh: DIALOGUE | Thời lượng: 3.0s
 2026-07-27 10:08:36 [INFO] -> [CAMERA PLANNER] Đã ghim thông số: Khung hình=Wide Shot, Ống kính=24mm, Chuyển động=Slow Push
 2026-07-27 10:08:36 [INFO] -> [LIGHTING PLANNER] Đã ghim bộ lọc: Morning (Volumetric with Sun Rays)
+2026-07-27 10:15:06 [INFO] -> [SHOT PLANNER] Đang khởi chạy ma trận phân rã góc máy cho Scene ID: [701]
+2026-07-27 10:15:06 [INFO] ->  -> Khởi tạo thành công: [Shot 01] Ngữ cảnh: ESTABLISHING | Thời lượng: 5.0s
+2026-07-27 10:15:06 [INFO] ->  -> Khởi tạo thành công: [Shot 02] Ngữ cảnh: DOOR OPENING | Thời lượng: 4.0s
+2026-07-27 10:15:06 [INFO] ->  -> Khởi tạo thành công: [Shot 03] Ngữ cảnh: REACTION | Thời lượng: 2.0s
+2026-07-27 10:15:06 [INFO] ->  -> Khởi tạo thành công: [Shot 04] Ngữ cảnh: DIALOGUE | Thời lượng: 3.0s
+2026-07-27 10:15:06 [INFO] -> [CAMERA PLANNER] Đã ghim thông số: Khung hình=Wide Shot, Ống kính=24mm, Chuyển động=Slow Push
+2026-07-27 10:15:06 [INFO] -> [LIGHTING PLANNER] Đã ghim bộ lọc: Morning (Volumetric with Sun Rays)
+2026-07-27 10:15:06 [INFO] -> [AI DIRECTOR] Đang bóc tách chỉ đạo nghệ thuật cho Phân cảnh 007...
+2026-07-27 10:15:07 [INFO] -> Prompt Builder: Đã áp dụng mẫu [ltx_action] tự động cho [SCENE_01_002]
+2026-07-27 10:15:07 [INFO] -> Prompt Builder: Đã áp dụng mẫu [ltx_dialogue] tự động cho [SCENE_01_001]
+2026-07-27 10:15:07 [INFO] -> =============================================================================
+2026-07-27 10:15:07 [INFO] -> [DREAMFORGE ENGINE] BẮT ĐẦU DÂY CHUYỀN SẢN XUẤT TỰ ĐỘNG KHÉP KÍN EPISODE 15...
+2026-07-27 10:15:07 [INFO] -> =============================================================================
+2026-07-27 10:15:07 [INFO] -> [NODE 1 & 2] Đang đọc tệp kịch bản gốc: projects/ToanDanTaoPhong/novel/chuong_15.docx
+2026-07-27 10:15:07 [INFO] ->  -> [✓] Khởi tạo thực thể cấu trúc: Chapter 15
+2026-07-27 10:15:07 [INFO] -> [NODE 3 & 4] Phân rã Chapter 15 thành các phân cảnh Scene & Cú máy Shot Object...
+2026-07-27 10:15:08 [INFO] -> [AI DIRECTOR] Đang bóc tách chỉ đạo nghệ thuật cho Phân cảnh 001...
+2026-07-27 10:18:55 [INFO] -> [DREAMFORGE CORE] Tiến hành gộp ma trận tham số điện ảnh tĩnh...
+2026-07-27 10:18:55 [INFO] -> [CAMERA PLANNER] Đã ghim thông số: Khung hình=Wide Shot, Ống kính=24mm, Chuyển động=Slow Push
+2026-07-27 10:18:55 [INFO] -> [LIGHTING PLANNER] Đã ghim bộ lọc: Morning (Volumetric with Sun Rays)
+2026-07-27 10:18:55 [INFO] -> [FX PLANNER] Đã khóa bộ hạt môi trường: Gió=[gentle blowing wind], Hiệu ứng=[falling cinematic tree leaves]
+2026-07-27 10:18:55 [INFO] -> [AUDIO PLANNER] Đã cấu trúc chỉ thị âm thanh: Nhạc=[traditional chinese orchestra]
+2026-07-27 10:18:55 [INFO] -> [SHOT PLANNER] Đang khởi chạy ma trận phân rã góc máy cho Scene ID: [701]
+2026-07-27 10:18:55 [INFO] ->  -> Khởi tạo thành công: [Shot 01] Ngữ cảnh: ESTABLISHING | Thời lượng: 5.0s
+2026-07-27 10:18:55 [INFO] ->  -> Khởi tạo thành công: [Shot 02] Ngữ cảnh: DOOR OPENING | Thời lượng: 4.0s
+2026-07-27 10:18:55 [INFO] ->  -> Khởi tạo thành công: [Shot 03] Ngữ cảnh: REACTION | Thời lượng: 2.0s
+2026-07-27 10:18:55 [INFO] ->  -> Khởi tạo thành công: [Shot 04] Ngữ cảnh: DIALOGUE | Thời lượng: 3.0s
+2026-07-27 10:18:55 [INFO] -> [CAMERA PLANNER] Đã ghim thông số: Khung hình=Wide Shot, Ống kính=24mm, Chuyển động=Slow Push
+2026-07-27 10:18:55 [INFO] -> [LIGHTING PLANNER] Đã ghim bộ lọc: Morning (Volumetric with Sun Rays)
+2026-07-27 10:18:55 [INFO] -> [AI DIRECTOR] Đang bóc tách chỉ đạo nghệ thuật cho Phân cảnh 007...
+2026-07-27 10:18:55 [INFO] -> Prompt Builder: Đã áp dụng mẫu [ltx_action] tự động cho [SCENE_01_002]
+2026-07-27 10:18:55 [INFO] -> Prompt Builder: Đã áp dụng mẫu [ltx_dialogue] tự động cho [SCENE_01_001]
+2026-07-27 10:18:55 [INFO] -> =============================================================================
+2026-07-27 10:18:55 [INFO] -> [DREAMFORGE ENGINE] BẮT ĐẦU DÂY CHUYỀN SẢN XUẤT TỰ ĐỘNG KHÉP KÍN EPISODE 15...
+2026-07-27 10:18:55 [INFO] -> =============================================================================
+2026-07-27 10:18:55 [INFO] -> [NODE 1 & 2] Đang đọc tệp kịch bản gốc: projects/ToanDanTaoPhong/novel/chuong_15.docx
+2026-07-27 10:18:56 [INFO] ->  -> [✓] Khởi tạo thực thể cấu trúc: Chapter 15
+2026-07-27 10:18:56 [INFO] -> [NODE 3 & 4] Phân rã Chapter 15 thành các phân cảnh Scene & Cú máy Shot Object...
+2026-07-27 10:18:56 [INFO] -> [AI DIRECTOR] Đang bóc tách chỉ đạo nghệ thuật cho Phân cảnh 001...
+2026-07-27 10:18:56 [INFO] -> [DREAMFORGE CORE] Tiến hành gộp ma trận tham số điện ảnh tĩnh...
+2026-07-27 10:18:56 [INFO] -> [CAMERA PLANNER] Đã ghim thông số: Khung hình=Wide Shot, Ống kính=24mm, Chuyển động=Slow Push
+2026-07-27 10:18:56 [INFO] -> [LIGHTING PLANNER] Đã ghim bộ lọc: Morning (Volumetric with Sun Rays)
+2026-07-27 10:18:56 [INFO] -> [FX PLANNER] Đã khóa bộ hạt môi trường: Gió=[gentle blowing wind], Hiệu ứng=[falling cinematic tree leaves]
+2026-07-27 10:18:56 [INFO] -> [AUDIO PLANNER] Đã cấu trúc chỉ thị âm thanh: Nhạc=[traditional chinese orchestra]
+2026-07-27 10:18:56 [INFO] -> [NODE 7] LTX Studio Renderer: Đang kết xuất video clip thô từ chuỗi Prompt ma trận...
+2026-07-27 10:18:56 [INFO] ->  -> [✓] Render hoàn tất file clip: projects/ToanDanTaoPhong/cache/shot_150101.mp4
+2026-07-27 10:18:56 [INFO] -> [NODE 8] ElevenLabs Plugin: Sinh file âm thanh lồng tiếng: projects/ToanDanTaoPhong/cache/tomoc_voice_150101.mp3
+2026-07-27 10:18:57 [INFO] -> [PLUGIN SYSTEM] Plugin '[openai_whisper] v1.0.0' đã được kích hoạt thành công vào Engine!
+2026-07-27 10:18:57 [INFO] -> [WHISPER AI] Đang xử lý bóc tách sóng âm tệp tin: projects/ToanDanTaoPhong/cache/tomoc_voice_150101.mp3
+2026-07-27 10:18:57 [INFO] -> [NODE 9] Whisper Subtitle Generated:
+"00:00:01,000 --> 00:00:04,500
+[Tô Mộc]: Bước vào học viện Long Dạng."
+2026-07-27 10:18:57 [INFO] -> [NODE 10] Timeline Sync: Đồng bộ Video + Voice + Subtitle lên Premiere-style Sequencer.
+2026-07-27 10:18:57 [INFO] -> [EPISODE BUILDER] Kích hoạt luồng đóng gói Tập phim 15...
+2026-07-27 10:18:57 [INFO] ->  -> Danh sách phân cảnh tích hợp: ['scene_01', 'scene_02']
+2026-07-27 10:18:59 [INFO] -> [SUCCESS] Quy trình đóng gói hoàn tất. Tệp phim dài sẵn sàng: 'projects\ToanDanTaoPhong\exports\Episode15.mp4'
+2026-07-27 10:18:59 [INFO] -> =============================================================================
+2026-07-27 10:18:59 [INFO] -> [ENGINE SUCCESS] DÂY CHUYỀN SẢN XUẤT HOÀN THÀNH XUẤT SẮC! TIẾN ĐỘ ĐẠT 100% [✓]
+2026-07-27 10:18:59 [INFO] -> =============================================================================
+2026-07-27 10:18:59 [INFO] -> [PLUGIN SYSTEM] Plugin '[openai_whisper]' đã được tạm ngắt kết nối an toàn.

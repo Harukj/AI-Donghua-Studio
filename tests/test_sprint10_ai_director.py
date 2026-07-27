@@ -26,7 +26,7 @@ class TestAIDirectorSprint10(unittest.TestCase):
 		self.assertEqual(directives_output["scene_metadata"]["id"], 7)
 		self.assertIn("camera_preset", directives_output["cinematic_directives"])
 		self.assertIn("lighting", directives_output["cinematic_directives"])
-		self.assertIn("mood", directives_output["cinematic_directives"])
+		self.assertIn("music_mood", directives_output["cinematic_directives"])
 
 if __name__ == "__main__":
 	unittest.main()
