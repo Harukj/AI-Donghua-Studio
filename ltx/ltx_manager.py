@@ -1,6 +1,6 @@
 import time
 import threading
-from analyzer.scene_object import Scene
+from ai.analyzer.scene_object import Scene
 
 class LTXManager:
 	def __init__(self):

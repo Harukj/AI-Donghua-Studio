@@ -2,15 +2,15 @@ import os
 from sqlalchemy.orm import Session
 
 # Import các bộ quét thực thể từ analyzer
-from analyzer.chapter_analyzer import ChapterAnalyzer
-from analyzer.scene_analyzer import SceneAnalyzer
-from analyzer.character_detector import CharacterDetector
-from analyzer.environment_detector import EnvironmentDetector
-from analyzer.prop_detector import PropDetector
-from analyzer.dialogue_detector import DialogueDetector
+from ai.analyzer.chapter_analyzer import ChapterAnalyzer
+from ai.analyzer.scene_analyzer import SceneAnalyzer
+from ai.analyzer.character_detector import CharacterDetector
+from ai.analyzer.environment_detector import EnvironmentDetector
+from ai.analyzer.prop_detector import PropDetector
+from ai.analyzer.dialogue_detector import DialogueDetector
 
 # Import mô hình Class Scene Object v1.0
-from analyzer.scene_object import Scene
+from ai.analyzer.scene_object import Scene
 
 # Import các model cơ sở dữ liệu
 from database.models.novel import NovelModel
@@ -55,7 +55,7 @@ class NovelPipeline:
 			environments = [env_json["environment"]]
 			
 			# --- BƯỚC 7: ASSET DETECTOR NÂNG CẤP ĐỒNG BỘ ---
-			from analyzer.asset_detector import AssetDetector
+			from ai.analyzer.asset_detector import AssetDetector
 			asset_detector = AssetDetector(scene_content)
 			detected_assets = asset_detector.detect_and_sync_assets()
 			

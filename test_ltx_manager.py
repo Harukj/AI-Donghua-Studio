@@ -1,5 +1,5 @@
 from ltx.ltx_manager import LTXManager
-from analyzer.scene_object import Scene
+from ai.analyzer.scene_object import Scene
 import time
 
 def gui_status_update(scene_id, status, progress):
