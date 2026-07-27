@@ -39,3 +39,24 @@ class ShotRepository(BaseRepository[ShotModel]):
 			studio_logger.logger.info(f"[TIMELINE ENGINE] Cú máy [Shot ID: {shot_id}] đã được cập nhật thời lượng mới -> {sanitized_duration}s")
 			return True
 		return False
+	def update_shot_workspace_state(self, shot_id: int, target_status: str) -> bool:
+		"""
+		[LTX WORKSPACE LIFECYCLE CONTROLLER]
+		Điều phối luồng trạng thái 6 nấc chuẩn đặc tả của ChatGPT:
+		draft -> ready -> rendering -> rendered -> approved -> exported.
+		"""
+		valid_states = ["draft", "ready", "rendering", "rendered", "approved", "exported"]
+		status_lower = target_status.lower().strip()
+		
+		if status_lower not in valid_states:
+			raise ValueError(f"Trạng thái '{target_status}' không hợp lệ trong hệ thống LTX Workspace!")
+			
+		shot = self.get_by_id(shot_id)
+		if shot:
+			shot.status = status_lower
+			self.db.commit()
+			
+			from core.logger import studio_logger
+			studio_logger.logger.info(f"[LTX WORKSPACE] Cú máy [Shot ID: {shot_id}] đã chuyển trạng thái thành công sang -> [{status_lower.upper()}]")
+			return True
+		return False

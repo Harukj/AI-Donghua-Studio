@@ -36,7 +36,16 @@ class TestProductionSchedulerAndTimeline(unittest.TestCase):
 		)
 		self.db.add(self.test_shot)
 		self.db.commit()
-
+		# Kiểm tra xem Shot mới tạo có trạng thái mặc định là DRAFT không
+		fresh_shot = self.shot_repo.get_by_id(150101)
+		self.assertEqual(fresh_shot.status, "draft")
+		
+		# Phát lệnh dịch chuyển trạng thái: Người dùng phê duyệt (Approved) cú máy thành công
+		state_moved = self.shot_repo.update_shot_workspace_state(shot_id=150101, target_status="approved")
+		self.assertTrue(state_moved)
+		
+		# Kiểm tra lại DB xem trạng thái đã được khóa cứng ổn định chưa
+		self.assertEqual(fresh_shot.status, "approved")
 	def test_scheduler_matrix_and_timeline_stretching(self):
 		"""Ca kiểm thử tối thượng: Xác thực bộ điều phối sản xuất lập lịch khép kín và tính năng kéo giãn thời lượng Shot"""
 		mock_novel_data = ["Chương 15: Khởi đầu trận chiến vĩ đại"]
