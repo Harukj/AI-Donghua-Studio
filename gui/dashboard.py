@@ -86,7 +86,12 @@ class Dashboard(ctk.CTkFrame):
 			# Khởi tạo và hiển thị trình quản lý tài nguyên tập trung chuẩn Unity
 			self.asset_browser_view = AssetBrowserWindow(self.content_frame)
 			self.asset_browser_view.pack(fill="both", expand=True, padx=10, pady=10)
-			
+
+		if category_name == "Project":
+			from gui.project.production_dashboard import ProductionDashboard
+			self.project_view = ProductionDashboard(self.content_frame)
+			self.project_view.pack(fill="both", expand=True, padx=10, pady=10)
+	
 		elif category_name == "Novel":
 			from gui.novel.novel_window import NovelWindow
 			self.novel_view = NovelWindow(self.content_frame)

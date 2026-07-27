@@ -27,22 +27,24 @@ class TimelineEditorWindow(ctk.CTkFrame):
 		self.lbl_preview_title = ctk.CTkLabel(self.preview_panel, text="Shot Preview", font=ctk.CTkFont(size=16, weight="bold"))
 		self.lbl_preview_title.pack(padx=15, pady=15, anchor="w")
 		
-		# Bộ khung hiển thị thông số chi tiết của Shot đúng theo sơ đồ ChatGPT
+				# Mở file gui/timeline/timeline_editor_window.py, tìm đến danh sách fields cũ và sửa lại:
 		self.preview_container = ctk.CTkFrame(self.preview_panel, fg_color="transparent")
 		self.preview_container.pack(fill="both", expand=True, padx=15, pady=5)
 		
 		self.inputs = {}
-		fields = ["Video Path", "Prompt", "Duration (s)", "Camera Preset"]
+		# Bổ sung Voice và Subtitle chính xác theo sơ đồ cây của ChatGPT
+		fields = ["Video Path", "Prompt", "Duration (s)", "Camera Preset", "Voice Path", "Subtitle Text"]
 		for field in fields:
 			lbl = ctk.CTkLabel(self.preview_container, text=field, font=ctk.CTkFont(size=12, weight="bold"), anchor="w")
-			lbl.pack(fill="x", pady=(8, 2))
+			lbl.pack(fill="x", pady=(6, 1))
 			
-			if field == "Prompt":
-				entry = ctk.CTkTextbox(self.preview_container, height=70, corner_radius=6)
+			if field in ["Prompt", "Subtitle Text"]:
+				entry = ctk.CTkTextbox(self.preview_container, height=60, corner_radius=6)
 			else:
 				entry = ctk.CTkEntry(self.preview_container, placeholder_text=f"Thông số {field.lower()}...")
 			entry.pack(fill="x", pady=2)
 			self.inputs[field] = entry
+
 
 		# Vẽ biểu đồ dòng thời gian mẫu của Tập 1 khớp 100% hình ảnh cấu trúc cây của ChatGPT
 		self.render_premiere_timeline()
@@ -62,8 +64,16 @@ class TimelineEditorWindow(ctk.CTkFrame):
 
 		# Khối Shot 1 của Scene 1
 		self.create_shot_timeline_block(scene1_frame, shot_name="shot1", duration_val=4, color="#E65100", 
-										meta={"path": "projects/cache/shot_10101.mp4", "prompt": "3D Donghua, wide shot, To Moc walking into academy", "duration": "4.0", "camera": "Wide Shot"})
-		# Khối Shot 2 của Scene 1
+												# Thêm tham số voice và subtitle vào cấu hình Dictionary của shot1
+		meta_s1 = {
+			"path": "projects/cache/shot_10101.mp4", 
+			"prompt": "3D Donghua, wide shot, To Moc walking into academy", 
+			"duration": "4.0", 
+			"camera": "Wide Shot",
+			"voice": "projects/ToanDanTaoPhong/assets/audio/tomoc_action_01.mp3",
+			"subtitle": "Tô Mộc bước vào học viện Long Dạng."
+		})
+
 		self.create_shot_timeline_block(scene1_frame, shot_name="shot2", duration_val=3, color="#E65100",
 										meta={"path": "projects/cache/shot_10102.mp4", "prompt": "3D Donghua, close up, Lam Uyen looking surprised", "duration": "3.0", "camera": "Close-up"})
 
@@ -76,7 +86,15 @@ class TimelineEditorWindow(ctk.CTkFrame):
 
 		# Khối Shot 1 của Scene 2
 		self.create_shot_timeline_block(scene2_frame, shot_name="shot1", duration_val=5, color="#2E7D32",
-										meta={"path": "projects/cache/shot_10201.mp4", "prompt": "3D Donghua, medium shot, characters staring at each other", "duration": "5.0", "camera": "Medium Shot"})
+												# Thêm tham số voice và subtitle vào cấu hình Dictionary của shot1
+		meta_s1 = {
+			"path": "projects/cache/shot_10101.mp4", 
+			"prompt": "3D Donghua, wide shot, To Moc walking into academy", 
+			"duration": "4.0", 
+			"camera": "Wide Shot",
+			"voice": "projects/ToanDanTaoPhong/assets/audio/tomoc_action_01.mp3",
+			"subtitle": "Tô Mộc bước vào học viện Long Dạng."
+		})
 
 	def create_shot_timeline_block(self, parent_frame, shot_name, duration_val, color, meta):
 		"""Tạo một khối Shot nằm ngang thể hiện thời lượng tuyến tính thời gian thực"""
@@ -97,18 +115,21 @@ class TimelineEditorWindow(ctk.CTkFrame):
 		btn_block.pack(side="left", padx=5)
 
 	def on_timeline_shot_clicked(self, shot_name, meta):
-		"""[LUỒNG INTERACTIVE: SHOT PREVIEW] Đổ dữ liệu cinematic của Shot lên bảng lề phải khi người dùng click chọn"""
+		"""[LUỒNG INTERACTIVE: UNREAL SEQUENCER STYLE] Đổ đầy đủ 6 lớp thông tin đa phương tiện"""
 		self.lbl_preview_title.configure(text=f"Preview > {shot_name.upper()}")
 		
-		# Làm sạch và điền thông số từ thanh Timeline sang bảng Inspector
-		self.inputs["Video Path"].delete(0, "end")
+		# Làm sạch các ô dữ liệu cũ
+		for field, widget in self.inputs.items():
+			if isinstance(widget, ctk.CTkTextbox): widget.delete("1.0", "end")
+			else: widget.delete(0, "end")
+		
+		# Điền các thông số cơ bản cũ
 		self.inputs["Video Path"].insert(0, meta["path"])
-		
-		self.inputs["Prompt"].delete("1.0", "end")
 		self.inputs["Prompt"].insert("1.0", meta["prompt"])
-		
-		self.inputs["Duration (s)"].delete(0, "end")
 		self.inputs["Duration (s)"].insert(0, meta["duration"])
-		
-		self.inputs["Camera Preset"].delete(0, "end")
 		self.inputs["Camera Preset"].insert(0, meta["camera"])
+		
+		# NẠP HAI THÀNH PHẦN ĐA PHƯƠNG TIỆN MỚI CỦA CHATGPT
+		self.inputs["Voice Path"].insert(0, meta.get("voice", "projects/assets/audio/tomoc_voice_01.mp3"))
+		self.inputs["Subtitle Text"].insert("1.0", meta.get("subtitle", "Tô Mộc bất ngờ quay đầu."))
+
