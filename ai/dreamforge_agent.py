@@ -1,7 +1,7 @@
 import os
 import time
 from core.logger import studio_logger
-from ai.scene_splitter.parser import SceneSplitter # Giả lập bộ tách cảnh cũ
+from ai.scene_splitter.splitter import Splitter as SceneSplitter
 from ai.scene_splitter.shot_builder import ShotBuilder
 from ai.prompt_builder.builder_v3 import PromptBuilder30
 from plugins.ltx.ltx_automation import LTXAutomationAdapter

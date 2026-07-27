@@ -3,7 +3,7 @@ from ai.scene_splitter.parser import ScriptParser
 from ai.scene_splitter.rules import TRANSITION_KEYWORDS, MAX_WORDS_PER_SCENE
 from core.logger import studio_logger
 
-class SceneSplitterEngine:
+class Splitter:
 	def __init__(self, chapter_number: int, chapter_title: str, raw_content: str):
 		self.chapter_number = chapter_number
 		self.chapter_title = chapter_title

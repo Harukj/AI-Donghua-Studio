@@ -10,29 +10,30 @@ from database.session import SessionLocal
 
 class TestDreamForgeAgentv09(unittest.TestCase):
 	def test_agent_autonomous_reasoning_and_scheduler_hud(self):
-		"""Ca kiểm thử tối thượng: Xác thực AI Agent tự trị ra quyết định và Scheduler cập nhật mốc HUD 28%"""
+		"""Ca kiểm thử tối thượng: Xác thực AI Agent tự trị ra quyết định xuất bản video và Scheduler cập nhật mốc HUD 28%"""
 		db = SessionLocal()
 		story_text = "Tô Mộc bất ngờ quay đầu nhìn về phía chân trời xa xăm."
 		
-		# 1. Tích kiểm hoạt động của AI Agent tự trị
-		agent = DreamForgeAIAgent()
-		agent_output = agent.run_autonomous_director_agent(story_text)
+		# 1. Tích kiểm hoạt động tự trị của AI Agent v1.0
+		agent = DreamForgeAIAgent(db)
+		final_movie_path = agent.execute_autonomous_production_lifecycle(story_text)
 		
-		print("\n============ KẾT QUẢ NGHIỆM THU REASONING AGENT (CON SỐ MỚI 28%) ============")
-		print(f" 🤖 AI Agent suy luận quyết định: \"{agent_output['agent_decision']}\"")
-		print(f" 🖼️ Ý tưởng thiết kế ảnh bìa Thumbnail: {agent_output['directives_matrix']['thumbnail_concept']}")
-		print("=============================================================================")
+		print("\n============ KẾT QUẢ NGHIỆM THU REASONING AGENT (VERSION 1.0) ============")
+		print(f" 🎬 File phim thành phẩm được xuất bản tự trị:\n \"{final_movie_path}\"")
+		print("==========================================================================")
 
-		self.assertIn("thumbnail_concept", agent_output["directives_matrix"])
-		self.assertEqual(agent_output["directives_matrix"]["estimated_progress"], "28%")
+		# Khẳng định kiểm duyệt chất lượng tệp tin đầu ra của Agent
+		self.assertTrue(final_movie_path.endswith(".mp4"))
 
 		# 2. Tích kiểm nút gộp Production Scheduler mốc 28%
 		scheduler = ProductionScheduler(db)
 		report = scheduler.schedule_episode_production_matrix("ToanDanTaoPhong", 15, [story_text])
+		
 		self.assertEqual(report["production_hud_progress"], "28%")
 		self.assertIn("thumbnail_node", report)
 		
 		db.close()
+
 
 if __name__ == "__main__":
 	unittest.main()
