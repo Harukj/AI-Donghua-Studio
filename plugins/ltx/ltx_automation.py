@@ -1,6 +1,6 @@
 import os
 import time
-import pyperclip # Thư viện hỗ trợ sao chép tự động sang Clipboard hệ thống
+import pyperclip
 from plugins.base_plugin import BasePlugin
 from core.logger import studio_logger
 
@@ -13,19 +13,23 @@ class LTXAutomationAdapter(BasePlugin):
 		studio_logger.logger.info("[LTX AUTOMATION] Khởi động hệ thống tương tác luồng hệ điều hành OS...")
 		return True
 
-	def execute_render_pipeline(self, scene_id: str, prompt_data: dict) -> bool:
+	def execute_ai_task(self, input_data: dict) -> dict:
 		"""
 		[LTX ADAPTER 8-STEPS CORE WORKFLOW]
+		Hiện thực hóa chính xác phương thức trừu tượng execute_ai_task từ BasePlugin.
 		Thực thi luồng tự động hóa khép kín khớp chính xác 100% sơ đồ khối của ChatGPT.
 		"""
+		scene_id = input_data.get("scene_id", "scene_01")
+		prompt_package = input_data.get("prompt_data", {})
+		
 		studio_logger.logger.info(f"============ KÍCH HOẠT QUY TRÌNH LTX ADAPTER: {scene_id.upper()} ============")
 		
 		# BƯỚC 1 & 2: GENERATE (Nhận dữ liệu tham số 5 tầng sạch từ Prompt Builder)
-		positive_prompt = prompt_data.get("positive", "")
-		seed = prompt_data.get("seed", "23561")
-		duration = prompt_data.get("duration", 3.5)
-		camera = prompt_data.get("camera", "Wide Shot")
-		negative_prompt = prompt_data.get("negative", "")
+		positive_prompt = prompt_package.get("positive", "")
+		seed = prompt_package.get("seed", "23561")
+		duration = prompt_package.get("duration", 3.5)
+		camera = prompt_package.get("camera", "Wide Shot")
+		negative_prompt = prompt_package.get("negative", "")
 		
 		# BƯỚC 3 & 4: TỰ SINH & ĐÓNG GÓI PARAMETERS
 		studio_logger.logger.info(f"[STEP 4] Tham số đóng gói: Seed={seed} | Duration={duration}s | Camera={camera}")
@@ -55,4 +59,5 @@ class LTXAutomationAdapter(BasePlugin):
 			
 		studio_logger.logger.info(f"[STEP 8] [✓] Import thành công! Tệp tin hoạt hình đã nạp: '{mock_video_output}'")
 		studio_logger.logger.info("============================================================================\n")
-		return True
+		
+		return {"status": "success", "video_path": mock_video_output}

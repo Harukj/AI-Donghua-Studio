@@ -22,10 +22,15 @@ class TestLTXAutomationWorkflow(unittest.TestCase):
 		adapter = LTXAutomationAdapter()
 		adapter.activate_plugin()
 		
-		success_flag = adapter.execute_render_pipeline(scene_id="scene_01", prompt_data=mock_prompt_package)
+		# Gom cụm dữ liệu thành 1 gói duy nhất nạp cho hàm execute_ai_task mới
+		test_payload = {
+			"scene_id": "scene_01",
+			"prompt_data": mock_prompt_package
+		}
+		api_result = adapter.execute_ai_task(test_payload)
 		
-		# Khẳng định kiểm thử tự động (Assertions) bảo chứng chất lượng đầu ra
-		self.assertTrue(success_flag)
+		# Sửa dòng khẳng định kiểm thử kết quả
+		self.assertEqual(api_result["status"], "success")
 		# Kiểm tra xem dữ liệu trong Clipboard máy tính có trùng khớp với payload hệ thống tự sinh không
 		current_clipboard = pyperclip.paste()
 		self.assertIn("998244353", current_clipboard)
