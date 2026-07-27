@@ -46,3 +46,8 @@
 2026-07-27 09:52:46 [INFO] -> [ENGINE SUCCESS] DÂY CHUYỀN SẢN XUẤT HOÀN THÀNH XUẤT SẮC! TIẾN ĐỘ ĐẠT 100% [✓]
 2026-07-27 09:52:46 [INFO] -> =============================================================================
 2026-07-27 09:52:46 [INFO] -> [PLUGIN SYSTEM] Plugin '[openai_whisper]' đã được tạm ngắt kết nối an toàn.
+2026-07-27 10:03:38 [INFO] -> [SHOT PLANNER] Đang khởi chạy ma trận phân rã góc máy cho Scene ID: [701]
+2026-07-27 10:03:38 [INFO] ->  -> Khởi tạo thành công: [Shot 01] Ngữ cảnh: ESTABLISHING | Thời lượng: 5.0s
+2026-07-27 10:03:38 [INFO] ->  -> Khởi tạo thành công: [Shot 02] Ngữ cảnh: DOOR OPENING | Thời lượng: 4.0s
+2026-07-27 10:03:38 [INFO] ->  -> Khởi tạo thành công: [Shot 03] Ngữ cảnh: REACTION | Thời lượng: 2.0s
+2026-07-27 10:03:38 [INFO] ->  -> Khởi tạo thành công: [Shot 04] Ngữ cảnh: DIALOGUE | Thời lượng: 3.0s
