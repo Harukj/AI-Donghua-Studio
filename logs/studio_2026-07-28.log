@@ -3908,3 +3908,473 @@
 2026-07-28 09:57:51 [INFO] -> [PLUGIN SYSTEM] Plugin '[ltx_studio_adapter]' đã được tạm ngắt kết nối an toàn.
 2026-07-28 09:57:51 [INFO] -> [ASSET MANAGER] Khởi tạo thành công cây thư mục lưu trữ: projects\ToanDanTaoPhong_Test\renders\scenes
 2026-07-28 09:57:51 [INFO] -> [ASSET MANAGER] Đã đồng bộ cú máy vật lý -> [projects\ToanDanTaoPhong_Test\renders\scenes\Shot01.mp4]
+2026-07-28 10:04:22 [INFO] -> [CONSISTENCY] Phát hiện yêu cầu thay đổi diện mạo [HAIR] cho nhân vật [To Moc] -> 'short black hair'
+2026-07-28 10:04:22 [INFO] -> [✓ SUCCESS] Lan truyền thành công! Đã đồng bộ diện mạo mới cho 1 cú máy chưa render.
+2026-07-28 10:04:37 [INFO] -> [CONTROLLER] Tiếp nhận gói chỉ thị sản xuất từ tầng GUI cho Tập phim 15...
+2026-07-28 10:04:37 [INFO] -> [STORYBOARD] Đang thực thi bóc tách logic đơn nhất (Single Responsibility)...
+2026-07-28 10:04:37 [INFO] -> [PLUGIN SYSTEM] Plugin '[ltx_automation_adapter] v1.0.0' đã được kích hoạt thành công vào Engine!
+2026-07-28 10:04:37 [INFO] -> [LTX AUTOMATION] Khởi động hệ thống tương tác luồng hệ điều hành OS...
+2026-07-28 10:04:37 [INFO] -> =============================================================================
+2026-07-28 10:04:37 [INFO] -> [🤖 AI AGENT] BẮT ĐẦU VÒNG ĐỜI ĐIỀU PHỐI TỰ TRỊ CHO TẬP PHIM 15...
+2026-07-28 10:04:37 [INFO] -> =============================================================================
+2026-07-28 10:04:37 [INFO] -> [AGENT NODE 1] Thao tác: Đọc phân tích cấu trúc chữ Chapter...
+2026-07-28 10:04:38 [INFO] -> [AGENT NODE 2] Thao tác: Tự động phân rã mạch truyện thành các phân cảnh lớn...
+2026-07-28 10:04:38 [INFO] -> [AGENT NODE 3] Thao tác: Phân rã Scene [1501] thành các Shots...
+2026-07-28 10:04:38 [INFO] -> Shot Builder: Đang bẻ phân cảnh ID [1501] theo phân lớp Studio...
+2026-07-28 10:04:38 [INFO] -> [AGENT NODE 4] Thao tác: Trộn câu lệnh Prompt Ma trận cho Shot [150101]...
+2026-07-28 10:04:38 [INFO] -> [DREAMFORGE CORE] Tiến hành gộp ma trận tham số điện ảnh tĩnh...
+2026-07-28 10:04:38 [INFO] -> [CAMERA PLANNER] Đã ghim thông số: Khung hình=Wide Shot, Ống kính=24mm, Chuyển động=Slow Push
+2026-07-28 10:04:38 [INFO] -> [LIGHTING PLANNER] Đã ghim bộ lọc: Morning (Volumetric with Sun Rays)
+2026-07-28 10:04:38 [INFO] -> [FX PLANNER] Đã khóa bộ hạt môi trường: Gió=[gentle blowing wind], Hiệu ứng=[falling cinematic tree leaves]
+2026-07-28 10:04:38 [INFO] -> [AUDIO PLANNER] Đã cấu trúc chỉ thị âm thanh: Nhạc=[traditional chinese orchestra]
+2026-07-28 10:04:38 [INFO] -> [AGENT NODE 5 & 6] Thao tác: Phát chỉ thị xuống LTX Adapter để Render và sao chép Clipboard...
+2026-07-28 10:04:38 [INFO] -> ============ KÍCH HOẠT QUY TRÌNH LTX ADAPTER: SHOT_150101 ============
+2026-07-28 10:04:38 [INFO] -> [STEP 4] Tham số đóng gói: Seed=23561 | Duration=3.5s | Camera=Wide Shot
+2026-07-28 10:04:38 [INFO] -> [STEP 5] [✓] Đã sao chép chuỗi mã Prompt ma trận sang Clipboard hệ thống!
+2026-07-28 10:04:38 [INFO] -> [STEP 6] [OS Command] Đang tự động gọi mở ứng dụng LTX Studio Renderer...
+2026-07-28 10:04:38 [INFO] -> [STEP 7] Hàng đợi đang treo trạng thái: Chờ kết xuất video trong 7.0s...
+2026-07-28 10:04:39 [INFO] -> [STEP 8] [✓] Import thành công! Tệp tin hoạt hình đã nạp: 'projects/ToanDanTaoPhong/assets/video\shot_150101_render.mp4'
+2026-07-28 10:04:39 [INFO] -> ============================================================================
+
+2026-07-28 10:04:39 [INFO] -> [AGENT NODE 4] Thao tác: Trộn câu lệnh Prompt Ma trận cho Shot [150102]...
+2026-07-28 10:04:39 [INFO] -> [DREAMFORGE CORE] Tiến hành gộp ma trận tham số điện ảnh tĩnh...
+2026-07-28 10:04:39 [INFO] -> [CAMERA PLANNER] Đã ghim thông số: Khung hình=Close-Up Shot, Ống kính=85mm, Chuyển động=Static
+2026-07-28 10:04:39 [INFO] -> [LIGHTING PLANNER] Đã ghim bộ lọc: Morning (Volumetric with Sun Rays)
+2026-07-28 10:04:39 [INFO] -> [FX PLANNER] Đã khóa bộ hạt môi trường: Gió=[gentle blowing wind], Hiệu ứng=[falling cinematic tree leaves]
+2026-07-28 10:04:39 [INFO] -> [AUDIO PLANNER] Đã cấu trúc chỉ thị âm thanh: Nhạc=[traditional chinese orchestra]
+2026-07-28 10:04:39 [INFO] -> [AGENT NODE 5 & 6] Thao tác: Phát chỉ thị xuống LTX Adapter để Render và sao chép Clipboard...
+2026-07-28 10:04:39 [INFO] -> ============ KÍCH HOẠT QUY TRÌNH LTX ADAPTER: SHOT_150102 ============
+2026-07-28 10:04:39 [INFO] -> [STEP 4] Tham số đóng gói: Seed=23561 | Duration=3.5s | Camera=Wide Shot
+2026-07-28 10:04:39 [INFO] -> [STEP 5] [✓] Đã sao chép chuỗi mã Prompt ma trận sang Clipboard hệ thống!
+2026-07-28 10:04:39 [INFO] -> [STEP 6] [OS Command] Đang tự động gọi mở ứng dụng LTX Studio Renderer...
+2026-07-28 10:04:39 [INFO] -> [STEP 7] Hàng đợi đang treo trạng thái: Chờ kết xuất video trong 7.0s...
+2026-07-28 10:04:41 [INFO] -> [STEP 8] [✓] Import thành công! Tệp tin hoạt hình đã nạp: 'projects/ToanDanTaoPhong/assets/video\shot_150102_render.mp4'
+2026-07-28 10:04:41 [INFO] -> ============================================================================
+
+2026-07-28 10:04:41 [INFO] -> [AGENT NODE 7] Thao tác: Kích hoạt Episode Builder gộp nối toàn bộ Shots...
+2026-07-28 10:04:41 [INFO] -> [EPISODE BUILDER] Kích hoạt luồng đóng gói Tập phim 15...
+2026-07-28 10:04:41 [INFO] ->  -> Danh sách phân cảnh tích hợp: ['scene_01']
+2026-07-28 10:04:42 [INFO] -> [SUCCESS] Quy trình đóng gói hoàn tất. Tệp phim dài sẵn sàng: 'projects\ToanDanTaoPhong\exports\Episode15.mp4'
+2026-07-28 10:04:42 [INFO] -> [AGENT NODE 8] [✓] Đăng tải tự động lên YouTube thành công! Tiến độ: 100%
+2026-07-28 10:04:42 [INFO] -> =============================================================================
+2026-07-28 10:04:42 [INFO] -> [SCHEDULER] Điều phối mạch sản xuất phân tầng cho Tập phim 15...
+2026-07-28 10:04:52 [INFO] -> [EPISODE SERVICE] Đang tính toán ma trận tiến độ cho Tập phim 15...
+2026-07-28 10:04:52 [INFO] -> [PLUGIN SYSTEM] Plugin '[ltx_automation_adapter] v1.0.0' đã được kích hoạt thành công vào Engine!
+2026-07-28 10:04:52 [INFO] -> ============ KÍCH HOẠT QUY TRÌNH LTX ADAPTER: SCENE_01 ============
+2026-07-28 10:04:52 [INFO] -> [STEP 4] Tham số đóng gói: Seed=998244353 | Duration=4.0s | Camera=Wide Shot
+2026-07-28 10:04:52 [INFO] -> [STEP 5] [✓] Đã sao chép chuỗi mã Prompt ma trận sang Clipboard hệ thống!
+2026-07-28 10:04:52 [INFO] -> [STEP 6] [OS Command] Đang tự động gọi mở ứng dụng LTX Studio Renderer...
+2026-07-28 10:04:52 [INFO] -> [STEP 7] Hàng đợi đang treo trạng thái: Chờ kết xuất video trong 8.0s...
+2026-07-28 10:04:53 [INFO] -> [STEP 8] [✓] Import thành công! Tệp tin hoạt hình đã nạp: 'projects/ToanDanTaoPhong/assets/video\scene_01_render.mp4'
+2026-07-28 10:04:53 [INFO] -> ============================================================================
+
+2026-07-28 10:04:53 [INFO] -> [PLUGIN SYSTEM] Plugin '[ltx_automation_adapter]' đã được tạm ngắt kết nối an toàn.
+2026-07-28 10:05:03 [INFO] -> [LTX WORKSPACE] Cú máy [Shot ID: 150101] đã chuyển trạng thái thành công sang -> [APPROVED]
+2026-07-28 10:05:03 [INFO] -> [SCHEDULER] Điều phối mạch sản xuất phân tầng cho Tập phim 15...
+2026-07-28 10:05:03 [INFO] -> [TIMELINE ENGINE] Cú máy [Shot ID: 150101] đã được cập nhật thời lượng mới -> 5.5s
+2026-07-28 10:05:04 [INFO] -> [DREAMFORGE CORE] Tiến hành gộp ma trận tham số điện ảnh tĩnh...
+2026-07-28 10:05:04 [INFO] -> [CAMERA PLANNER] Đã ghim thông số: Khung hình=Wide Shot, Ống kính=24mm, Chuyển động=Slow Push
+2026-07-28 10:05:04 [INFO] -> [LIGHTING PLANNER] Đã ghim bộ lọc: Morning (Volumetric with Sun Rays)
+2026-07-28 10:05:04 [INFO] -> [FX PLANNER] Đã khóa bộ hạt môi trường: Gió=[gentle blowing wind], Hiệu ứng=[falling cinematic tree leaves]
+2026-07-28 10:05:04 [INFO] -> [AUDIO PLANNER] Đã cấu trúc chỉ thị âm thanh: Nhạc=[traditional chinese orchestra]
+2026-07-28 10:05:04 [INFO] -> [PROMPT SERVICE] Tiếp nhận yêu cầu sinh câu lệnh ma trận từ hệ thống...
+2026-07-28 10:05:04 [INFO] -> [PROMPT TEMPLATE] Đã biên dịch thành công mẫu câu lệnh [Key: DONGHUA_3D]
+2026-07-28 10:05:15 [WARNING] -> [RETRY ENGINE] Kích hoạt lệnh cứu hộ! Đang tái nạp hàng đợi cho Shot Lỗi: [150109]
+2026-07-28 10:05:15 [INFO] -> [RENDER QUEUE] Cú máy [Shot ID: 150109] đang xếp hàng ➔ [WAITING]
+2026-07-28 10:05:15 [INFO] -> [RENDER QUEUE] GPU đang tính toán khung hình ➔ [RENDERING]
+2026-07-28 10:05:29 [INFO] -> [EXPORT CENTER] Đang kích hoạt dây chuyền đóng gói thương mại cho Tập phim 15...
+2026-07-28 10:05:30 [INFO] -> [✓ SUCCESS] Đóng gói thành công! Metadata SEO đã được khóa ổn định.
+2026-07-28 10:05:30 [INFO] -> [SCENE INTEL] Đang phân rã gói dữ liệu cấu trúc YAML của Đạo diễn AI...
+2026-07-28 10:05:30 [INFO] ->  -> [✓] Tiêu đề cảnh: Gặp nhau tại học viện
+2026-07-28 10:05:30 [INFO] ->  -> [✓] Trạng thái cảm xúc phát hiện: ['Bình tĩnh', 'Mong chờ']
+2026-07-28 10:05:30 [INFO] ->  -> [✓] Danh sách góc máy chỉ định: ['Establishing Shot', 'Medium Shot', 'Close Up']
+2026-07-28 10:05:39 [INFO] -> [SHOT MANAGER] Tiến hành bẻ nhỏ Scene ID [15] thành chuỗi cắt cảnh...
+2026-07-28 10:05:39 [INFO] ->  -> [✓] Khởi tạo Shot 01: ESTABLISHING | Thời lượng: 5.0s
+2026-07-28 10:05:39 [INFO] ->  -> [✓] Khởi tạo Shot 02: WALKING | Thời lượng: 4.0s
+2026-07-28 10:05:39 [INFO] ->  -> [✓] Khởi tạo Shot 03: DIALOGUE | Thời lượng: 4.0s
+2026-07-28 10:05:39 [INFO] -> [SHOT PLANNER] Đang khởi chạy ma trận phân rã góc máy cho Scene ID: [701]
+2026-07-28 10:05:39 [INFO] ->  -> Khởi tạo thành công: [Shot 01] Ngữ cảnh: ESTABLISHING | Thời lượng: 5.0s
+2026-07-28 10:05:39 [INFO] ->  -> Khởi tạo thành công: [Shot 02] Ngữ cảnh: DOOR OPENING | Thời lượng: 4.0s
+2026-07-28 10:05:39 [INFO] ->  -> Khởi tạo thành công: [Shot 03] Ngữ cảnh: REACTION | Thời lượng: 2.0s
+2026-07-28 10:05:39 [INFO] ->  -> Khởi tạo thành công: [Shot 04] Ngữ cảnh: DIALOGUE | Thời lượng: 3.0s
+2026-07-28 10:05:39 [INFO] -> [CAMERA PLANNER] Đã ghim thông số: Khung hình=Wide Shot, Ống kính=24mm, Chuyển động=Slow Push
+2026-07-28 10:05:39 [INFO] -> [LIGHTING PLANNER] Đã ghim bộ lọc: Morning (Volumetric with Sun Rays)
+2026-07-28 10:05:39 [INFO] -> [AI DIRECTOR] Đang bóc tách chỉ đạo nghệ thuật cho Cú máy số 01...
+2026-07-28 10:05:39 [INFO] -> [WORKFLOW] Mạch sản xuất tịnh tiến: [EPISODE] ➔ ➔ ➔ [CHAPTER]
+2026-07-28 10:05:39 [INFO] -> [WORKFLOW] Mạch sản xuất tịnh tiến: [CHAPTER] ➔ ➔ ➔ [SCENE]
+2026-07-28 10:05:39 [INFO] -> [WORKFLOW] Mạch sản xuất tịnh tiến: [SCENE] ➔ ➔ ➔ [SHOT]
+2026-07-28 10:05:39 [INFO] -> [WORKFLOW] Mạch sản xuất tịnh tiến: [SHOT] ➔ ➔ ➔ [ASSET]
+2026-07-28 10:05:39 [INFO] -> [WORKFLOW] Mạch sản xuất tịnh tiến: [ASSET] ➔ ➔ ➔ [PROMPT]
+2026-07-28 10:05:39 [INFO] -> [WORKFLOW] Mạch sản xuất tịnh tiến: [PROMPT] ➔ ➔ ➔ [RENDER]
+2026-07-28 10:05:39 [INFO] -> [WORKFLOW] Mạch sản xuất tịnh tiến: [RENDER] ➔ ➔ ➔ [REVIEW]
+2026-07-28 10:05:39 [INFO] -> [WORKFLOW] Mạch sản xuất tịnh tiến: [REVIEW] ➔ ➔ ➔ [EXPORT]
+2026-07-28 10:05:39 [INFO] -> [STORYBOARD] Đang thực thi bóc tách logic đơn nhất (Single Responsibility)...
+2026-07-28 10:05:39 [INFO] -> Prompt Builder: Đã áp dụng mẫu [ltx_action] tự động cho [SCENE_01_002]
+2026-07-28 10:05:39 [INFO] -> Prompt Builder: Đã áp dụng mẫu [ltx_dialogue] tự động cho [SCENE_01_001]
+2026-07-28 10:05:39 [INFO] -> =============================================================================
+2026-07-28 10:05:39 [INFO] -> [DREAMFORGE ENGINE] BẮT ĐẦU DÂY CHUYỀN SẢN XUẤT TỰ ĐỘNG KHÉP KÍN EPISODE 15...
+2026-07-28 10:05:39 [INFO] -> =============================================================================
+2026-07-28 10:05:39 [INFO] -> [NODE 1 & 2] Đang đọc tệp kịch bản gốc: projects/ToanDanTaoPhong/novel/chuong_15.docx
+2026-07-28 10:05:40 [INFO] ->  -> [✓] Khởi tạo thực thể cấu trúc: Chapter 15
+2026-07-28 10:05:40 [INFO] -> [NODE 3 & 4] Phân rã Chapter 15 thành các phân cảnh Scene & Cú máy Shot Object...
+2026-07-28 10:05:40 [INFO] -> [AI DIRECTOR] Đang bóc tách chỉ đạo nghệ thuật cho Phân cảnh 001...
+2026-07-28 10:05:40 [INFO] -> [DREAMFORGE CORE] Tiến hành gộp ma trận tham số điện ảnh tĩnh...
+2026-07-28 10:05:40 [INFO] -> [CAMERA PLANNER] Đã ghim thông số: Khung hình=Wide Shot, Ống kính=24mm, Chuyển động=Slow Push
+2026-07-28 10:05:40 [INFO] -> [LIGHTING PLANNER] Đã ghim bộ lọc: Morning (Volumetric with Sun Rays)
+2026-07-28 10:05:40 [INFO] -> [FX PLANNER] Đã khóa bộ hạt môi trường: Gió=[gentle blowing wind], Hiệu ứng=[falling cinematic tree leaves]
+2026-07-28 10:05:40 [INFO] -> [AUDIO PLANNER] Đã cấu trúc chỉ thị âm thanh: Nhạc=[traditional chinese orchestra]
+2026-07-28 10:05:40 [INFO] -> [NODE 7] LTX Studio Renderer: Đang kết xuất video clip thô từ chuỗi Prompt ma trận...
+2026-07-28 10:05:40 [INFO] ->  -> [✓] Render hoàn tất file clip: projects/ToanDanTaoPhong/cache/shot_150101.mp4
+2026-07-28 10:05:40 [INFO] -> [NODE 8] ElevenLabs Plugin: Sinh file âm thanh lồng tiếng: projects/ToanDanTaoPhong/cache/tomoc_voice_150101.mp3
+2026-07-28 10:05:41 [INFO] -> [PLUGIN SYSTEM] Plugin '[openai_whisper] v1.0.0' đã được kích hoạt thành công vào Engine!
+2026-07-28 10:05:41 [INFO] -> [WHISPER AI] Đang xử lý bóc tách sóng âm tệp tin: projects/ToanDanTaoPhong/cache/tomoc_voice_150101.mp3
+2026-07-28 10:05:41 [INFO] -> [NODE 9] Whisper Subtitle Generated:
+"00:00:01,000 --> 00:00:04,500
+[Tô Mộc]: Bước vào học viện Long Dạng."
+2026-07-28 10:05:41 [INFO] -> [NODE 10] Timeline Sync: Đồng bộ Video + Voice + Subtitle lên Premiere-style Sequencer.
+2026-07-28 10:05:42 [INFO] -> [EPISODE BUILDER] Kích hoạt luồng đóng gói Tập phim 15...
+2026-07-28 10:05:42 [INFO] ->  -> Danh sách phân cảnh tích hợp: ['scene_01', 'scene_02']
+2026-07-28 10:05:43 [INFO] -> [SUCCESS] Quy trình đóng gói hoàn tất. Tệp phim dài sẵn sàng: 'projects\ToanDanTaoPhong\exports\Episode15.mp4'
+2026-07-28 10:05:43 [INFO] -> =============================================================================
+2026-07-28 10:05:43 [INFO] -> [ENGINE SUCCESS] DÂY CHUYỀN SẢN XUẤT HOÀN THÀNH XUẤT SẮC! TIẾN ĐỘ ĐẠT 100% [✓]
+2026-07-28 10:05:43 [INFO] -> =============================================================================
+2026-07-28 10:05:43 [INFO] -> [PLUGIN SYSTEM] Plugin '[openai_whisper]' đã được tạm ngắt kết nối an toàn.
+2026-07-28 10:05:43 [INFO] -> [DREAMFORGE CORE] Tiến hành gộp ma trận tham số điện ảnh tĩnh...
+2026-07-28 10:05:43 [INFO] -> [CAMERA PLANNER] Đã ghim thông số: Khung hình=Close-Up Shot, Ống kính=85mm, Chuyển động=Static
+2026-07-28 10:05:43 [INFO] -> [LIGHTING PLANNER] Đã ghim bộ lọc: Morning (Volumetric with Sun Rays)
+2026-07-28 10:05:43 [INFO] -> [FX PLANNER] Đã khóa bộ hạt môi trường: Gió=[gentle blowing wind], Hiệu ứng=[falling cinematic tree leaves]
+2026-07-28 10:05:43 [INFO] -> [AUDIO PLANNER] Đã cấu trúc chỉ thị âm thanh: Nhạc=[traditional chinese orchestra]
+2026-07-28 10:05:43 [INFO] -> [PLUGIN SYSTEM] Plugin '[ltx_studio_adapter] v0.8.0' đã được kích hoạt thành công vào Engine!
+2026-07-28 10:05:43 [INFO] -> [LTX ADAPTER] Đang xác thực chứng chỉ OAuth2 Endpoint LTX Studio...
+2026-07-28 10:05:43 [INFO] -> [LTX API] Đang truyền tải gói tin Payload cấu trúc 9 tầng xuống hàng đợi Render...
+2026-07-28 10:05:44 [INFO] -> [PLUGIN SYSTEM] Plugin '[ltx_studio_adapter]' đã được tạm ngắt kết nối an toàn.
+2026-07-28 10:05:44 [INFO] -> [ASSET MANAGER] Khởi tạo thành công cây thư mục lưu trữ: projects\ToanDanTaoPhong_Test\renders\scenes
+2026-07-28 10:05:44 [INFO] -> [ASSET MANAGER] Đã đồng bộ cú máy vật lý -> [projects\ToanDanTaoPhong_Test\renders\scenes\Shot01.mp4]
+2026-07-28 10:11:47 [INFO] -> =============================================================================
+2026-07-28 10:11:47 [INFO] -> [🤖 AI AGENT] BẮT ĐẦU VÒNG ĐỜI ĐIỀU PHỐI TỰ TRỊ CHO TẬP PHIM 15...
+2026-07-28 10:11:47 [INFO] -> =============================================================================
+2026-07-28 10:11:47 [INFO] -> [AGENT NODE 1] Thao tác: Đọc phân tích cấu trúc chữ Chapter...
+2026-07-28 10:11:48 [INFO] -> [AGENT NODE 2] Thao tác: Tự động phân rã mạch truyện thành các phân cảnh lớn...
+2026-07-28 10:11:48 [INFO] -> [AGENT NODE 3] Thao tác: Phân rã Scene [1501] thành các Shots...
+2026-07-28 10:11:48 [INFO] -> [SHOT MANAGER] Tiến hành bẻ nhỏ Scene ID [1501] thành chuỗi cắt cảnh...
+2026-07-28 10:11:48 [INFO] ->  -> [✓] Khởi tạo Shot 01: ESTABLISHING | Thời lượng: 5.0s
+2026-07-28 10:11:48 [INFO] ->  -> [✓] Khởi tạo Shot 02: WALKING | Thời lượng: 4.0s
+2026-07-28 10:11:48 [INFO] ->  -> [✓] Khởi tạo Shot 03: DIALOGUE | Thời lượng: 4.0s
+2026-07-28 10:11:48 [INFO] -> [AGENT NODE 4] Thao tác: Trộn câu lệnh Prompt Ma trận cho Shot [150101]...
+2026-07-28 10:11:48 [INFO] -> [CONSISTENCY] Phát hiện yêu cầu thay đổi diện mạo [HAIR] cho nhân vật [To Moc] -> 'short black hair'
+2026-07-28 10:11:48 [INFO] -> [✓ SUCCESS] Lan truyền thành công! Đã đồng bộ diện mạo mới cho 1 cú máy chưa render.
+2026-07-28 10:11:53 [INFO] -> [CONTROLLER] Tiếp nhận gói chỉ thị sản xuất từ tầng GUI cho Tập phim 15...
+2026-07-28 10:11:53 [INFO] -> [STORYBOARD] Đang thực thi bóc tách logic đơn nhất (Single Responsibility)...
+2026-07-28 10:11:53 [INFO] -> [PLUGIN SYSTEM] Plugin '[ltx_automation_adapter] v1.0.0' đã được kích hoạt thành công vào Engine!
+2026-07-28 10:11:53 [INFO] -> [LTX AUTOMATION] Khởi động hệ thống tương tác luồng hệ điều hành OS...
+2026-07-28 10:11:53 [INFO] -> =============================================================================
+2026-07-28 10:11:53 [INFO] -> [🤖 AI AGENT] BẮT ĐẦU VÒNG ĐỜI ĐIỀU PHỐI TỰ TRỊ CHO TẬP PHIM 15...
+2026-07-28 10:11:53 [INFO] -> =============================================================================
+2026-07-28 10:11:53 [INFO] -> [AGENT NODE 1] Thao tác: Đọc phân tích cấu trúc chữ Chapter...
+2026-07-28 10:11:54 [INFO] -> [AGENT NODE 2] Thao tác: Tự động phân rã mạch truyện thành các phân cảnh lớn...
+2026-07-28 10:11:54 [INFO] -> [AGENT NODE 3] Thao tác: Phân rã Scene [1501] thành các Shots...
+2026-07-28 10:11:54 [INFO] -> Shot Builder: Đang bẻ phân cảnh ID [1501] theo phân lớp Studio...
+2026-07-28 10:11:54 [INFO] -> [AGENT NODE 4] Thao tác: Trộn câu lệnh Prompt Ma trận cho Shot [150101]...
+2026-07-28 10:11:54 [INFO] -> [DREAMFORGE CORE] Tiến hành gộp ma trận tham số điện ảnh tĩnh...
+2026-07-28 10:11:54 [INFO] -> [CAMERA PLANNER] Đã ghim thông số: Khung hình=Wide Shot, Ống kính=24mm, Chuyển động=Slow Push
+2026-07-28 10:11:54 [INFO] -> [LIGHTING PLANNER] Đã ghim bộ lọc: Morning (Volumetric with Sun Rays)
+2026-07-28 10:11:54 [INFO] -> [FX PLANNER] Đã khóa bộ hạt môi trường: Gió=[gentle blowing wind], Hiệu ứng=[falling cinematic tree leaves]
+2026-07-28 10:11:54 [INFO] -> [AUDIO PLANNER] Đã cấu trúc chỉ thị âm thanh: Nhạc=[traditional chinese orchestra]
+2026-07-28 10:11:54 [INFO] -> [AGENT NODE 5 & 6] Thao tác: Phát chỉ thị xuống LTX Adapter để Render và sao chép Clipboard...
+2026-07-28 10:11:54 [INFO] -> ============ KÍCH HOẠT QUY TRÌNH LTX ADAPTER: SHOT_150101 ============
+2026-07-28 10:11:54 [INFO] -> [STEP 4] Tham số đóng gói: Seed=23561 | Duration=3.5s | Camera=Wide Shot
+2026-07-28 10:11:54 [INFO] -> [STEP 5] [✓] Đã sao chép chuỗi mã Prompt ma trận sang Clipboard hệ thống!
+2026-07-28 10:11:54 [INFO] -> [STEP 6] [OS Command] Đang tự động gọi mở ứng dụng LTX Studio Renderer...
+2026-07-28 10:11:54 [INFO] -> [STEP 7] Hàng đợi đang treo trạng thái: Chờ kết xuất video trong 7.0s...
+2026-07-28 10:11:55 [INFO] -> [STEP 8] [✓] Import thành công! Tệp tin hoạt hình đã nạp: 'projects/ToanDanTaoPhong/assets/video\shot_150101_render.mp4'
+2026-07-28 10:11:55 [INFO] -> ============================================================================
+
+2026-07-28 10:11:55 [INFO] -> [AGENT NODE 4] Thao tác: Trộn câu lệnh Prompt Ma trận cho Shot [150102]...
+2026-07-28 10:11:55 [INFO] -> [DREAMFORGE CORE] Tiến hành gộp ma trận tham số điện ảnh tĩnh...
+2026-07-28 10:11:55 [INFO] -> [CAMERA PLANNER] Đã ghim thông số: Khung hình=Close-Up Shot, Ống kính=85mm, Chuyển động=Static
+2026-07-28 10:11:55 [INFO] -> [LIGHTING PLANNER] Đã ghim bộ lọc: Morning (Volumetric with Sun Rays)
+2026-07-28 10:11:55 [INFO] -> [FX PLANNER] Đã khóa bộ hạt môi trường: Gió=[gentle blowing wind], Hiệu ứng=[falling cinematic tree leaves]
+2026-07-28 10:11:55 [INFO] -> [AUDIO PLANNER] Đã cấu trúc chỉ thị âm thanh: Nhạc=[traditional chinese orchestra]
+2026-07-28 10:11:55 [INFO] -> [AGENT NODE 5 & 6] Thao tác: Phát chỉ thị xuống LTX Adapter để Render và sao chép Clipboard...
+2026-07-28 10:11:55 [INFO] -> ============ KÍCH HOẠT QUY TRÌNH LTX ADAPTER: SHOT_150102 ============
+2026-07-28 10:11:55 [INFO] -> [STEP 4] Tham số đóng gói: Seed=23561 | Duration=3.5s | Camera=Wide Shot
+2026-07-28 10:11:55 [INFO] -> [STEP 5] [✓] Đã sao chép chuỗi mã Prompt ma trận sang Clipboard hệ thống!
+2026-07-28 10:11:55 [INFO] -> [STEP 6] [OS Command] Đang tự động gọi mở ứng dụng LTX Studio Renderer...
+2026-07-28 10:11:55 [INFO] -> [STEP 7] Hàng đợi đang treo trạng thái: Chờ kết xuất video trong 7.0s...
+2026-07-28 10:11:56 [INFO] -> [STEP 8] [✓] Import thành công! Tệp tin hoạt hình đã nạp: 'projects/ToanDanTaoPhong/assets/video\shot_150102_render.mp4'
+2026-07-28 10:11:56 [INFO] -> ============================================================================
+
+2026-07-28 10:11:56 [INFO] -> [AGENT NODE 7] Thao tác: Kích hoạt Episode Builder gộp nối toàn bộ Shots...
+2026-07-28 10:11:56 [INFO] -> [EPISODE BUILDER] Kích hoạt luồng đóng gói Tập phim 15...
+2026-07-28 10:11:56 [INFO] ->  -> Danh sách phân cảnh tích hợp: ['scene_01']
+2026-07-28 10:11:58 [INFO] -> [SUCCESS] Quy trình đóng gói hoàn tất. Tệp phim dài sẵn sàng: 'projects\ToanDanTaoPhong\exports\Episode15.mp4'
+2026-07-28 10:11:58 [INFO] -> [AGENT NODE 8] [✓] Đăng tải tự động lên YouTube thành công! Tiến độ: 100%
+2026-07-28 10:11:58 [INFO] -> =============================================================================
+2026-07-28 10:11:58 [INFO] -> [SCHEDULER] Điều phối mạch sản xuất phân tầng cho Tập phim 15...
+2026-07-28 10:12:07 [INFO] -> [EPISODE SERVICE] Đang tính toán ma trận tiến độ cho Tập phim 15...
+2026-07-28 10:12:07 [INFO] -> [PLUGIN SYSTEM] Plugin '[ltx_automation_adapter] v1.0.0' đã được kích hoạt thành công vào Engine!
+2026-07-28 10:12:07 [INFO] -> ============ KÍCH HOẠT QUY TRÌNH LTX ADAPTER: SCENE_01 ============
+2026-07-28 10:12:07 [INFO] -> [STEP 4] Tham số đóng gói: Seed=998244353 | Duration=4.0s | Camera=Wide Shot
+2026-07-28 10:12:07 [INFO] -> [STEP 5] [✓] Đã sao chép chuỗi mã Prompt ma trận sang Clipboard hệ thống!
+2026-07-28 10:12:07 [INFO] -> [STEP 6] [OS Command] Đang tự động gọi mở ứng dụng LTX Studio Renderer...
+2026-07-28 10:12:08 [INFO] -> [STEP 7] Hàng đợi đang treo trạng thái: Chờ kết xuất video trong 8.0s...
+2026-07-28 10:12:09 [INFO] -> [STEP 8] [✓] Import thành công! Tệp tin hoạt hình đã nạp: 'projects/ToanDanTaoPhong/assets/video\scene_01_render.mp4'
+2026-07-28 10:12:09 [INFO] -> ============================================================================
+
+2026-07-28 10:12:09 [INFO] -> [PLUGIN SYSTEM] Plugin '[ltx_automation_adapter]' đã được tạm ngắt kết nối an toàn.
+2026-07-28 10:12:13 [INFO] -> [LTX WORKSPACE] Cú máy [Shot ID: 150101] đã chuyển trạng thái thành công sang -> [APPROVED]
+2026-07-28 10:12:13 [INFO] -> [SCHEDULER] Điều phối mạch sản xuất phân tầng cho Tập phim 15...
+2026-07-28 10:12:13 [INFO] -> [TIMELINE ENGINE] Cú máy [Shot ID: 150101] đã được cập nhật thời lượng mới -> 5.5s
+2026-07-28 10:12:13 [INFO] -> [DREAMFORGE CORE] Tiến hành gộp ma trận tham số điện ảnh tĩnh...
+2026-07-28 10:12:13 [INFO] -> [CAMERA PLANNER] Đã ghim thông số: Khung hình=Wide Shot, Ống kính=24mm, Chuyển động=Slow Push
+2026-07-28 10:12:13 [INFO] -> [LIGHTING PLANNER] Đã ghim bộ lọc: Morning (Volumetric with Sun Rays)
+2026-07-28 10:12:13 [INFO] -> [FX PLANNER] Đã khóa bộ hạt môi trường: Gió=[gentle blowing wind], Hiệu ứng=[falling cinematic tree leaves]
+2026-07-28 10:12:13 [INFO] -> [AUDIO PLANNER] Đã cấu trúc chỉ thị âm thanh: Nhạc=[traditional chinese orchestra]
+2026-07-28 10:12:13 [INFO] -> [PROMPT SERVICE] Tiếp nhận yêu cầu sinh câu lệnh ma trận từ hệ thống...
+2026-07-28 10:12:13 [INFO] -> [PROMPT TEMPLATE] Đã biên dịch thành công mẫu câu lệnh [Key: DONGHUA_3D]
+2026-07-28 10:12:18 [WARNING] -> [RETRY ENGINE] Kích hoạt lệnh cứu hộ! Đang tái nạp hàng đợi cho Shot Lỗi: [150109]
+2026-07-28 10:12:18 [INFO] -> [RENDER QUEUE] Cú máy [Shot ID: 150109] đang xếp hàng ➔ [WAITING]
+2026-07-28 10:12:18 [INFO] -> [RENDER QUEUE] GPU đang tính toán khung hình ➔ [RENDERING]
+2026-07-28 10:12:23 [INFO] -> [EXPORT CENTER] Đang kích hoạt dây chuyền đóng gói thương mại cho Tập phim 15...
+2026-07-28 10:12:23 [INFO] -> [✓ SUCCESS] Đóng gói thành công! Metadata SEO đã được khóa ổn định.
+2026-07-28 10:12:23 [INFO] -> [SCENE INTEL] Đang phân rã gói dữ liệu cấu trúc YAML của Đạo diễn AI...
+2026-07-28 10:12:23 [INFO] ->  -> [✓] Tiêu đề cảnh: Gặp nhau tại học viện
+2026-07-28 10:12:23 [INFO] ->  -> [✓] Trạng thái cảm xúc phát hiện: ['Bình tĩnh', 'Mong chờ']
+2026-07-28 10:12:23 [INFO] ->  -> [✓] Danh sách góc máy chỉ định: ['Establishing Shot', 'Medium Shot', 'Close Up']
+2026-07-28 10:12:29 [INFO] -> [SHOT MANAGER] Tiến hành bẻ nhỏ Scene ID [15] thành chuỗi cắt cảnh...
+2026-07-28 10:12:29 [INFO] ->  -> [✓] Khởi tạo Shot 01: ESTABLISHING | Thời lượng: 5.0s
+2026-07-28 10:12:29 [INFO] ->  -> [✓] Khởi tạo Shot 02: WALKING | Thời lượng: 4.0s
+2026-07-28 10:12:29 [INFO] ->  -> [✓] Khởi tạo Shot 03: DIALOGUE | Thời lượng: 4.0s
+2026-07-28 10:12:29 [INFO] -> [SHOT PLANNER] Đang khởi chạy ma trận phân rã góc máy cho Scene ID: [701]
+2026-07-28 10:12:29 [INFO] ->  -> Khởi tạo thành công: [Shot 01] Ngữ cảnh: ESTABLISHING | Thời lượng: 5.0s
+2026-07-28 10:12:29 [INFO] ->  -> Khởi tạo thành công: [Shot 02] Ngữ cảnh: DOOR OPENING | Thời lượng: 4.0s
+2026-07-28 10:12:29 [INFO] ->  -> Khởi tạo thành công: [Shot 03] Ngữ cảnh: REACTION | Thời lượng: 2.0s
+2026-07-28 10:12:29 [INFO] ->  -> Khởi tạo thành công: [Shot 04] Ngữ cảnh: DIALOGUE | Thời lượng: 3.0s
+2026-07-28 10:12:29 [INFO] -> [CAMERA PLANNER] Đã ghim thông số: Khung hình=Wide Shot, Ống kính=24mm, Chuyển động=Slow Push
+2026-07-28 10:12:29 [INFO] -> [LIGHTING PLANNER] Đã ghim bộ lọc: Morning (Volumetric with Sun Rays)
+2026-07-28 10:12:29 [INFO] -> [AI DIRECTOR] Đang bóc tách chỉ đạo nghệ thuật cho Cú máy số 01...
+2026-07-28 10:12:29 [INFO] -> [WORKFLOW] Mạch sản xuất tịnh tiến: [EPISODE] ➔ ➔ ➔ [CHAPTER]
+2026-07-28 10:12:29 [INFO] -> [WORKFLOW] Mạch sản xuất tịnh tiến: [CHAPTER] ➔ ➔ ➔ [SCENE]
+2026-07-28 10:12:29 [INFO] -> [WORKFLOW] Mạch sản xuất tịnh tiến: [SCENE] ➔ ➔ ➔ [SHOT]
+2026-07-28 10:12:29 [INFO] -> [WORKFLOW] Mạch sản xuất tịnh tiến: [SHOT] ➔ ➔ ➔ [ASSET]
+2026-07-28 10:12:29 [INFO] -> [WORKFLOW] Mạch sản xuất tịnh tiến: [ASSET] ➔ ➔ ➔ [PROMPT]
+2026-07-28 10:12:29 [INFO] -> [WORKFLOW] Mạch sản xuất tịnh tiến: [PROMPT] ➔ ➔ ➔ [RENDER]
+2026-07-28 10:12:29 [INFO] -> [WORKFLOW] Mạch sản xuất tịnh tiến: [RENDER] ➔ ➔ ➔ [REVIEW]
+2026-07-28 10:12:29 [INFO] -> [WORKFLOW] Mạch sản xuất tịnh tiến: [REVIEW] ➔ ➔ ➔ [EXPORT]
+2026-07-28 10:12:29 [INFO] -> [STORYBOARD] Đang thực thi bóc tách logic đơn nhất (Single Responsibility)...
+2026-07-28 10:12:29 [INFO] -> Prompt Builder: Đã áp dụng mẫu [ltx_action] tự động cho [SCENE_01_002]
+2026-07-28 10:12:29 [INFO] -> Prompt Builder: Đã áp dụng mẫu [ltx_dialogue] tự động cho [SCENE_01_001]
+2026-07-28 10:12:29 [INFO] -> =============================================================================
+2026-07-28 10:12:29 [INFO] -> [DREAMFORGE ENGINE] BẮT ĐẦU DÂY CHUYỀN SẢN XUẤT TỰ ĐỘNG KHÉP KÍN EPISODE 15...
+2026-07-28 10:12:29 [INFO] -> =============================================================================
+2026-07-28 10:12:29 [INFO] -> [NODE 1 & 2] Đang đọc tệp kịch bản gốc: projects/ToanDanTaoPhong/novel/chuong_15.docx
+2026-07-28 10:12:29 [INFO] ->  -> [✓] Khởi tạo thực thể cấu trúc: Chapter 15
+2026-07-28 10:12:29 [INFO] -> [NODE 3 & 4] Phân rã Chapter 15 thành các phân cảnh Scene & Cú máy Shot Object...
+2026-07-28 10:12:30 [INFO] -> [AI DIRECTOR] Đang bóc tách chỉ đạo nghệ thuật cho Phân cảnh 001...
+2026-07-28 10:12:30 [INFO] -> [DREAMFORGE CORE] Tiến hành gộp ma trận tham số điện ảnh tĩnh...
+2026-07-28 10:12:30 [INFO] -> [CAMERA PLANNER] Đã ghim thông số: Khung hình=Wide Shot, Ống kính=24mm, Chuyển động=Slow Push
+2026-07-28 10:12:30 [INFO] -> [LIGHTING PLANNER] Đã ghim bộ lọc: Morning (Volumetric with Sun Rays)
+2026-07-28 10:12:30 [INFO] -> [FX PLANNER] Đã khóa bộ hạt môi trường: Gió=[gentle blowing wind], Hiệu ứng=[falling cinematic tree leaves]
+2026-07-28 10:12:30 [INFO] -> [AUDIO PLANNER] Đã cấu trúc chỉ thị âm thanh: Nhạc=[traditional chinese orchestra]
+2026-07-28 10:12:30 [INFO] -> [NODE 7] LTX Studio Renderer: Đang kết xuất video clip thô từ chuỗi Prompt ma trận...
+2026-07-28 10:12:30 [INFO] ->  -> [✓] Render hoàn tất file clip: projects/ToanDanTaoPhong/cache/shot_150101.mp4
+2026-07-28 10:12:30 [INFO] -> [NODE 8] ElevenLabs Plugin: Sinh file âm thanh lồng tiếng: projects/ToanDanTaoPhong/cache/tomoc_voice_150101.mp3
+2026-07-28 10:12:31 [INFO] -> [PLUGIN SYSTEM] Plugin '[openai_whisper] v1.0.0' đã được kích hoạt thành công vào Engine!
+2026-07-28 10:12:31 [INFO] -> [WHISPER AI] Đang xử lý bóc tách sóng âm tệp tin: projects/ToanDanTaoPhong/cache/tomoc_voice_150101.mp3
+2026-07-28 10:12:31 [INFO] -> [NODE 9] Whisper Subtitle Generated:
+"00:00:01,000 --> 00:00:04,500
+[Tô Mộc]: Bước vào học viện Long Dạng."
+2026-07-28 10:12:31 [INFO] -> [NODE 10] Timeline Sync: Đồng bộ Video + Voice + Subtitle lên Premiere-style Sequencer.
+2026-07-28 10:12:31 [INFO] -> [EPISODE BUILDER] Kích hoạt luồng đóng gói Tập phim 15...
+2026-07-28 10:12:31 [INFO] ->  -> Danh sách phân cảnh tích hợp: ['scene_01', 'scene_02']
+2026-07-28 10:12:33 [INFO] -> [SUCCESS] Quy trình đóng gói hoàn tất. Tệp phim dài sẵn sàng: 'projects\ToanDanTaoPhong\exports\Episode15.mp4'
+2026-07-28 10:12:33 [INFO] -> =============================================================================
+2026-07-28 10:12:33 [INFO] -> [ENGINE SUCCESS] DÂY CHUYỀN SẢN XUẤT HOÀN THÀNH XUẤT SẮC! TIẾN ĐỘ ĐẠT 100% [✓]
+2026-07-28 10:12:33 [INFO] -> =============================================================================
+2026-07-28 10:12:33 [INFO] -> [PLUGIN SYSTEM] Plugin '[openai_whisper]' đã được tạm ngắt kết nối an toàn.
+2026-07-28 10:12:33 [INFO] -> [DREAMFORGE CORE] Tiến hành gộp ma trận tham số điện ảnh tĩnh...
+2026-07-28 10:12:33 [INFO] -> [CAMERA PLANNER] Đã ghim thông số: Khung hình=Close-Up Shot, Ống kính=85mm, Chuyển động=Static
+2026-07-28 10:12:33 [INFO] -> [LIGHTING PLANNER] Đã ghim bộ lọc: Morning (Volumetric with Sun Rays)
+2026-07-28 10:12:33 [INFO] -> [FX PLANNER] Đã khóa bộ hạt môi trường: Gió=[gentle blowing wind], Hiệu ứng=[falling cinematic tree leaves]
+2026-07-28 10:12:33 [INFO] -> [AUDIO PLANNER] Đã cấu trúc chỉ thị âm thanh: Nhạc=[traditional chinese orchestra]
+2026-07-28 10:12:33 [INFO] -> [PLUGIN SYSTEM] Plugin '[ltx_studio_adapter] v0.8.0' đã được kích hoạt thành công vào Engine!
+2026-07-28 10:12:33 [INFO] -> [LTX ADAPTER] Đang xác thực chứng chỉ OAuth2 Endpoint LTX Studio...
+2026-07-28 10:12:33 [INFO] -> [LTX API] Đang truyền tải gói tin Payload cấu trúc 9 tầng xuống hàng đợi Render...
+2026-07-28 10:12:34 [INFO] -> [PLUGIN SYSTEM] Plugin '[ltx_studio_adapter]' đã được tạm ngắt kết nối an toàn.
+2026-07-28 10:12:34 [INFO] -> [ASSET MANAGER] Khởi tạo thành công cây thư mục lưu trữ: projects\ToanDanTaoPhong_Test\renders\scenes
+2026-07-28 10:12:34 [INFO] -> [ASSET MANAGER] Đã đồng bộ cú máy vật lý -> [projects\ToanDanTaoPhong_Test\renders\scenes\Shot01.mp4]
+2026-07-28 10:15:22 [INFO] -> =============================================================================
+2026-07-28 10:15:22 [INFO] -> [🤖 AI AGENT] BẮT ĐẦU VÒNG ĐỜI ĐIỀU PHỐI TỰ TRỊ CHO TẬP PHIM 15...
+2026-07-28 10:15:22 [INFO] -> =============================================================================
+2026-07-28 10:15:22 [INFO] -> [AGENT NODE 1] Thao tác: Đọc phân tích cấu trúc chữ Chapter...
+2026-07-28 10:15:22 [INFO] -> [AGENT NODE 2] Thao tác: Tự động phân rã mạch truyện thành các phân cảnh lớn...
+2026-07-28 10:15:22 [INFO] -> [AGENT NODE 3] Thao tác: Phân rã Scene [1501] thành các Shots...
+2026-07-28 10:15:22 [INFO] -> [SHOT MANAGER] Tiến hành bẻ nhỏ Scene ID [1501] thành chuỗi cắt cảnh...
+2026-07-28 10:15:22 [INFO] ->  -> [✓] Khởi tạo Shot 01: ESTABLISHING | Thời lượng: 5.0s
+2026-07-28 10:15:22 [INFO] ->  -> [✓] Khởi tạo Shot 02: WALKING | Thời lượng: 4.0s
+2026-07-28 10:15:22 [INFO] ->  -> [✓] Khởi tạo Shot 03: DIALOGUE | Thời lượng: 4.0s
+2026-07-28 10:15:22 [INFO] -> [AGENT NODE 4] Thao tác: Trộn câu lệnh Prompt Ma trận cho Shot [150101]...
+2026-07-28 10:15:22 [INFO] -> [PROMPT CORES] Đang thực thi trộn ma trận Token 9 lớp cho Shot ID: [150101]
+2026-07-28 10:15:22 [INFO] -> [AGENT NODE 5] Thao tác: Đẩy Shot [150101] vào hàng đợi phần cứng GPU...
+2026-07-28 10:15:22 [INFO] -> [RENDER QUEUE] Cú máy [Shot ID: 150101] đang xếp hàng ➔ [WAITING]
+2026-07-28 10:15:23 [INFO] -> [RENDER QUEUE] GPU đang tính toán khung hình ➔ [RENDERING]
+2026-07-28 10:15:23 [INFO] -> [AGENT NODE 8] [✓] Hoàn tất Shot [150101] -> Khóa trạng thái COMPLETED.
+2026-07-28 10:15:23 [INFO] -> [AGENT NODE 4] Thao tác: Trộn câu lệnh Prompt Ma trận cho Shot [150102]...
+2026-07-28 10:15:23 [INFO] -> [PROMPT CORES] Đang thực thi trộn ma trận Token 9 lớp cho Shot ID: [150102]
+2026-07-28 10:15:23 [INFO] -> [AGENT NODE 5] Thao tác: Đẩy Shot [150102] vào hàng đợi phần cứng GPU...
+2026-07-28 10:15:23 [INFO] -> [RENDER QUEUE] Cú máy [Shot ID: 150102] đang xếp hàng ➔ [WAITING]
+2026-07-28 10:15:23 [INFO] -> [RENDER QUEUE] GPU đang tính toán khung hình ➔ [RENDERING]
+2026-07-28 10:15:23 [INFO] -> [AGENT NODE 8] [✓] Hoàn tất Shot [150102] -> Khóa trạng thái COMPLETED.
+2026-07-28 10:15:23 [INFO] -> [AGENT NODE 4] Thao tác: Trộn câu lệnh Prompt Ma trận cho Shot [150103]...
+2026-07-28 10:15:23 [INFO] -> [PROMPT CORES] Đang thực thi trộn ma trận Token 9 lớp cho Shot ID: [150103]
+2026-07-28 10:15:23 [INFO] -> [AGENT NODE 5] Thao tác: Đẩy Shot [150103] vào hàng đợi phần cứng GPU...
+2026-07-28 10:15:23 [INFO] -> [RENDER QUEUE] Cú máy [Shot ID: 150103] đang xếp hàng ➔ [WAITING]
+2026-07-28 10:15:23 [INFO] -> [RENDER QUEUE] GPU đang tính toán khung hình ➔ [RENDERING]
+2026-07-28 10:15:23 [INFO] -> [AGENT NODE 8] [✓] Hoàn tất Shot [150103] -> Khóa trạng thái COMPLETED.
+2026-07-28 10:15:23 [INFO] -> =============================================================================
+2026-07-28 10:15:23 [INFO] -> [🤖 AGENT SUCCESS] QUY TRÌNH TỰ TRỊ HOÀN THÀNH XUẤT SẮC! TIẾN ĐỘ ĐẠT 100% [✓]
+2026-07-28 10:15:23 [INFO] -> =============================================================================
+2026-07-28 10:15:23 [INFO] -> [CONSISTENCY] Phát hiện yêu cầu thay đổi diện mạo [HAIR] cho nhân vật [To Moc] -> 'short black hair'
+2026-07-28 10:15:24 [INFO] -> [✓ SUCCESS] Lan truyền thành công! Đã đồng bộ diện mạo mới cho 1 cú máy chưa render.
+2026-07-28 10:15:31 [INFO] -> [CONTROLLER] Tiếp nhận gói chỉ thị sản xuất từ tầng GUI cho Tập phim 15...
+2026-07-28 10:15:31 [INFO] -> [STORYBOARD] Đang thực thi bóc tách logic đơn nhất (Single Responsibility)...
+2026-07-28 10:15:31 [INFO] -> [PLUGIN SYSTEM] Plugin '[ltx_automation_adapter] v1.0.0' đã được kích hoạt thành công vào Engine!
+2026-07-28 10:15:31 [INFO] -> [LTX AUTOMATION] Khởi động hệ thống tương tác luồng hệ điều hành OS...
+2026-07-28 10:15:31 [INFO] -> =============================================================================
+2026-07-28 10:15:31 [INFO] -> [🤖 AI AGENT] BẮT ĐẦU VÒNG ĐỜI ĐIỀU PHỐI TỰ TRỊ CHO TẬP PHIM 15...
+2026-07-28 10:15:31 [INFO] -> =============================================================================
+2026-07-28 10:15:31 [INFO] -> [AGENT NODE 1] Thao tác: Đọc phân tích cấu trúc chữ Chapter...
+2026-07-28 10:15:31 [INFO] -> [AGENT NODE 2] Thao tác: Tự động phân rã mạch truyện thành các phân cảnh lớn...
+2026-07-28 10:15:31 [INFO] -> [AGENT NODE 3] Thao tác: Phân rã Scene [1501] thành các Shots...
+2026-07-28 10:15:31 [INFO] -> Shot Builder: Đang bẻ phân cảnh ID [1501] theo phân lớp Studio...
+2026-07-28 10:15:31 [INFO] -> [AGENT NODE 4] Thao tác: Trộn câu lệnh Prompt Ma trận cho Shot [150101]...
+2026-07-28 10:15:31 [INFO] -> [DREAMFORGE CORE] Tiến hành gộp ma trận tham số điện ảnh tĩnh...
+2026-07-28 10:15:31 [INFO] -> [CAMERA PLANNER] Đã ghim thông số: Khung hình=Wide Shot, Ống kính=24mm, Chuyển động=Slow Push
+2026-07-28 10:15:31 [INFO] -> [LIGHTING PLANNER] Đã ghim bộ lọc: Morning (Volumetric with Sun Rays)
+2026-07-28 10:15:31 [INFO] -> [FX PLANNER] Đã khóa bộ hạt môi trường: Gió=[gentle blowing wind], Hiệu ứng=[falling cinematic tree leaves]
+2026-07-28 10:15:31 [INFO] -> [AUDIO PLANNER] Đã cấu trúc chỉ thị âm thanh: Nhạc=[traditional chinese orchestra]
+2026-07-28 10:15:31 [INFO] -> [AGENT NODE 5 & 6] Thao tác: Phát chỉ thị xuống LTX Adapter để Render và sao chép Clipboard...
+2026-07-28 10:15:31 [INFO] -> ============ KÍCH HOẠT QUY TRÌNH LTX ADAPTER: SHOT_150101 ============
+2026-07-28 10:15:31 [INFO] -> [STEP 4] Tham số đóng gói: Seed=23561 | Duration=3.5s | Camera=Wide Shot
+2026-07-28 10:15:31 [INFO] -> [STEP 5] [✓] Đã sao chép chuỗi mã Prompt ma trận sang Clipboard hệ thống!
+2026-07-28 10:15:31 [INFO] -> [STEP 6] [OS Command] Đang tự động gọi mở ứng dụng LTX Studio Renderer...
+2026-07-28 10:15:32 [INFO] -> [STEP 7] Hàng đợi đang treo trạng thái: Chờ kết xuất video trong 7.0s...
+2026-07-28 10:15:32 [INFO] -> [STEP 8] [✓] Import thành công! Tệp tin hoạt hình đã nạp: 'projects/ToanDanTaoPhong/assets/video\shot_150101_render.mp4'
+2026-07-28 10:15:32 [INFO] -> ============================================================================
+
+2026-07-28 10:15:32 [INFO] -> [AGENT NODE 4] Thao tác: Trộn câu lệnh Prompt Ma trận cho Shot [150102]...
+2026-07-28 10:15:32 [INFO] -> [DREAMFORGE CORE] Tiến hành gộp ma trận tham số điện ảnh tĩnh...
+2026-07-28 10:15:32 [INFO] -> [CAMERA PLANNER] Đã ghim thông số: Khung hình=Close-Up Shot, Ống kính=85mm, Chuyển động=Static
+2026-07-28 10:15:32 [INFO] -> [LIGHTING PLANNER] Đã ghim bộ lọc: Morning (Volumetric with Sun Rays)
+2026-07-28 10:15:32 [INFO] -> [FX PLANNER] Đã khóa bộ hạt môi trường: Gió=[gentle blowing wind], Hiệu ứng=[falling cinematic tree leaves]
+2026-07-28 10:15:32 [INFO] -> [AUDIO PLANNER] Đã cấu trúc chỉ thị âm thanh: Nhạc=[traditional chinese orchestra]
+2026-07-28 10:15:32 [INFO] -> [AGENT NODE 5 & 6] Thao tác: Phát chỉ thị xuống LTX Adapter để Render và sao chép Clipboard...
+2026-07-28 10:15:32 [INFO] -> ============ KÍCH HOẠT QUY TRÌNH LTX ADAPTER: SHOT_150102 ============
+2026-07-28 10:15:32 [INFO] -> [STEP 4] Tham số đóng gói: Seed=23561 | Duration=3.5s | Camera=Wide Shot
+2026-07-28 10:15:32 [INFO] -> [STEP 5] [✓] Đã sao chép chuỗi mã Prompt ma trận sang Clipboard hệ thống!
+2026-07-28 10:15:32 [INFO] -> [STEP 6] [OS Command] Đang tự động gọi mở ứng dụng LTX Studio Renderer...
+2026-07-28 10:15:33 [INFO] -> [STEP 7] Hàng đợi đang treo trạng thái: Chờ kết xuất video trong 7.0s...
+2026-07-28 10:15:33 [INFO] -> [STEP 8] [✓] Import thành công! Tệp tin hoạt hình đã nạp: 'projects/ToanDanTaoPhong/assets/video\shot_150102_render.mp4'
+2026-07-28 10:15:33 [INFO] -> ============================================================================
+
+2026-07-28 10:15:33 [INFO] -> [AGENT NODE 7] Thao tác: Kích hoạt Episode Builder gộp nối toàn bộ Shots...
+2026-07-28 10:15:33 [INFO] -> [EPISODE BUILDER] Kích hoạt luồng đóng gói Tập phim 15...
+2026-07-28 10:15:33 [INFO] ->  -> Danh sách phân cảnh tích hợp: ['scene_01']
+2026-07-28 10:15:35 [INFO] -> [SUCCESS] Quy trình đóng gói hoàn tất. Tệp phim dài sẵn sàng: 'projects\ToanDanTaoPhong\exports\Episode15.mp4'
+2026-07-28 10:15:35 [INFO] -> [AGENT NODE 8] [✓] Đăng tải tự động lên YouTube thành công! Tiến độ: 100%
+2026-07-28 10:15:35 [INFO] -> =============================================================================
+2026-07-28 10:15:35 [INFO] -> [SCHEDULER] Điều phối mạch sản xuất phân tầng cho Tập phim 15...
+2026-07-28 10:15:38 [INFO] -> [EPISODE SERVICE] Đang tính toán ma trận tiến độ cho Tập phim 15...
+2026-07-28 10:15:38 [INFO] -> [PLUGIN SYSTEM] Plugin '[ltx_automation_adapter] v1.0.0' đã được kích hoạt thành công vào Engine!
+2026-07-28 10:15:38 [INFO] -> ============ KÍCH HOẠT QUY TRÌNH LTX ADAPTER: SCENE_01 ============
+2026-07-28 10:15:38 [INFO] -> [STEP 4] Tham số đóng gói: Seed=998244353 | Duration=4.0s | Camera=Wide Shot
+2026-07-28 10:15:38 [INFO] -> [STEP 5] [✓] Đã sao chép chuỗi mã Prompt ma trận sang Clipboard hệ thống!
+2026-07-28 10:15:38 [INFO] -> [STEP 6] [OS Command] Đang tự động gọi mở ứng dụng LTX Studio Renderer...
+2026-07-28 10:15:38 [INFO] -> [STEP 7] Hàng đợi đang treo trạng thái: Chờ kết xuất video trong 8.0s...
+2026-07-28 10:15:39 [INFO] -> [STEP 8] [✓] Import thành công! Tệp tin hoạt hình đã nạp: 'projects/ToanDanTaoPhong/assets/video\scene_01_render.mp4'
+2026-07-28 10:15:39 [INFO] -> ============================================================================
+
+2026-07-28 10:15:39 [INFO] -> [PLUGIN SYSTEM] Plugin '[ltx_automation_adapter]' đã được tạm ngắt kết nối an toàn.
+2026-07-28 10:15:41 [INFO] -> [LTX WORKSPACE] Cú máy [Shot ID: 150101] đã chuyển trạng thái thành công sang -> [APPROVED]
+2026-07-28 10:15:41 [INFO] -> [SCHEDULER] Điều phối mạch sản xuất phân tầng cho Tập phim 15...
+2026-07-28 10:15:41 [INFO] -> [TIMELINE ENGINE] Cú máy [Shot ID: 150101] đã được cập nhật thời lượng mới -> 5.5s
+2026-07-28 10:15:42 [INFO] -> [DREAMFORGE CORE] Tiến hành gộp ma trận tham số điện ảnh tĩnh...
+2026-07-28 10:15:42 [INFO] -> [CAMERA PLANNER] Đã ghim thông số: Khung hình=Wide Shot, Ống kính=24mm, Chuyển động=Slow Push
+2026-07-28 10:15:42 [INFO] -> [LIGHTING PLANNER] Đã ghim bộ lọc: Morning (Volumetric with Sun Rays)
+2026-07-28 10:15:42 [INFO] -> [FX PLANNER] Đã khóa bộ hạt môi trường: Gió=[gentle blowing wind], Hiệu ứng=[falling cinematic tree leaves]
+2026-07-28 10:15:42 [INFO] -> [AUDIO PLANNER] Đã cấu trúc chỉ thị âm thanh: Nhạc=[traditional chinese orchestra]
+2026-07-28 10:15:42 [INFO] -> [PROMPT SERVICE] Biên dịch Prompt thông qua lớp Template...
+2026-07-28 10:15:42 [INFO] -> [PROMPT TEMPLATE] Đã biên dịch thành công mẫu câu lệnh [Key: DONGHUA_3D]
+2026-07-28 10:15:42 [INFO] -> [PROMPT CORES] Đang thực thi trộn ma trận Token 9 lớp cho Shot ID: [150101]
+2026-07-28 10:15:42 [INFO] -> [PROMPT CORES] Đang thực thi trộn ma trận Token 9 lớp cho Shot ID: [150101]
+2026-07-28 10:15:45 [WARNING] -> [RETRY ENGINE] Kích hoạt lệnh cứu hộ! Đang tái nạp hàng đợi cho Shot Lỗi: [150109]
+2026-07-28 10:15:45 [INFO] -> [RENDER QUEUE] Cú máy [Shot ID: 150109] đang xếp hàng ➔ [WAITING]
+2026-07-28 10:15:45 [INFO] -> [RENDER QUEUE] GPU đang tính toán khung hình ➔ [RENDERING]
+2026-07-28 10:15:48 [INFO] -> [EXPORT CENTER] Đang kích hoạt dây chuyền đóng gói thương mại cho Tập phim 15...
+2026-07-28 10:15:48 [INFO] -> [✓ SUCCESS] Đóng gói thành công! Metadata SEO đã được khóa ổn định.
+2026-07-28 10:15:48 [INFO] -> [SCENE INTEL] Đang phân rã gói dữ liệu cấu trúc YAML của Đạo diễn AI...
+2026-07-28 10:15:48 [INFO] ->  -> [✓] Tiêu đề cảnh: Gặp nhau tại học viện
+2026-07-28 10:15:48 [INFO] ->  -> [✓] Trạng thái cảm xúc phát hiện: ['Bình tĩnh', 'Mong chờ']
+2026-07-28 10:15:48 [INFO] ->  -> [✓] Danh sách góc máy chỉ định: ['Establishing Shot', 'Medium Shot', 'Close Up']
+2026-07-28 10:15:51 [INFO] -> [SHOT MANAGER] Tiến hành bẻ nhỏ Scene ID [15] thành chuỗi cắt cảnh...
+2026-07-28 10:15:51 [INFO] ->  -> [✓] Khởi tạo Shot 01: ESTABLISHING | Thời lượng: 5.0s
+2026-07-28 10:15:51 [INFO] ->  -> [✓] Khởi tạo Shot 02: WALKING | Thời lượng: 4.0s
+2026-07-28 10:15:51 [INFO] ->  -> [✓] Khởi tạo Shot 03: DIALOGUE | Thời lượng: 4.0s
+2026-07-28 10:15:51 [INFO] -> [SHOT PLANNER] Đang khởi chạy ma trận phân rã góc máy cho Scene ID: [701]
+2026-07-28 10:15:51 [INFO] ->  -> Khởi tạo thành công: [Shot 01] Ngữ cảnh: ESTABLISHING | Thời lượng: 5.0s
+2026-07-28 10:15:51 [INFO] ->  -> Khởi tạo thành công: [Shot 02] Ngữ cảnh: DOOR OPENING | Thời lượng: 4.0s
+2026-07-28 10:15:51 [INFO] ->  -> Khởi tạo thành công: [Shot 03] Ngữ cảnh: REACTION | Thời lượng: 2.0s
+2026-07-28 10:15:51 [INFO] ->  -> Khởi tạo thành công: [Shot 04] Ngữ cảnh: DIALOGUE | Thời lượng: 3.0s
+2026-07-28 10:15:51 [INFO] -> [CAMERA PLANNER] Đã ghim thông số: Khung hình=Wide Shot, Ống kính=24mm, Chuyển động=Slow Push
+2026-07-28 10:15:51 [INFO] -> [LIGHTING PLANNER] Đã ghim bộ lọc: Morning (Volumetric with Sun Rays)
+2026-07-28 10:15:51 [INFO] -> [AI DIRECTOR] Đang bóc tách chỉ đạo nghệ thuật cho Cú máy số 01...
+2026-07-28 10:15:51 [INFO] -> [WORKFLOW] Mạch sản xuất tịnh tiến: [EPISODE] ➔ ➔ ➔ [CHAPTER]
+2026-07-28 10:15:51 [INFO] -> [WORKFLOW] Mạch sản xuất tịnh tiến: [CHAPTER] ➔ ➔ ➔ [SCENE]
+2026-07-28 10:15:51 [INFO] -> [WORKFLOW] Mạch sản xuất tịnh tiến: [SCENE] ➔ ➔ ➔ [SHOT]
+2026-07-28 10:15:51 [INFO] -> [WORKFLOW] Mạch sản xuất tịnh tiến: [SHOT] ➔ ➔ ➔ [ASSET]
+2026-07-28 10:15:51 [INFO] -> [WORKFLOW] Mạch sản xuất tịnh tiến: [ASSET] ➔ ➔ ➔ [PROMPT]
+2026-07-28 10:15:51 [INFO] -> [WORKFLOW] Mạch sản xuất tịnh tiến: [PROMPT] ➔ ➔ ➔ [RENDER]
+2026-07-28 10:15:51 [INFO] -> [WORKFLOW] Mạch sản xuất tịnh tiến: [RENDER] ➔ ➔ ➔ [REVIEW]
+2026-07-28 10:15:51 [INFO] -> [WORKFLOW] Mạch sản xuất tịnh tiến: [REVIEW] ➔ ➔ ➔ [EXPORT]
+2026-07-28 10:15:51 [INFO] -> [STORYBOARD] Đang thực thi bóc tách logic đơn nhất (Single Responsibility)...
+2026-07-28 10:15:51 [INFO] -> Prompt Builder: Đã áp dụng mẫu [ltx_action] tự động cho [SCENE_01_002]
+2026-07-28 10:15:51 [INFO] -> Prompt Builder: Đã áp dụng mẫu [ltx_dialogue] tự động cho [SCENE_01_001]
+2026-07-28 10:15:51 [INFO] -> =============================================================================
+2026-07-28 10:15:51 [INFO] -> [DREAMFORGE ENGINE] BẮT ĐẦU DÂY CHUYỀN SẢN XUẤT TỰ ĐỘNG KHÉP KÍN EPISODE 15...
+2026-07-28 10:15:51 [INFO] -> =============================================================================
+2026-07-28 10:15:51 [INFO] -> [NODE 1 & 2] Đang đọc tệp kịch bản gốc: projects/ToanDanTaoPhong/novel/chuong_15.docx
+2026-07-28 10:15:51 [INFO] ->  -> [✓] Khởi tạo thực thể cấu trúc: Chapter 15
+2026-07-28 10:15:51 [INFO] -> [NODE 3 & 4] Phân rã Chapter 15 thành các phân cảnh Scene & Cú máy Shot Object...
+2026-07-28 10:15:52 [INFO] -> [AI DIRECTOR] Đang bóc tách chỉ đạo nghệ thuật cho Phân cảnh 001...
+2026-07-28 10:15:52 [INFO] -> [DREAMFORGE CORE] Tiến hành gộp ma trận tham số điện ảnh tĩnh...
+2026-07-28 10:15:52 [INFO] -> [CAMERA PLANNER] Đã ghim thông số: Khung hình=Wide Shot, Ống kính=24mm, Chuyển động=Slow Push
+2026-07-28 10:15:52 [INFO] -> [LIGHTING PLANNER] Đã ghim bộ lọc: Morning (Volumetric with Sun Rays)
+2026-07-28 10:15:52 [INFO] -> [FX PLANNER] Đã khóa bộ hạt môi trường: Gió=[gentle blowing wind], Hiệu ứng=[falling cinematic tree leaves]
+2026-07-28 10:15:52 [INFO] -> [AUDIO PLANNER] Đã cấu trúc chỉ thị âm thanh: Nhạc=[traditional chinese orchestra]
+2026-07-28 10:15:52 [INFO] -> [NODE 7] LTX Studio Renderer: Đang kết xuất video clip thô từ chuỗi Prompt ma trận...
+2026-07-28 10:15:52 [INFO] ->  -> [✓] Render hoàn tất file clip: projects/ToanDanTaoPhong/cache/shot_150101.mp4
+2026-07-28 10:15:52 [INFO] -> [NODE 8] ElevenLabs Plugin: Sinh file âm thanh lồng tiếng: projects/ToanDanTaoPhong/cache/tomoc_voice_150101.mp3
+2026-07-28 10:15:52 [INFO] -> [PLUGIN SYSTEM] Plugin '[openai_whisper] v1.0.0' đã được kích hoạt thành công vào Engine!
+2026-07-28 10:15:52 [INFO] -> [WHISPER AI] Đang xử lý bóc tách sóng âm tệp tin: projects/ToanDanTaoPhong/cache/tomoc_voice_150101.mp3
+2026-07-28 10:15:53 [INFO] -> [NODE 9] Whisper Subtitle Generated:
+"00:00:01,000 --> 00:00:04,500
+[Tô Mộc]: Bước vào học viện Long Dạng."
+2026-07-28 10:15:53 [INFO] -> [NODE 10] Timeline Sync: Đồng bộ Video + Voice + Subtitle lên Premiere-style Sequencer.
+2026-07-28 10:15:53 [INFO] -> [EPISODE BUILDER] Kích hoạt luồng đóng gói Tập phim 15...
+2026-07-28 10:15:53 [INFO] ->  -> Danh sách phân cảnh tích hợp: ['scene_01', 'scene_02']
+2026-07-28 10:15:55 [INFO] -> [SUCCESS] Quy trình đóng gói hoàn tất. Tệp phim dài sẵn sàng: 'projects\ToanDanTaoPhong\exports\Episode15.mp4'
+2026-07-28 10:15:55 [INFO] -> =============================================================================
+2026-07-28 10:15:55 [INFO] -> [ENGINE SUCCESS] DÂY CHUYỀN SẢN XUẤT HOÀN THÀNH XUẤT SẮC! TIẾN ĐỘ ĐẠT 100% [✓]
+2026-07-28 10:15:55 [INFO] -> =============================================================================
+2026-07-28 10:15:55 [INFO] -> [PLUGIN SYSTEM] Plugin '[openai_whisper]' đã được tạm ngắt kết nối an toàn.
+2026-07-28 10:15:55 [INFO] -> [DREAMFORGE CORE] Tiến hành gộp ma trận tham số điện ảnh tĩnh...
+2026-07-28 10:15:55 [INFO] -> [CAMERA PLANNER] Đã ghim thông số: Khung hình=Close-Up Shot, Ống kính=85mm, Chuyển động=Static
+2026-07-28 10:15:55 [INFO] -> [LIGHTING PLANNER] Đã ghim bộ lọc: Morning (Volumetric with Sun Rays)
+2026-07-28 10:15:55 [INFO] -> [FX PLANNER] Đã khóa bộ hạt môi trường: Gió=[gentle blowing wind], Hiệu ứng=[falling cinematic tree leaves]
+2026-07-28 10:15:55 [INFO] -> [AUDIO PLANNER] Đã cấu trúc chỉ thị âm thanh: Nhạc=[traditional chinese orchestra]
+2026-07-28 10:15:55 [INFO] -> [PLUGIN SYSTEM] Plugin '[ltx_studio_adapter] v0.8.0' đã được kích hoạt thành công vào Engine!
+2026-07-28 10:15:55 [INFO] -> [LTX ADAPTER] Đang xác thực chứng chỉ OAuth2 Endpoint LTX Studio...
+2026-07-28 10:15:55 [INFO] -> [LTX API] Đang truyền tải gói tin Payload cấu trúc 9 tầng xuống hàng đợi Render...
+2026-07-28 10:15:56 [INFO] -> [PLUGIN SYSTEM] Plugin '[ltx_studio_adapter]' đã được tạm ngắt kết nối an toàn.
+2026-07-28 10:15:56 [INFO] -> [ASSET MANAGER] Khởi tạo thành công cây thư mục lưu trữ: projects\ToanDanTaoPhong_Test\renders\scenes
+2026-07-28 10:15:56 [INFO] -> [ASSET MANAGER] Đã đồng bộ cú máy vật lý -> [projects\ToanDanTaoPhong_Test\renders\scenes\Shot01.mp4]

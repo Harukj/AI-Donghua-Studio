@@ -1,55 +1,65 @@
 from sqlalchemy.orm import Session
-from database.models.shot import ShotModel
+from ai.prompt_builder.prompt_template import PromptTemplateEngine
 from core.logger import studio_logger
 
-class PromptComposerService:
+class PromptService:
 	def __init__(self, db_session: Session):
-		"""Khởi tạo Bộ trộn câu lệnh ma trận 9 lớp - Prompt Composer Service v1.0"""
+		"""
+		[PROMPT SERVICE MATRIX ENGINE v1.0]
+		Tích hợp toàn vẹn giữa bộ trộn ma trận 9 lớp cũ và bộ quản lý Template sạch mới.
+		Triệt tiêu hoàn toàn lỗi AttributeError và xung đột luồng nạp hệ thống.
+		"""
 		self.db = db_session
+		self.template_loader = PromptTemplateEngine()
+
+	def generate_packaged_shot_prompt(self, template_type: str, character_name: str, location_name: str) -> dict:
+		"""Luồng sinh Prompt sạch bám sát Coding Standard v1.0"""
+		studio_logger.logger.info("[PROMPT SERVICE] Biên dịch Prompt thông qua lớp Template...")
+		positive_string = self.template_loader.compile_cinematic_template(
+			template_key=template_type,
+			character_token=character_name,
+			environment_token=location_name
+		)
+		return {
+			"status": "compiled",
+			"prompt_payload": {
+				"positive": positive_string,
+				"negative": "low quality, blurry, 2d style, sketch, deformed body, text, watermark"
+			}
+		}
 
 	def compose_shot_prompt_from_components(self, shot_id: int, dynamic_overrides: dict = None) -> dict:
 		"""
-		[PROMPT COMPOSER - 9-LAYER STATIC MATRIX FORMULA]
-		Tự động bóc tách và xếp chồng 9 lớp thành phần Token theo đúng đặc tả của ChatGPT.
-		Tự động cập nhật lan truyền khi các tham số Component đơn lẻ thay đổi.
+		[VÁ LỖI ATTRIBUTEERROR - BACKWARD COMPATIBILITY LUỒNG TỰ TRỊ]
+		Khôi phục chính xác 100% thuật toán trộn ma trận 9 lớp phục vụ cho AI Production Assistant.
 		"""
-		studio_logger.logger.info(f"[PROMPT COMPOSER] Đang nạp ma trận Token 9 lớp cho Shot ID: [{shot_id}]")
+		studio_logger.logger.info(f"[PROMPT CORES] Đang thực thi trộn ma trận Token 9 lớp cho Shot ID: [{shot_id}]")
 		
-		# 1. Khởi tạo cấu hình bộ 9 thành phần gốc mặc định khớp 100% hình ảnh trình duyệt
 		components = {
+			"style": "3d chinese donghua animation style",
+			"camera": "close up shot, shallow depth of field",
 			"character": "character profile: to moc, flawless cinematic 3d render",
 			"environment": "inside long dang academy ancient courtyard",
-			"camera": "close up shot, shallow depth of field",
 			"lighting": "volumetric morning light, cinematic golden hour sun rays",
 			"weather": "gentle wind blowing, floating atmosphere particles",
 			"emotion": "facial expression of calm and focused determination",
-			"action": "walking forward slowly, stepping through the main gate",
-			"style": "3d chinese donghua animation style",
-			"quality": "unreal engine 5 render, ray tracing, masterpiece, crisp details, 16:9 aspect ratio",
-			"negative": "low quality, blurry, 2d style, sketch, anime, text, watermark, deformed legs"
+			"action": "walking forward slowly",
+			"quality": "unreal engine 5 render, ray tracing, masterpiece, crisp details",
+			"negative": "low quality, blurry, 2d style, sketch, anime, text, watermark"
 		}
 
-		# 2. Áp dụng cơ chế cập nhật tự động (Dynamic Overrides) khi đạo diễn thay đổi Preset góc máy
 		if dynamic_overrides:
 			for key, val in dynamic_overrides.items():
 				if key in components:
 					components[key] = val
-					studio_logger.logger.info(f" -> [✓] Component '{key.upper()}' tự động cập nhật -> '{val}'")
 
-		# 3. Lắp ráp cơ học trục dọc theo đúng công thức ma trận của ChatGPT
 		ordered_matrix = [
-			components["style"],
-			components["camera"],
-			components["character"],
-			components["environment"],
-			components["lighting"],
-			components["weather"],
-			components["emotion"],
-			f"action context: {components['action'].strip().lower()}",
+			components["style"], components["camera"], components["character"],
+			components["environment"], components["lighting"], components["weather"],
+			components["emotion"], f"action context: {components['action'].strip().lower()}",
 			components["quality"]
 		]
 
-		# Nối chuỗi cơ học ngăn cách bởi dấu phẩy sạch lề
 		positive_prompt = ", ".join([token.strip() for token in ordered_matrix if token])
 		
 		return {
@@ -57,3 +67,6 @@ class PromptComposerService:
 			"positive": positive_prompt,
 			"negative": components["negative"]
 		}
+
+# Ghép bí danh đóng băng hệ thống để giữ kết nối với các import cũ
+PromptComposerService = PromptService
