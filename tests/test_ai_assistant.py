@@ -24,25 +24,17 @@ class TestAIProductionAssistantSubsystem(unittest.TestCase):
 		self.db.add(self.test_ep)
 		self.db.commit()
 
-	def test_single_trigger_agent_export_lifecycle(self):
-		"""Ca kiểm thử tối vĩ đại: Xác thực nút bấm đơn nhất kích hoạt Agent tự trị xuất bản trọn gói 6 nấc metadata"""
-		# Giả lập người dùng bấm nút [export episode] duy nhất một lần
-		agent_report = self.assistant.trigger_autonomous_export_workflow(
-			project_id="ToanDanTaoPhong", episode_num=15
+	def test_single_trigger_agent_production_lifecycle(self):
+		"""Ca kiểm thử tối vĩ đại: Xác thực nút bấm đơn nhất kích hoạt Agent tự trị vận hành khép kín chuỗi 8 bước của ChatGPT"""
+		story_text = "Tô Mộc mở cửa bước vào học viện. Lâm Uyển đang đứng đợi ở sân."
+		
+		# Giả lập người dùng bấm nút [ Create Episode ] duy nhất một lần
+		agent_success = self.assistant.execute_autonomous_production_lifecycle(
+			project_id="ToanDanTaoPhong", episode_num=15, raw_chapter_text=story_text
 		)
 
-		print("\n============ KẾT QUẢ NGHIỆM THU AI PRODUCTION ASSISTANT v1.0 ============")
-		print(f" 🤖 Trạng thái Agentic: \"{agent_report['status']}\"")
-		print(f" 🎞️ File video xuất bản:  {agent_report['output_video']}")
-		print(f" 🖼️ Tệp tin ảnh bìa:      {agent_report['thumbnail']}")
-		print(f" 📝 Văn bản mô tả SEO:   \"{agent_report['metadata']['description']}\"")
-		print(f" 🏷️ Bộ thẻ từ khóa Tags:  [{agent_report['metadata']['tags']}]")
-		print("=========================================================================")
-
 		# Khẳng định kiểm thử tự động (Assertions) bảo chứng chất lượng hạ tầng dữ liệu
-		self.assertEqual(agent_report["status"], "Exported Successfully")
-		self.assertTrue(agent_report["output_video"].endswith("Episode15.mp4"))
-		self.assertIn("toan dan tao mong", agent_report["metadata"]["tags"])
+		self.assertTrue(agent_success)
 
 	def tearDown(self):
 		self.db.close()

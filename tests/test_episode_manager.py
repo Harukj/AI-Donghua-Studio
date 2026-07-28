@@ -13,19 +13,30 @@ from services.episode_service import EpisodeService
 
 class TestEpisodeManagerSubsystem(unittest.TestCase):
 	def setUp(self):
-		"""Khởi tạo cấu trúc bảng SQLite và tiêm tài nguyên mẫu"""
+		"""Khởi tạo cấu trúc bảng SQLite - Cưỡng ép làm sạch ID kẹt từ các session cũ"""
+		from database.base import Base
+		from database.engine import engine
+		
+		# 1. Ép hệ thống xóa sạch toàn bộ các bảng cũ trong tiến trình test động
+		Base.metadata.drop_all(bind=engine)
+		
+		# 2. Tái khởi tạo lại bộ bảng mới tinh cho môi trường độc lập
 		Base.metadata.create_all(bind=engine)
+		
 		self.db = SessionLocal()
 		self.service = EpisodeService(self.db)
 
-		# Nạp bản ghi tập phim mẫu
+		# 3. Nạp bản ghi tập phim mẫu
 		self.test_ep = EpisodeModel(project_id="ToanDanTaoPhong", episode_number=15, title="Khởi đầu trận chiến vĩ đại")
-		# Nạp cú máy mẫu ở trạng thái draft (chưa approved) để ép tỷ lệ tiến độ về mốc khởi tạo 9% của ChatGPT
-		self.test_shot = ShotModel(id=150101, scene_id=1501, index=1, status="draft", prompt="test code")
+		
+		# Đổi ID bản ghi mẫu cũ từ 150101 thành một ID ngẫu nhiên cao (Ví dụ: 999999) 
+		# nhằm tránh tuyệt đối việc va chạm với dải ID tự động sinh (150101, 150102...) của Agent
+		self.test_shot = ShotModel(id=999999, scene_id=1501, index=99, status="draft", prompt="test data code")
 		
 		self.db.add(self.test_ep)
 		self.db.add(self.test_shot)
 		self.db.commit()
+
 
 	def test_automated_9_steps_progress_calculation(self):
 		"""Ca kiểm thử tối vĩ đại: Xác thực bộ tính tiến độ bóc tách chuẩn mốc 9% checklist của ChatGPT"""
