@@ -3,15 +3,19 @@ from datetime import datetime
 from database.base import Base
 
 class EpisodeModel(Base):
-	__tablename__ = "episodes" # Khớp chính xác phân lớp 'episodes' trong sơ đồ của ChatGPT
+	__tablename__ = "episodes"
+	
+	# ÉP SỰ KIỆN GHI ĐÈ: Cho phép mở rộng/nạp lại cấu trúc bảng đã tồn tại trong Metadata mà không gây crash hệ thống
+	__table_args__ = {'extend_existing': True}
 
 	id = Column(Integer, primary_key=True, autoincrement=True)
-	episode_number = Column(Integer, nullable=False)           # Số tập phim (Ví dụ: Tập 1, Tập 2...)
+	project_id = Column(String(100), nullable=False)           # Thuộc dự án nào (Ví dụ: Toàn Dân Tạo Mộng)
+	episode_number = Column(Integer, nullable=False)           # Số tập phim (Ví dụ: Tập 15)
 	title = Column(String(200), nullable=True)                 # Tiêu đề riêng của tập phim
-	summary = Column(Text, nullable=True)                      # Tóm tắt diễn biến kịch bản tổng quan của tập
-	project_id = Column(String(100), nullable=False)           # Liên kết cô lập tài nguyên theo từng Dự án riêng biệt
-	status = Column(String(50), default="In Production")       # Trạng thái sản xuất (In Production, Completed)
+	summary = Column(Text, nullable=True)                      # Tóm tắt cốt truyện cốt lõi
+	
+	status = Column(String(50), default="In Progress")         # In Progress, Completed
 	created_at = Column(DateTime, default=datetime.utcnow)
 
 	def __repr__(self):
-		return f"<EpisodeModel(num={self.episode_number}, title='{self.title}', project='{self.project_id}')>"
+		return f"<EpisodeModel(id={self.id}, episode_number={self.episode_number}, status='{self.status}')>"

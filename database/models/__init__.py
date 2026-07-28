@@ -12,3 +12,4 @@ from database.models.shot import ShotModel
 from database.models.storyboard import StoryboardSceneModel
 from database.models.version import AssetVersionModel
 from database.models.video import VideoModel
+from database.models.episode import EpisodeModel
