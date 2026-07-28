@@ -5,42 +5,42 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from plugins.plugin_manager import DreamForgeAPIManager
-from plugins.ltx_automation import LTXAutomationAdapter
 
 class TestDreamForgeAPIRegistry(unittest.TestCase):
 	def setUp(self):
-		"""Khởi tạo trung tâm điều phối API và nạp Plugin mẫu"""
-		self.api_gateway = DreamForgeAPIManager()
-		self.ltx_adapter = LTXAutomationAdapter()
+		self.api = DreamForgeAPIManager()
 
-	def test_automated_plugin_registration_and_api_gateway_call(self):
-		"""Ca kiểm thử tối vĩ đại: Xác thực vòng đời đăng ký và gọi API tập trung sạch lỗi"""
-		# 1. Thực hiện đăng ký Plugin qua cổng API Manager
-		reg_success = self.api_gateway.register_plugin_adapter(self.ltx_adapter)
-		self.assertTrue(reg_success)
-
-		# 2. Phát chỉ thị thực thi thông qua cổng API tập trung thay vì gọi trực tiếp Class con
-		mock_payload = {
-			"scene_id": "shot_1502",
-			"prompt_data": "3D Donghua animation, character Lam Uyen waiting under old tree"
-		}
+	def test_chatgpt_5_sequential_api_calls(self):
+		"""Ca kiểm thử tối vĩ đại: Xác thực chuỗi kịch bản lập trình tự trị 5 nấc khép kín của Version 1.0"""
 		
-		# Gọi thông qua thực thể execute_api_call bám sát thiết kế DreamForge API của ChatGPT
-		api_report = self.api_gateway.execute_api_call(
-			plugin_name="ltx_automation_adapter",
-			payload=mock_payload
-		)
+		# 1. api.open_project()
+		self.api.open_project(project_id="ToanDanTaoPhong")
+		self.assertEqual(self.api.active_project_id, "ToanDanTaoPhong")
 
-		print("\n============ KẾT QUẢ NGHIỆM THU ĐỘNG CƠ CORE - DREAMFORGE API ============")
-		print(f" 📡 Trạng thái Cổng API Gateway: {api_report['status'].upper()}")
-		print(f" 🔌 Định tuyến dynamic Adapter:  {api_report['plugin'].upper()}")
-		print(f" 🎬 Video Clip xuất xưởng:      {api_report['video_path']}")
-		print("=========================================================================")
+		# 2. api.current_scene()
+		self.api.current_scene(scene_id=1501)
+		self.assertEqual(self.api.active_scene_id, 1501)
 
-		# Khẳng định kiểm thử tự động (Assertions) bảo chứng chất lượng hạ tầng kiến trúc
-		self.assertEqual(api_report["status"], "success")
-		self.assertIn("shot_1502", api_report["video_path"])
-		self.assertTrue(api_report["video_path"].endswith(".mp4"))
+		# 3. api.get_character()
+		char_token = self.api.get_character(char_name="To Moc")
+		self.assertIn("character profile: to moc", char_token)
+
+		# 4. api.build_prompt()
+		full_prompt = self.api.build_prompt(style="3d chinese donghua style", char_token=char_token)
+		self.assertIn("unreal engine 5", full_prompt)
+
+		# 5. api.render()
+		render_report = self.api.render(compiled_prompt=full_prompt)
+		
+		print("\n============ KẾT QUẢ NGHIỆM THU CHUYÊN SÂU - VERSION 1.0 THẬT SỰ ============")
+		print(f" 🎬 [Bước 1 & 2]: Khai hỏa Dự án phim: {self.api.active_project_id} | Cảnh số: {self.api.active_scene_id}")
+		print(f" ⚙️ [Bước 3 & 4]: Chuỗi Prompt ma trận kết xuất: \"{full_prompt[:50]}...\"")
+		print(f" 🎥 [Bước 5]:     Đường dẫn file Asset xuất xưởng: {render_report['video_path']}")
+		print("=============================================================================")
+
+		# Khẳng định kiểm thử tự động (Assertions) bảo chứng chất lượng hạ tầng dữ liệu
+		self.assertEqual(render_report["status"], "success")
+		self.assertTrue(render_report["video_path"].endswith("shot_1501.mp4"))
 
 if __name__ == "__main__":
 	unittest.main()
