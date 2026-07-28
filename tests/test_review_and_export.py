@@ -43,7 +43,8 @@ class TestReviewAndExportSubsystem(unittest.TestCase):
 		
 		print("\n============ KẾT QUẢ NGHIỆM THU STUDIO REVIEW & EXPORT CENTER ============")
 		print(f" 🎭 Review Workspace: Cú máy 150103 nạp trạng thái duyệt ➔ [{updated_shot.status.upper()}]")
-		print(f" 📹 Export Center: Thực thi tác vụ chặng cuối ➔ {export_result['steps']}")
+		print(f" 🖼️ Export Center: Tệp tin ảnh bìa Thumbnail ➔ {export_result['thumbnail']}")
+		print(f" 📝 Export Center: Mô tả SEO văn bản kịch bản ➔ {export_result['metadata']['description']}")
 		print(f" 🎞️ File đích xuất bản YouTube: {export_result['output_video']}")
 		print("==========================================================================")
 
