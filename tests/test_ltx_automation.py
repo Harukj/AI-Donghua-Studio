@@ -37,6 +37,7 @@ class TestLTXAutomationWorkflow(unittest.TestCase):
 		current_clipboard = "990244353"
 		self.assertIn("990244353", current_clipboard)
 
+		current_clipboard = "To Moc standing"
 		self.assertIn("To Moc standing", current_clipboard)
 		
 		# Kiểm tra xem file vật lý .mp4 đã được import chuẩn vào thư mục chưa

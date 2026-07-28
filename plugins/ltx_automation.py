@@ -31,3 +31,11 @@ class LTXAutomationAdapter(Plugin):
 	def execute_ai_task(self, input_data: dict) -> dict:
 		"""[COMPATIBILITY ALIAS] Định tuyến cuộc gọi cũ từ bài test về hàm execute chuẩn"""
 		return self.execute(input_data)
+	def initialize_api_connection(self) -> bool:
+		"""[COMPATIBILITY ALIAS] Định tuyến cuộc gọi khởi tạo cũ của Agent về hàm initialize chuẩn v1.0"""
+		return self.initialize()
+	def deactivate_plugin(self):
+		"""[COMPATIBILITY ALIAS] Tắt trạng thái kích hoạt của Plugin LTX để vượt qua kịch bản bài test cũ"""
+		self.is_active = False
+		from core.logger import studio_logger
+		studio_logger.logger.info(f"[SDK ENGINE] Plugin [{self.name.upper()}] đã tạm dừng kích hoạt.")

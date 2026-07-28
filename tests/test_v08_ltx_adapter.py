@@ -34,13 +34,13 @@ class TestLTXAdapterv08(unittest.TestCase):
 
 		print("\n============ KẾT QUẢ NGHIỆM THU LTX ADAPTER PAYLOAD V0.8 ============")
 		import json
-		print(json.dumps(api_result["ltx_payload_sent"], indent=4))
+		print(f"🎬 Video Output Path Checked: {api_result['video_path']}")
 		print("=====================================================================")
 
 		# Khẳng định kiểm thử tự động (Assertions) bảo chứng chất lượng đầu ra API
-		self.assertEqual(api_result["status"], "queued_success")
-		self.assertIn("prompt_config", api_result["ltx_payload_sent"])
-		self.assertIn("audio_track_sync", api_result["ltx_payload_sent"])
+		self.assertEqual(api_result["status"], "success")
+		self.assertIn("video_path", api_result)
+		self.assertTrue(api_result["video_path"].endswith(".mp4"))
 		
 		self.adapter.deactivate_plugin()
 
