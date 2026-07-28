@@ -2,11 +2,11 @@ import unittest
 import sys
 import os
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-from ai.scene_splitter.shot_planner import ShotPlanner
-from ai.prompt_builder.camera_planner import CameraPlanner
-from ai.prompt_builder.lighting_planner import LightingPlanner
+from src.ai.scene_splitter.shot_planner import ShotPlanner
+from src.ai.prompt_builder.camera_planner import CameraPlanner
+from src.ai.prompt_builder.lighting_planner import LightingPlanner
 
 class TestShotPlannerv08(unittest.TestCase):
 	def test_automated_4_shots_segmentation(self):

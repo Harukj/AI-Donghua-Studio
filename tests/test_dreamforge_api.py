@@ -2,9 +2,9 @@ import unittest
 import sys
 import os
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-from plugins.plugin_manager import DreamForgeAPIManager
+from src.plugins.plugin_manager import DreamForgeAPIManager
 
 class TestDreamForgeAPIRegistry(unittest.TestCase):
 	def setUp(self):

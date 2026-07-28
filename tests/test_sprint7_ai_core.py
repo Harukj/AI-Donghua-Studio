@@ -3,10 +3,10 @@ import os
 import sys
 
 # Đảm bảo Python nhận diện được đường dẫn root của dự án để thực hiện import chéo
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-from ai.scene_splitter.scene import SceneObject
-from ai.prompt_builder.builder import StaticPromptBuilder
+from src.ai.scene_splitter.scene import SceneObject
+from src.ai.prompt_builder.builder import StaticPromptBuilder
 
 class TestSprint7AICore(unittest.TestCase):
 	def setUp(self):

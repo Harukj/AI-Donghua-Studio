@@ -2,14 +2,14 @@ import unittest
 import sys
 import os
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-from database.session import SessionLocal
-from database.base import Base
-from database.engine import engine
-from database.models.shot import ShotModel
-from database.models.episode import EpisodeModel
-from services.review_export_service import ReviewAndExportService
+from src.database.session import SessionLocal
+from src.database.base import Base
+from src.database.engine import engine
+from src.database.models.shot import ShotModel
+from src.database.models.episode import EpisodeModel
+from src.services.review_export_service import ReviewAndExportService
 
 class TestReviewAndExportSubsystem(unittest.TestCase):
 	def setUp(self):

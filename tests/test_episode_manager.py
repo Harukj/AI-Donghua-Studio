@@ -2,20 +2,20 @@ import unittest
 import sys
 import os
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-from database.session import SessionLocal
-from database.base import Base
-from database.engine import engine
-from database.models.episode import EpisodeModel
-from database.models.shot import ShotModel
-from services.episode_service import EpisodeService
+from src.database.session import SessionLocal
+from src.database.base import Base
+from src.database.engine import engine
+from src.database.models.episode import EpisodeModel
+from src.database.models.shot import ShotModel
+from src.services.episode_service import EpisodeService
 
 class TestEpisodeManagerSubsystem(unittest.TestCase):
 	def setUp(self):
 		"""Khởi tạo cấu trúc bảng SQLite - Cưỡng ép làm sạch ID kẹt từ các session cũ"""
-		from database.base import Base
-		from database.engine import engine
+		from src.database.base import Base
+		from src.database.engine import engine
 		
 		# 1. Ép hệ thống xóa sạch toàn bộ các bảng cũ trong tiến trình test động
 		Base.metadata.drop_all(bind=engine)

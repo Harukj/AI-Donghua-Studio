@@ -2,13 +2,13 @@ import unittest
 import sys
 import os
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-from database.session import SessionLocal
-from database.base import Base
-from database.engine import engine
-from database.repositories.storyboard_repository import StoryboardRepository
-from ai.scene_splitter.storyboard import StoryboardEngine
+from src.database.session import SessionLocal
+from src.database.base import Base
+from src.database.engine import engine
+from src.database.repositories.storyboard_repository import StoryboardRepository
+from src.ai.scene_splitter.storyboard import StoryboardEngine
 
 class TestStoryboardQAReview(unittest.TestCase):
 	def setUp(self):

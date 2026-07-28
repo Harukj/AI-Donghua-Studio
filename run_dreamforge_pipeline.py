@@ -5,10 +5,10 @@ import os
 # Tiêm đường dẫn chạy runtime an toàn cho Python
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from database.session import SessionLocal
-from database.base import Base
-from database.engine import engine
-from ai.prompt_builder.builder_v3 import PromptBuilder30
+from src.database.session import SessionLocal
+from src.database.base import Base
+from src.database.engine import engine
+from src.ai.prompt_builder.builder_v3 import PromptBuilder30
 
 def run_dreamforge_production_pipeline():
 	print("============ KÍCH HOẠT DÂY CHUYỀN SẢN XUẤT DREAMFORGE ENGINE V1.0 ============")

@@ -2,9 +2,9 @@ import unittest
 import sys
 import os
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-from ai.scene_intelligence import SceneIntelligence
+from src.ai.scene_intelligence import SceneIntelligence
 
 class TestSceneIntelligencev08(unittest.TestCase):
 	def test_yaml_data_structural_mapping(self):

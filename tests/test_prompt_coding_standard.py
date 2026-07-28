@@ -2,10 +2,9 @@ import unittest
 import sys
 import os
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from database.session import SessionLocal
-from services.prompt_service import PromptService
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
+from src.database.session import SessionLocal
+from src.services.prompt_service import PromptService
 
 class TestPromptCodingStandardCompliance(unittest.TestCase):
 	def setUp(self):

@@ -1,10 +1,10 @@
 from sqlalchemy import Column, Integer, String, Text, Float, DateTime
 from datetime import datetime
-from database.base import Base
+from src.database.base import Base
 
 class ShotModel(Base):
 	__tablename__ = "shots"
-
+	__table_args__ = {'extend_existing': True}
 	id = Column(Integer, primary_key=True, autoincrement=True)
 	scene_id = Column(Integer, nullable=False)
 	index = Column(Integer, nullable=False)                    # Thứ tự cú máy trong phân cảnh

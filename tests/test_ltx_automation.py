@@ -3,9 +3,9 @@ import sys
 import os
 import pyperclip
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-from plugins.ltx_automation import LTXAutomationAdapter
+from src.plugins.ltx_automation import LTXAutomationAdapter
 
 class TestLTXAutomationWorkflow(unittest.TestCase):
 	def test_full_8_steps_execution_pipeline(self):

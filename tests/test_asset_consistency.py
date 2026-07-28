@@ -2,19 +2,19 @@ import unittest
 import sys
 import os
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-from database.session import SessionLocal
-from database.base import Base
-from database.engine import engine
-from database.models.shot import ShotModel
-from ai.prompt_builder.consistency_engine import AssetConsistencyEngine
+from src.database.session import SessionLocal
+from src.database.base import Base
+from src.database.engine import engine
+from src.database.models.shot import ShotModel
+from src.ai.prompt_builder.consistency_engine import AssetConsistencyEngine
 
 class TestAssetConsistencyv08(unittest.TestCase):
 	def setUp(self):
 		"""Khởi tạo cấu trúc bảng SQLite giả lập và nạp 2 Shots chờ xử lý"""
-		from database.base import Base
-		from database.engine import engine
+		from src.database.base import Base
+		from src.database.engine import engine
 		
 		Base.metadata.create_all(bind=engine)
 		self.db = SessionLocal()

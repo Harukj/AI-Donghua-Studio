@@ -2,13 +2,13 @@ import unittest
 import sys
 import os
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-from database.session import SessionLocal
-from database.base import Base
-from database.engine import engine
-from ai.prompt_builder.builder_v3 import PromptBuilder30
-from plugins.ltx.ltx_adapter import LTXStudioAdapter
+from src.database.session import SessionLocal
+from src.database.base import Base
+from src.database.engine import engine
+from src.ai.prompt_builder.builder_v3 import PromptBuilder30
+from src.plugins.ltx.ltx_adapter import LTXStudioAdapter
 
 class TestLTXAdapterv08(unittest.TestCase):
 	def setUp(self):
