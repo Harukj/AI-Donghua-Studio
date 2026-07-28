@@ -61,7 +61,7 @@ class UltimateMoviePipeline:
 		self.whisper_ai.activate_plugin()
 		whisper_input = {"audio_path": mock_voice_path}
 		whisper_output = self.whisper_ai.execute_ai_task(whisper_input)
-		studio_logger.logger.info(f"[NODE 9] Whisper Subtitle Generated:\n\"{whisper_output['subtitle_track']}\"")
+		studio_logger.logger.info(f"[NODE 9] Whisper Subtitle Generated:\n\"{whisper_output['transcription']}\"")
 
 		# 8. NODE: TIMELINE (Đẩy dữ liệu đa phương tiện phức hợp lên Sequencer tuyến tính thời gian thực)
 		studio_logger.logger.info("[NODE 10] Timeline Sync: Đồng bộ Video + Voice + Subtitle lên Premiere-style Sequencer.")

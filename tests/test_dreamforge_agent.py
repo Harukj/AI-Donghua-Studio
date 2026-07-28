@@ -4,10 +4,10 @@ import os
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from ai.dreamforge_agent import DreamForgeAIAgent
+from plugins.ltx_automation import LTXAutomationAdapter
 from services.production_scheduler import ProductionScheduler
 from database.session import SessionLocal
-
+from ai.dreamforge_agent import DreamForgeAIAgent
 class TestDreamForgeAgentv09(unittest.TestCase):
 	def test_agent_autonomous_reasoning_and_scheduler_hud(self):
 		"""Ca kiểm thử tối thượng: Xác thực AI Agent tự trị ra quyết định xuất bản video và Scheduler cập nhật mốc HUD 28%"""
