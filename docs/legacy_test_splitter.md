@@ -1,4 +1,15 @@
+# Mở file tests/test_sprint6_splitter.py và ghi đè dải dòng từ 1 đến 5 bằng khối lệnh sau:
+import sys
+import os
+import unittest
+
+# Ép Python đưa thư mục src/ chuẩn doanh nghiệp vào danh sách tìm kiếm module
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
+
+# Thực hiện nạp chính xác thực thể từ file splitter.py nằm trong src/ai/scene_splitter/
+# (Vui lòng kiểm tra kỹ xem tên Class bên trong file splitter.py của bạn là SceneSplitterEngine hay tên khác)
 from ai.scene_splitter.splitter import SceneSplitterEngine
+
 
 def run_sprint6_architecture_test():
 	print("============ NGHIỆM THU KIẾN TRÚC MỚI SPRINT 6 (DATACLASS) ============")
