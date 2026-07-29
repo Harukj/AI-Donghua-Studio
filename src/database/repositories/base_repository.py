@@ -1,8 +1,9 @@
 from typing import TypeVar, Generic, Type, List, Optional
 from sqlalchemy.orm import Session
-from database.base import Base
+from src.database.base import Base
 
-# Khai báo kiểu dữ liệu Generic đại diện cho bất kỳ Model Database nào
+# ĐỊNH NGHĨA BIẾN KIỂU MẪU (VÁ TRIỆT ĐỂ LỖI T IS NOT DEFINED)
+# Khởi tạo T đại diện cho bất kỳ thực thể Model nào kế thừa từ lớp Base của SQLAlchemy
 T = TypeVar('T', bound=Base)
 
 class BaseRepository(Generic[T]):
@@ -12,7 +13,7 @@ class BaseRepository(Generic[T]):
 		self.model = model
 
 	def get_by_id(self, id: int) -> Optional[T]:
-		"""Truy vấn lấy ra một bản ghi dựa theo ID khóa chính"""
+		"""Truy vấn lấy ra một bản ghi thực thể theo ID khóa chính"""
 		return self.db.query(self.model).filter(self.model.id == id).first()
 
 	def get_all(self) -> List[T]:
@@ -26,12 +27,3 @@ class BaseRepository(Generic[T]):
 		self.db.commit()
 		self.db.refresh(db_obj)
 		return db_obj
-
-	def delete(self, id: int) -> bool:
-		"""Xóa bỏ một bản ghi khỏi bảng SQLite dữ liệu"""
-		db_obj = self.get_by_id(id)
-		if db_obj:
-			self.db.delete(db_obj)
-			self.db.commit()
-			return True
-		return False

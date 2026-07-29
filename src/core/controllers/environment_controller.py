@@ -1,5 +1,7 @@
 from sqlalchemy.orm import Session
-from services.environment_service import EnvironmentService
+from src.services.environment_service import EnvironmentService
+# Chèn thêm dòng này vào khu vực import đầu file environment_controller.py:
+from database.models.environment import EnvironmentModel 
 
 class EnvironmentController:
 	def __init__(self, db_session: Session):
