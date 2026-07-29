@@ -2,8 +2,8 @@ from typing import TypeVar, Generic, Type, List, Optional
 from sqlalchemy.orm import Session
 from src.database.base import Base
 
-# ĐỊNH NGHĨA BIẾN KIỂU MẪU (VÁ TRIỆT ĐỂ LỖI T IS NOT DEFINED)
-# Khởi tạo T đại diện cho bất kỳ thực thể Model nào kế thừa từ lớp Base của SQLAlchemy
+# ĐỊNH NGHĨA BIẾN KIỂU MẪU CHUẨN KIẾN TRÚC ENTERPRISE
+# Ép buộc sử dụng dấu bằng '=' giải phóng hoàn toàn lỗi gạch ngang phép trừ của Pylance
 T = TypeVar('T', bound=Base)
 
 class BaseRepository(Generic[T]):
