@@ -1,5 +1,5 @@
 import customtkinter as ctk
-from gui.character.character_window import CharacterWindow
+from gui.character.character_form import CharacterForm
 
 class Dashboard(ctk.CTkFrame):
 	def __init__(self, parent):
@@ -82,45 +82,45 @@ class Dashboard(ctk.CTkFrame):
 			widget.pack_forget()
 
 		if category_name == "Assets":
-			from gui.asset.asset_browser_window import AssetBrowserWindow
+			from src.gui.asset.asset_browser_window import AssetBrowserWindow
 			# Khởi tạo và hiển thị trình quản lý tài nguyên tập trung chuẩn Unity
 			self.asset_browser_view = AssetBrowserWindow(self.content_frame)
 			self.asset_browser_view.pack(fill="both", expand=True, padx=10, pady=10)
 
 		if category_name == "Project":
-			from gui.project.production_dashboard import ProductionDashboard
+			from src.gui.project.production_dashboard import ProductionDashboard
 			self.project_view = ProductionDashboard(self.content_frame)
 			self.project_view.pack(fill="both", expand=True, padx=10, pady=10)
 	
 		elif category_name == "Novel":
-			from gui.novel.novel_window import NovelWindow
+			from src.gui.novel.novel_window import NovelWindow
 			self.novel_view = NovelWindow(self.content_frame)
 			self.novel_view.pack(fill="both", expand=True, padx=10, pady=10)
 
 				# 2. Tìm khối điều hướng cũ và sửa lại định tuyến nạp cửa sổ mới:
 		elif category_name == "Timeline Editor":
-			from gui.timeline.timeline_editor_window import TimelineEditorWindow
+			from src.gui.timeline.timeline_editor_window import TimelineEditorWindow
 			self.timeline_view = TimelineEditorWindow(self.content_frame)
 			self.timeline_view.pack(fill="both", expand=True, padx=10, pady=10)
 			
 		elif category_name == "Storyboard":
-			from gui.storyboard.storyboard_window import StoryboardWindow
+			from src.gui.storyboard.storyboard_window import StoryboardWindow
 			self.storyboard_view = StoryboardWindow(self.content_frame)
 			self.storyboard_view.pack(fill="both", expand=True, padx=10, pady=10)
 
 		elif category_name == "Environment":
-			from gui.environment.environment_window import EnvironmentWindow
+			from src.gui.environment.environment_window import EnvironmentWindow
 			self.environment_view = EnvironmentWindow(self.content_frame)
 			self.environment_view.pack(fill="both", expand=True, padx=10, pady=10)
 
 		elif category_name == "Render Queue":
-			from gui.render.render_queue_window import RenderQueueWindow
+			from src.gui.render.render_queue_window import RenderQueueWindow
 			# Nhúng giao diện hàng đợi kết xuất Clip hoạt hình vào khung nội dung chính
 			self.render_queue_view = RenderQueueWindow(self.content_frame)
 			self.render_queue_view.pack(fill="both", expand=True, padx=10, pady=10)
 
 		elif category_name == "Export":
-			from gui.export.export_window import ExportWindow
+			from src.gui.export.export_window import ExportWindow
 			# Khởi tạo và hiển thị phân hệ cấu hình xuất bản phim lên YouTube
 			self.export_view = ExportWindow(self.content_frame)
 			self.export_view.pack(fill="both", expand=True, padx=10, pady=10)

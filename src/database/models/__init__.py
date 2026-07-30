@@ -1,15 +1,9 @@
-from database.models.asset import AssetModel
-from database.models.asset_component import AssetComponentModel
-from database.models.audio import AudioModel
-from database.models.camera import CameraModel
-from database.models.chapter import ChapterModel
-from database.models.character import CharacterModel
-from database.models.dependency import CharacterDependencyModel
-from database.models.environment import EnvironmentModel
-from database.models.episode import EpisodeModel
-from database.models.project import ProjectModel
-from database.models.shot import ShotModel
-from database.models.storyboard import StoryboardSceneModel
-from database.models.version import AssetVersionModel
-from database.models.video import VideoModel
-from database.models.episode import EpisodeModel
+# Mở file src/database/models/__init__.py và dán đè toàn bộ bằng nội dung nạp tương đối này:
+
+from .episode import EpisodeModel
+from .shot import ShotModel
+from .asset_component import AssetComponentModel
+from .environment import EnvironmentModel
+
+# Đóng băng danh mục thực thể bảo vệ an toàn tuyệt đối cho luồng nạp của SQLAlchemy
+__all__ = ["EpisodeModel", "ShotModel", "AssetModel", "EnvironmentModel"]

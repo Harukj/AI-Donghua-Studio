@@ -1,8 +1,7 @@
-# GUI Package
-# Thêm vào cuối hàm __init__(self) của file gui/main_window.py:
+# Mở file src/gui/__init__.py và dán đè toàn bộ bằng nội dung export sạch này:
 
-# Khởi tạo đối tượng Dashboard mới tạo ở trên
-self.dashboard = Dashboard(self)
-
-# Định vị vị trí hiển thị ở cột số 1 (bên cạnh thanh Sidebar ở cột 0)
-self.dashboard.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
+from src.gui.main_window import MainWindow
+from src.gui.dashboard import Dashboard
+from src.gui.sidebar import Sidebar
+from src.gui.statusbar import StatusBar
+__all__ = ["MainWindow", "Dashboard", "Sidebar", "StatusBar"]
