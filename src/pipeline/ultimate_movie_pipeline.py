@@ -1,17 +1,17 @@
 import os
 import time
 from sqlalchemy.orm import Session
-from core.logger import studio_logger
-from ai.ai_director import AIDirectorEngine
-from ai.prompt_builder.builder_v3 import PromptBuilder30
-from core.episode_builder import EpisodeBuilder
-from plugins.whisper.whisper_plugin import OpenAIWhisperPlugin
+from src.core.logger import studio_logger
+from src.ai.ai_director import AIDirectorEngine
+from src.ai.prompt_builder.builder_v3 import PromptBuilder30
+from src.core.episode_builder import EpisodeBuilder
+from src.plugins.whisper.whisper_plugin import OpenAIWhisperPlugin
 
 class UltimateMoviePipeline:
 	def __init__(self, db_session: Session):
 		"""Khởi tạo cỗ máy điều phối chuỗi dây chuyền sản xuất phim tự động tối thượng"""
 		self.db = db_session
-		self.director_ai = AIDirectorEngine()
+		self.director_ai = AIDirectorEngine(db_session=db_session)
 		self.prompt_mixer = PromptBuilder30(db_session)
 		self.whisper_ai = OpenAIWhisperPlugin()
 
