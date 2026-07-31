@@ -13,7 +13,7 @@ from src.ai.analyzer.dialogue_detector import DialogueDetector
 from src.ai.analyzer.scene_object import Scene
 
 # Import các model cơ sở dữ liệu
-from src.database.models.novel import NovelModel
+from database.models.asset_component import AssetComponentModel
 from src.database.models.storyboard import StoryboardSceneModel
 
 class NovelPipeline:

@@ -1,0 +1,3 @@
+2026-07-31 13:58:11 [INFO] -> [EPISODE BUILDER] Kích hoạt luồng đóng gói Tập phim 01...
+2026-07-31 13:58:11 [INFO] ->  -> Danh sách phân cảnh tích hợp: ['scene 01', 'scene 02', 'scene 03']
+2026-07-31 13:58:13 [INFO] -> [SUCCESS] Quy trình đóng gói hoàn tất. Tệp phim dài sẵn sàng: 'projects\ToanDanTaoPhong\exports\Episode01.mp4'
