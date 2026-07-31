@@ -209,3 +209,30 @@
 2026-07-31 15:00:14 [INFO] -> Prompt Builder: Đã áp dụng mẫu [ltx_dialogue] tự động cho [SCENE_01_001]
 2026-07-31 15:00:14 [INFO] -> [ASSET MANAGER] Khởi tạo thành công cây thư mục lưu trữ: projects\ToanDanTaoPhong_Test\renders\scenes
 2026-07-31 15:00:14 [INFO] -> [ASSET MANAGER] Đã đồng bộ cú máy vật lý -> [projects\ToanDanTaoPhong_Test\renders\scenes\Shot01.mp4]
+2026-07-31 15:02:41 [INFO] -> [API] ➔ [1/5] open_project: Khai hỏa dự án phim 'ToanDanTaoPhong'
+2026-07-31 15:02:41 [INFO] -> [API] ➔ [2/5] current_scene: Đóng băng không gian Cảnh phim ID: [1501]
+2026-07-31 15:02:41 [INFO] -> [API] ➔ [3/5] get_character: Nạp Token diện mạo cho nhân vật 'To Moc'
+2026-07-31 15:02:41 [INFO] -> [API] ➔ [4/5] build_prompt: Đang xếp chồng các lớp Component Token...
+2026-07-31 15:02:41 [INFO] -> [API] ➔ [5/5] render: Đang đẩy payload sang hàng đợi GPU phần cứng...
+2026-07-31 15:02:41 [INFO] -> [SDK ENGINE] Plugin [LTX_STUDIO_AUTOMATION] đã được kích hoạt trên hệ thống.
+2026-07-31 15:02:41 [INFO] -> [LTX_STUDIO_AUTOMATION] [GPU ENGAGED] Đang đẩy chỉ thị Render cho scene_01...
+2026-07-31 15:02:41 [INFO] -> [SDK ENGINE] Plugin [LTX_STUDIO_AUTOMATION] đã tạm dừng kích hoạt.
+2026-07-31 15:02:41 [INFO] -> [SCENE INTEL] Đang phân rã gói dữ liệu cấu trúc YAML của Đạo diễn AI...
+2026-07-31 15:02:41 [INFO] ->  -> [✓] Tiêu đề cảnh: Gặp nhau tại học viện
+2026-07-31 15:02:41 [INFO] ->  -> [✓] Trạng thái cảm xúc phát hiện: ['Bình tĩnh', 'Mong chờ']
+2026-07-31 15:02:41 [INFO] ->  -> [✓] Danh sách góc máy chỉ định: ['Establishing Shot', 'Medium Shot', 'Close Up']
+2026-07-31 15:02:41 [INFO] -> [LTX_STUDIO_AUTOMATION] Đang thiết lập cấu hình khóa bảo mật API Stream...
+2026-07-31 15:02:41 [INFO] -> [SDK ENGINE] Plugin [LTX_STUDIO_AUTOMATION] đã được kích hoạt trên hệ thống.
+2026-07-31 15:02:41 [INFO] -> [LTX_STUDIO_AUTOMATION] [GPU ENGAGED] Đang đẩy chỉ thị Render cho shot_1501...
+2026-07-31 15:02:41 [INFO] -> [SHOT PLANNER] Đang khởi chạy ma trận phân rã góc máy cho Scene ID: [701]
+2026-07-31 15:02:41 [INFO] ->  -> Khởi tạo thành công: [Shot 01] Ngữ cảnh: ESTABLISHING | Thời lượng: 5.0s
+2026-07-31 15:02:41 [INFO] ->  -> Khởi tạo thành công: [Shot 02] Ngữ cảnh: DOOR OPENING | Thời lượng: 4.0s
+2026-07-31 15:02:41 [INFO] ->  -> Khởi tạo thành công: [Shot 03] Ngữ cảnh: REACTION | Thời lượng: 2.0s
+2026-07-31 15:02:41 [INFO] ->  -> Khởi tạo thành công: [Shot 04] Ngữ cảnh: DIALOGUE | Thời lượng: 3.0s
+2026-07-31 15:02:41 [INFO] -> [CAMERA PLANNER] Đã ghim thông số: Khung hình=Wide Shot, Ống kính=24mm, Chuyển động=Slow Push
+2026-07-31 15:02:41 [INFO] -> [LIGHTING PLANNER] Đã ghim bộ lọc: Morning (Volumetric with Sun Rays)
+2026-07-31 15:02:41 [INFO] -> [AI DIRECTOR] Đang bóc tách chỉ đạo nghệ thuật cho Cú máy số 01...
+2026-07-31 15:02:41 [INFO] -> Prompt Builder: Đã áp dụng mẫu [ltx_action] tự động cho [SCENE_01_002]
+2026-07-31 15:02:41 [INFO] -> Prompt Builder: Đã áp dụng mẫu [ltx_dialogue] tự động cho [SCENE_01_001]
+2026-07-31 15:02:41 [INFO] -> [ASSET MANAGER] Khởi tạo thành công cây thư mục lưu trữ: projects\ToanDanTaoPhong_Test\renders\scenes
+2026-07-31 15:02:41 [INFO] -> [ASSET MANAGER] Đã đồng bộ cú máy vật lý -> [projects\ToanDanTaoPhong_Test\renders\scenes\Shot01.mp4]

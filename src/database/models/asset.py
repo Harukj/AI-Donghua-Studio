@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, Text, DateTime
 from datetime import datetime
 from src.database.base import Base
-
+from sqlalchemy.orm import relationship
 class AssetModel(Base):
 	__tablename__ = "assets" # Đổi tên bảng thành 'assets' chuẩn theo thiết kế mới
 
