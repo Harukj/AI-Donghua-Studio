@@ -1,13 +1,13 @@
 from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey
 from datetime import datetime
-from database.base import Base
-
+from src.database.base import Base
+from sqlalchemy.orm import relationship
 class CharacterDependencyModel(Base):
 	__tablename__ = "character_dependencies" # Khớp chính xác phân hệ Sprint 9 của ChatGPT
 
 	id = Column(Integer, primary_key=True, autoincrement=True)
 	character_id = Column(Integer, nullable=False)              # Liên kết với ID của nhân vật trong Character Bible
-	
+	character = relationship('CharacterModel', back_populates='dependencies')
 	# Đóng gói bộ 6 thuộc tính phụ thuộc cơ học của Unreal Engine style
 	hair = Column(String(100), nullable=True, default="black hair")
 	face = Column(String(100), nullable=True, default="handsome face")
