@@ -17,7 +17,7 @@ class ExportWindow(ctk.CTkFrame):
 		self.title_lbl = ctk.CTkLabel(self.left_panel, text="YouTube Export Manager", font=ctk.CTkFont(size=18, weight="bold"))
 		self.title_lbl.pack(padx=20, pady=15, anchor="w")
 		
-		self.episode_lbl = ctk.CTkLabel(self.left_panel, text="Target: Episode 01", font=ctk.CTkFont(size=14, weight="medium", slant="italic"), text_color="gray")
+		self.episode_lbl = ctk.CTkLabel(self.left_panel, text="Target: Episode 01", font=ctk.CTkFont(size=14, weight="bold", slant="italic"), text_color="gray")
 		self.episode_lbl.pack(padx=20, pady=(0, 10), anchor="w")
 		
 		# Khung cuộn chứa biểu mẫu nhập liệu metadata
