@@ -4,7 +4,7 @@ from src.database.base import Base
 
 class CharacterModel(Base):
 	__tablename__ = "characters" # Khớp chính xác phân khu Character Bible của DreamForge Engine
-
+	__table_args__ = {'extend_existing': True}
 	id = Column(Integer, primary_key=True, autoincrement=True)
 	project_id = Column(String(100), nullable=False, default="default") # Cô lập tài nguyên theo từng dự án
 	name = Column(String(100), nullable=False)                 # Tên nhân vật (Ví dụ: Tô Mộc)
