@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Text, DateTime
 from datetime import datetime
-from database.base import Base
+from src.database.base import Base
 
 class CharacterModel(Base):
 	__tablename__ = "characters" # Khớp chính xác phân khu Character Bible của DreamForge Engine

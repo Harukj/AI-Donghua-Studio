@@ -3,13 +3,13 @@ from sqlalchemy import Column, Integer, String, Text, Float, DateTime
 from sqlalchemy.orm import relationship 
 from datetime import datetime
 from src.database.base import Base
-
+from sqlalchemy import Column, Integer, String, Text, Float, DateTime, ForeignKey # Nạp bổ sung ForeignKey
 class ShotModel(Base):
 	__tablename__ = "shots"
 	__table_args__ = {'extend_existing': True}
 
 	id = Column(Integer, primary_key=True, autoincrement=True)
-	scene_id = Column(Integer, nullable=False)
+	scene_id = Column(Integer, ForeignKey('episodes.id'), nullable=False)
 	index = Column(Integer, nullable=False) # Thứ tự cú máy trong phân cảnh
 	context_type = Column(String(50), default="establishing") # establishing, walking, reaction...
 

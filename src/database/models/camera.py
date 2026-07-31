@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime
 from datetime import datetime
-from database.base import Base
+from src.database.base import Base
 
 class CameraModel(Base):
 	__tablename__ = "cameras" # Định danh bảng 'cameras' chuẩn kiến trúc v1.0
