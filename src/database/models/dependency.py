@@ -20,6 +20,6 @@ class CharacterDependencyModel(Base):
 	locked_seed = Column(String(50), nullable=False, default="23561")
 	
 	created_at = Column(DateTime, default=datetime.utcnow)
-
+	character = relationship('CharacterModel', back_populates='dependencies')
 	def __repr__(self):
 		return f"<CharacterDependency(char_id={self.character_id}, costume='{self.costume}', weapon='{self.weapon}')>"

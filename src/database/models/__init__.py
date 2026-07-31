@@ -4,6 +4,17 @@ from .episode import EpisodeModel
 from .shot import ShotModel
 from .asset_component import AssetComponentModel
 from .environment import EnvironmentModel
+from .asset import AssetModel
+from .character import CharacterModel  # Bảo đảm nạp đúng thực thể nhân vật
+from .dependency import CharacterDependencyModel  # TIÊM BỔ SUNG: Nạp tệp phụ thuộc nhân vật
 
-# Đóng băng danh sách thực thể sản xuất sạch, loại bỏ hoàn toàn các Class mồ côi cũ
-__all__ = ["EpisodeModel", "ShotModel", "AssetComponentModel", "EnvironmentModel"]
+# Đóng băng danh sách thực thể sản xuất sạch
+__all__ = [
+    "EpisodeModel", 
+    "ShotModel", 
+    "AssetComponentModel", 
+    "EnvironmentModel", 
+    "AssetModel",
+    "CharacterModel",
+    "CharacterDependencyModel"
+]
