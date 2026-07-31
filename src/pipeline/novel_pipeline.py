@@ -8,7 +8,7 @@ from ai.dreamforge_agent import DreamForgeAIAgent as CharacterDetector
 from ai.dreamforge_agent import DreamForgeAIAgent as EnvironmentDetector
 from src.ai.analyzer.prop_detector import PropDetector
 from src.ai.analyzer.dialogue_detector import DialogueDetector
-
+from database.models.novel import NovelModel
 # Import mô hình Class Scene Object v1.0
 from src.ai.analyzer.scene_object import Scene
 
