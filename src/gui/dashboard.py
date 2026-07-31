@@ -1,6 +1,6 @@
 import customtkinter as ctk
 from gui.character.character_form import CharacterForm
-
+from src.gui.timeline.timeline_editor_window import TimelineEditorWindow 
 class Dashboard(ctk.CTkFrame):
 	def __init__(self, parent):
 		super().__init__(parent, fg_color="transparent")
@@ -57,7 +57,7 @@ class Dashboard(ctk.CTkFrame):
 		self.status_label = ctk.CTkLabel(
 			self.content_frame, 
 			text="Chào mừng bạn đến với AI Donghua Studio.\nVui lòng chọn một danh mục ở thanh bên để bắt đầu làm việc.", 
-			font=ctk.CTkFont(size=14, italic=True)
+			font=ctk.CTkFont(size=14, slant="italic")
 		)
 		self.status_label.pack(expand=True)
 		

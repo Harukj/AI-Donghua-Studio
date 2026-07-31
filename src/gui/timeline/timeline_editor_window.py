@@ -74,8 +74,7 @@ class TimelineEditorWindow(ctk.CTkFrame):
 			"subtitle": "Tô Mộc bước vào học viện Long Dạng."
 		})
 
-		self.create_shot_timeline_block(scene1_frame, shot_name="shot2", duration_val=3, color="#E65100",
-										meta={"path": "projects/cache/shot_10102.mp4", "prompt": "3D Donghua, close up, Lam Uyen looking surprised", "duration": "3.0", "camera": "Close-up"})
+		self.create_shot_timeline_block(scene1_frame, shot_name="shot1", duration_val=4, color="#E65100")
 
 		# --- PHÂN CẢNH 2 ---
 		scene2_frame = ctk.CTkFrame(self.timeline_scroll, fg_color="transparent")

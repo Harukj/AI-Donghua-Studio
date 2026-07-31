@@ -3,8 +3,8 @@ from tkinter import messagebox
 import threading
 import time
 
-from ai.scene_splitter.shot import Shot
-from core.episode_builder import EpisodeBuilder
+from src.ai.scene_splitter.shot import Shot
+from src.core.episode_builder import EpisodeBuilder
 
 class RenderQueueWindow(ctk.CTkFrame):
 	def __init__(self, parent):
@@ -17,7 +17,7 @@ class RenderQueueWindow(ctk.CTkFrame):
 		self.title_lbl = ctk.CTkLabel(self, text="LTX Queue 2.0", font=ctk.CTkFont(size=18, weight="bold"))
 		self.title_lbl.pack(padx=20, pady=15, anchor="w")
 		
-		self.subtitle_lbl = ctk.CTkLabel(self, text="Trình quản lý hàng đợi kết xuất tự động cấp độ Cú máy (Shot-level Render)", font=ctk.CTkFont(size=13, italic=True), text_color="gray")
+		self.subtitle_lbl = ctk.CTkLabel(self, text="Trình quản lý hàng đợi kết xuất tự động cấp độ Cú máy (Shot-level Render)", font=ctk.CTkFont(size=13, slant="italic"), text_color="gray")
 		self.subtitle_lbl.pack(padx=20, pady=(0, 10), anchor="w")
 
 		# Khung cuộn chứa danh sách các Shot xếp hàng (Giống hệt thiết kế hình ảnh)
@@ -75,7 +75,7 @@ class RenderQueueWindow(ctk.CTkFrame):
 		self.is_rendering = True
 		completed_paths = []
 
-		from core.episode_builder import EpisodeBuilder
+		from src.core.episode_builder import EpisodeBuilder
 		
 		for shot in self.mock_shots:
 			widgets = self.shot_widgets[shot.id]

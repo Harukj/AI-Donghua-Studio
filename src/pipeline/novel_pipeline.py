@@ -2,19 +2,19 @@ import os
 from sqlalchemy.orm import Session
 
 # Import các bộ quét thực thể từ analyzer
-from ai.analyzer.chapter_analyzer import ChapterAnalyzer
-from ai.analyzer.scene_analyzer import SceneAnalyzer
-from ai.analyzer.character_detector import CharacterDetector
-from ai.analyzer.environment_detector import EnvironmentDetector
-from ai.analyzer.prop_detector import PropDetector
-from ai.analyzer.dialogue_detector import DialogueDetector
+from src.ai.analyzer.chapter_analyzer import ChapterAnalyzer
+from src.ai.analyzer.scene_analyzer import SceneAnalyzer
+from ai.dreamforge_agent import DreamForgeAIAgent as CharacterDetector
+from ai.dreamforge_agent import DreamForgeAIAgent as EnvironmentDetector
+from src.ai.analyzer.prop_detector import PropDetector
+from src.ai.analyzer.dialogue_detector import DialogueDetector
 
 # Import mô hình Class Scene Object v1.0
-from ai.analyzer.scene_object import Scene
+from src.ai.analyzer.scene_object import Scene
 
 # Import các model cơ sở dữ liệu
-from database.models.novel import NovelModel
-from database.models.storyboard import StoryboardSceneModel
+from src.database.models.novel import NovelModel
+from src.database.models.storyboard import StoryboardSceneModel
 
 class NovelPipeline:
 	def __init__(self, db_session: Session):
@@ -55,7 +55,7 @@ class NovelPipeline:
 			environments = [env_json["environment"]]
 			
 			# --- BƯỚC 7: ASSET DETECTOR NÂNG CẤP ĐỒNG BỘ ---
-			from ai.analyzer.asset_detector import AssetDetector
+			from src.ai.analyzer.asset_detector import AssetDetector
 			asset_detector = AssetDetector(scene_content)
 			detected_assets = asset_detector.detect_and_sync_assets()
 			
@@ -87,7 +87,7 @@ class NovelPipeline:
 			scene_object.style = "Chinese Donghua 3D animation style"
 			
 			# KÍCH HOẠT BỘ TRỘN 7 THÀNH PHẦN THƯƠNG MẠI
-			from services.prompt_engine import PromptEngine
+			from src.services.prompt_engine import PromptEngine
 			prompt_engine = PromptEngine(self.db)
 			final_ltx_prompt = prompt_engine.generate_from_scene_object(scene_object)
 			
