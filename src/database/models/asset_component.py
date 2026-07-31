@@ -6,6 +6,7 @@ from src.database.base import Base
 
 class AssetComponentModel(Base):
 	__tablename__ = "asset_components"
+	__table_args__ = {'extend_existing': True}
 
 	id = Column(Integer, primary_key=True, autoincrement=True)
 	asset_id = Column(Integer, nullable=False) # ID liên kết trỏ về thực thể cha (Ví dụ: ID nhân vật Tô Mộc)
