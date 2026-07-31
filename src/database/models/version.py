@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey
 from datetime import datetime
-from database.base import Base
+from src.database.base import Base
 
 class AssetVersionModel(Base):
 	__tablename__ = "asset_versions" # Khớp chính xác phân hệ Version Manager v1.0
@@ -16,6 +16,7 @@ class AssetVersionModel(Base):
 	
 	file_path = Column(String(255), nullable=False)            # Đường dẫn tệp tin ảnh/vật lý của riêng phiên bản này
 	created_at = Column(DateTime, default=datetime.utcnow)
-
+	asset = relationship('AssetModel', back_populates='versions')
+	
 	def __repr__(self):
 		return f"<AssetVersion(asset_id={self.asset_id}, version='{self.version_number}')>"
