@@ -1,10 +1,10 @@
 from sqlalchemy import Column, Integer, String, DateTime
 from datetime import datetime
-from database.base import Base
-
+from src.database.base import Base
+from sqlalchemy.orm import relationship
 class EnvironmentModel(Base):
 	__tablename__ = "environments" # Khớp chính xác phân khu dữ liệu v1.0
-
+	__table_args__ = {'extend_existing': True}
 	id = Column(Integer, primary_key=True, autoincrement=True)
 	project_id = Column(String(100), nullable=False, default="default") # Cô lập dữ liệu theo từng Project
 	name = Column(String(150), nullable=False)                 # Tên nhận diện địa danh (Ví dụ: Học viện Long Dạng)
@@ -19,6 +19,7 @@ class EnvironmentModel(Base):
 
 	image_path = Column(String(255), nullable=True)             # Đường dẫn file ảnh concept tham chiếu
 	created_at = Column(DateTime, default=datetime.utcnow)
+	shots = relationship('ShotModel', back_populates='environment')
 
 	def __repr__(self):
 		return f"<EnvironmentModel(id={self.id}, name='{self.name}', environment='{self.environment}')>"
