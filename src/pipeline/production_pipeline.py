@@ -1,8 +1,7 @@
 import os
 from sqlalchemy.orm import Session
-from database.models.novel import NovelModel
-from database.models.storyboard import StoryboardSceneModel
-from pipeline.novel_pipeline import NovelPipeline
+from src.database.models.novel import NovelModel
+from src.pipeline.novel_pipeline import NovelPipeline
 
 class ProductionPipeline:
 	def __init__(self, db_session: Session):

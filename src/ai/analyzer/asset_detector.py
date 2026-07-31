@@ -1,7 +1,6 @@
 import re
-from database.session import SessionLocal
-from database.models.storyboard import StoryboardSceneModel
-from core.logger import studio_logger
+from src.database.session import SessionLocal
+from src.core.logger import studio_logger
 
 class AssetDetector:
 	def __init__(self, scene_content: str):

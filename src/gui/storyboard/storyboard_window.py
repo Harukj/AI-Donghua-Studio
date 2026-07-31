@@ -1,7 +1,7 @@
 import customtkinter as ctk
 from tkinter import messagebox
-from database.session import SessionLocal
-from database.repositories.storyboard_repository import StoryboardRepository
+from src.database.session import SessionLocal
+from src.database.repositories.storyboard_repository import StoryboardRepository
 
 class StoryboardWindow(ctk.CTkFrame):
 	def __init__(self, parent):
@@ -49,7 +49,7 @@ class StoryboardWindow(ctk.CTkFrame):
 		self.detail_title.pack(padx=20, pady=15, anchor="w")
 		
 		# Nhúng trực tiếp biểu mẫu cấu hình StoryboardForm vào vùng nhìn bên phải
-		from gui.storyboard.storyboard_form import StoryboardForm
+		from src.gui.storyboard.storyboard_form import StoryboardForm
 		self.storyboard_form = StoryboardForm(self.right_frame_layout_container(), approve_callback=self.approve_current_scene)
 		# Tạm thời ẩn form đi, chỉ hiển thị khi người dùng chọn scene thực tế
 		
@@ -66,22 +66,22 @@ class StoryboardWindow(ctk.CTkFrame):
 		self.refresh_scenes_list()
 
 	def initialize_mock_storyboard_data(self):
-		"""Tự động chèn kịch bản phân cảnh mẫu của ChatGPT vào file SQLite nếu bảng trống"""
-		from database.models.storyboard import StoryboardSceneModel
-		if self.db.query(StoryboardSceneModel).count() == 0:
+		"""Tự động chèn kịch bản tập phim mẫu vào file SQLite nếu bảng trống"""
+		from database.models.episode import EpisodeModel
+		if self.db.query(EpisodeModel).count() == 0:
 			mock_scenes = [
 				{"index": 1, "summary": "Tô Mộc mở mắt."},
 				{"index": 2, "summary": "Giáo viên bước vào."},
 				{"index": 3, "summary": "Cả lớp kinh ngạc."}
 			]
-			for idx, scene in enumerate(mock_scenes, start=1):
-				self.storyboard_repo.create({
-					"chapter_id": 1,
-					"index": scene["index"],
-					"summary": scene["summary"],
-					"project_id": "ToanDanTaoPhong",
-					"status": "draft"
-				})
+		for idx, scene in enumerate(mock_scenes, start=1):
+			self.storyboard_repo.create({
+				"project_id": "ToanDanTaoPhong",
+				"episode_number": scene["index"],
+				"title": f"Tập phim số {scene['index']}",
+				"summary": scene["summary"],
+				"status": "In Progress"
+			})
 
 	def refresh_scenes_list(self):
 		"""Tải dữ liệu thật từ bảng 'scenes' lên UI theo đúng cấu trúc chuỗi kịch bản của ChatGPT"""

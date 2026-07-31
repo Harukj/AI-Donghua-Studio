@@ -11,10 +11,9 @@ from src.ai.analyzer.dialogue_detector import DialogueDetector
 from database.models.novel import NovelModel
 # Import mô hình Class Scene Object v1.0
 from src.ai.analyzer.scene_object import Scene
-
+from database.models.episode import EpisodeModel
 # Import các model cơ sở dữ liệu
 from database.models.asset_component import AssetComponentModel
-from src.database.models.storyboard import StoryboardSceneModel
 
 class NovelPipeline:
 	def __init__(self, db_session: Session):
@@ -98,16 +97,11 @@ class NovelPipeline:
 			processed_scenes.append(scene_object)
 			
 			# --- BƯỚC 9: DATABASE (LƯU TRỮ TỪNG PHÂN CẢNH) ---
-			db_scene = StoryboardSceneModel(
-				scene_number=scene_object.id,
-				raw_text=scene_content,
-				character_name=", ".join(scene_object.characters),
-				environment_name=", ".join(scene_object.environments),
-				time_frame="Day",
-				mood_atmosphere="Epic",
-				action_description=scene_object.summary,
-				generated_prompt=final_ltx_prompt,
-				project_id=project_id
+			db_scene = EpisodeModel(
+			project_id=project_id,
+			episode_number=scene_object.id,
+			title=f"Phân cảnh số {scene_object.id}",
+			summary=getattr(scene_object, 'summary', 'Tóm tắt phân cảnh tự động')
 			)
 			self.db.add(db_scene)
 
