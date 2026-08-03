@@ -22,6 +22,3 @@ class ShotModel(Base):
 	audio_path = Column(String(255), nullable=True) # Tệp giọng lồng tiếng nhân vật
 
 	prompt = Column(Text, nullable=False) # Chuỗi câu lệnh trộn ma trận
-
-	# ĐƯA VÀO ĐÚNG TẦM VỰC CLASS: Khai báo mối quan hệ liên kết ngược với bảng Tập phim
-	episode = relationship('EpisodeModel', back_populates='shots', foreign_keys='ShotModel.scene_id')
