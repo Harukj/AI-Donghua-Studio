@@ -4,7 +4,8 @@ from src.database.base import Base
 from sqlalchemy.orm import relationship
 class CharacterDependencyModel(Base):
 	__tablename__ = "character_dependencies" # Khớp chính xác phân hệ Sprint 9 của ChatGPT
-
+	__table_args__ = {'extend_existing': True}
+	
 	id = Column(Integer, primary_key=True, autoincrement=True)
 	character_id = Column(Integer, nullable=False)              # Liên kết với ID của nhân vật trong Character Bible
 	character = relationship('CharacterModel', back_populates='dependencies')
