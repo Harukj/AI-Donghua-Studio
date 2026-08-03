@@ -4,7 +4,8 @@ from src.database.base import Base
 from sqlalchemy.orm import relationship
 class AssetModel(Base):
 	__tablename__ = "assets" # Đổi tên bảng thành 'assets' chuẩn theo thiết kế mới
-
+	__table_args__ = {'extend_existing': True}
+	
 	id = Column(Integer, primary_key=True, autoincrement=True)
 	project_id = Column(String(100), nullable=False)           # Định danh dự án để cô lập tài nguyên
 	type = Column(String(50), nullable=False)                  # Phân loại: 'characters', 'environment', 'props', 'audio', 'fx'
