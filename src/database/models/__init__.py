@@ -6,7 +6,7 @@ from .asset import AssetModel
 from .character import CharacterModel
 from .dependency import CharacterDependencyModel
 
-# Đóng băng danh sách thực thể sản xuất chính thống, loại bỏ vĩnh viễn các file ma cũ
+# Đóng băng danh sách thực thể sản xuất sạch, triệt tiêu vĩnh viễn các khai báo ma trùng lặp
 __all__ = [
 	"EpisodeModel", 
 	"ShotModel", 
