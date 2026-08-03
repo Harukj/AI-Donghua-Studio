@@ -1,21 +1,18 @@
 import unittest
 import sys
 import os
-# Ép hệ thống nạp toàn bộ danh mục thực thể sạch để đăng ký đầy đủ vào SQLAlchemy Registry
-import database.models  # Ép nạp toàn bộ danh mục __all__ sạch chúng ta vừa cấu hình ở Bước 1
-from database.models.episode import EpisodeModel
-from database.models.shot import ShotModel
-from src.services.package_generator import EpisodePackageGenerator
-
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+# 1. Ép đường dẫn hệ thống đi qua gói src cô lập
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-from src.database.base import Base
-from src.database.models.episode import EpisodeModel
-from src.database.models.shot import ShotModel
-from src.services.package_generator import EpisodePackageGenerator
+# 2. CHỈ NẠP ĐÍCH DANH THỰC THỂ CẦN DÙNG (Tuyệt đối không dùng lệnh import package tổng quát)
+from database.base import Base
+from database.models.episode import EpisodeModel
+from database.models.shot import ShotModel
+from services.package_generator import EpisodePackageGenerator
+
 
 class TestEpisodePackageSubsystem(unittest.TestCase):
 	def setUp(self):
