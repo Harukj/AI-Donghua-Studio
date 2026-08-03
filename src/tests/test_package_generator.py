@@ -1,6 +1,12 @@
 import unittest
 import sys
 import os
+# Ép hệ thống nạp toàn bộ danh mục thực thể sạch để đăng ký đầy đủ vào SQLAlchemy Registry
+import database.models
+from database.models.episode import EpisodeModel
+from database.models.shot import ShotModel  # Giải phóng dứt điểm KeyError 'ShotModel'
+from src.services.package_generator import EpisodePackageGenerator
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
