@@ -2,17 +2,20 @@ import unittest
 import sys
 import os
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, clear_mappers # TIÊM HÀM GIẢI PHÓNG MAPPERS
 
 # 1. Ép đường dẫn đi qua phân khu src cô lập
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-# 2. ÉP NẠP TƯỜNG MINH TRỌN GÓI: Kích hoạt toàn bộ danh mục __all__ đăng ký vào SQLAlchemy Registry
-import database.models
+# 2. CƯỠNG ÉP TIÊU DIỆT CACHE REGISTRY MA: Xóa sạch bộ đệm mapper kẹt RAM chặng trước
+clear_mappers()
+
+# 3. Nạp tường minh danh mục thực thể sạch vào bộ nhớ mới tinh
 from database.base import Base
 from database.models.episode import EpisodeModel
 from database.models.shot import ShotModel
 from services.package_generator import EpisodePackageGenerator
+
 
 class TestEpisodePackageSubsystem(unittest.TestCase):
 	def setUp(self):
