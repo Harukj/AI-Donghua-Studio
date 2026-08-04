@@ -7,14 +7,11 @@ from sqlalchemy.orm import sessionmaker
 # 1. Ép đường dẫn hệ thống đi qua phân khu src chính thống bám sát PYTHONPATH gốc
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-# Ép bộ thông dịch nạp trực tiếp Class-Level bẻ gãy hoàn toàn cơ chế cache module của Python
+# 2. CƯỠNG ÉP NẠP CLASS TỪ ROOT: Đăng ký Metadata các bảng vào SQLAlchemy Registry toàn cục
 from src.database.models.shot import ShotModel
 from src.database.models.episode import EpisodeModel
-
-from database.base import Base
-from database.models.episode import EpisodeModel
-from database.models.shot import ShotModel  # GIẢI PHÓNG HOÀN TOÀN KEYERROR 'SHOTMODEL'
-from services.package_generator import EpisodePackageGenerator
+from src.services.package_generator import EpisodePackageGenerator
+from src.database.base import Base
 
 class TestEpisodePackageSubsystem(unittest.TestCase):
     def setUp(self):
