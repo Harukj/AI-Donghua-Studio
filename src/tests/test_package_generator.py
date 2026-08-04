@@ -1,18 +1,17 @@
 import unittest
 import sys
 import os
-import importlib  # TIÊM THƯ VIỆN NẠP CƯỠNG ÉP HỆ THỐNG
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-# 1. Ép đường dẫn đi qua phân khu src cô lập bám sát PYTHONPATH gốc
+# 1. Ép đường dẫn hệ thống đi qua phân khu src chính thống bám sát PYTHONPATH gốc
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-# 2. CƯỠNG ÉP PYTHON TÁI LẬP METADATA: Bẻ gãy hoàn toàn cơ chế cache mô-đun bảo thủ
-import database.models
-importlib.reload(database.models)  # Ép nạp lại để giải phóng dứt điểm KeyError 'ShotModel'
-
+# 2. NẠP TUỜNG MINH TRỰC TIẾP: Ép SQLAlchemy ghi nhận toàn bộ các bảng vào Metadata toàn cục
 from database.base import Base
+import database.models.shot       # Ép nạp file vật lý giải quyết triệt để KeyError 'ShotModel'
+import database.models.episode    # Ép nạp file vật lý đồng bộ mối quan hệ hai đầu
+
 from database.models.episode import EpisodeModel
 from database.models.shot import ShotModel
 from services.package_generator import EpisodePackageGenerator
