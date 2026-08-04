@@ -1,17 +1,21 @@
 import unittest
 import sys
 import os
+import importlib  # TIÊM THƯ VIỆN NẠP CƯỠNG ÉP TỐI CAO
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, clear_mappers # TIÊM HÀM GIẢI PHÓNG MAPPERS
 
-# 1. Ép đường dẫn hệ thống đi qua phân khu src chính thống bám sát PYTHONPATH gốc
+# 1. Ép đường dẫn hệ thống đi qua phân khu src chính thống bám sát PYTHONPATH
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-# 2. NẠP TUỜNG MINH TRỰC TIẾP: Ép SQLAlchemy ghi nhận toàn bộ các bảng vào Metadata toàn cục
-from database.base import Base
-import database.models.shot       # Ép nạp file vật lý giải quyết triệt để KeyError 'ShotModel'
-import database.models.episode    # Ép nạp file vật lý đồng bộ mối quan hệ hai đầu
+# 2. GIẢI PHÓNG TOÀN DIỆN REGISTRY: Xóa sạch bộ đệm mapper kẹt RAM chặng trước
+clear_mappers()
 
+# 3. CƯỠNG ÉP PYTHON RE-HYDRATION: Bẻ gãy hoàn toàn cơ chế cache module bảo thủ
+import database.models
+importlib.reload(database.models)  # Ép đọc lại file vật lý để giải phóng dứt điểm KeyError 'ShotModel'
+
+from database.base import Base
 from database.models.episode import EpisodeModel
 from database.models.shot import ShotModel
 from services.package_generator import EpisodePackageGenerator
