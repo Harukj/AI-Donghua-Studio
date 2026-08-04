@@ -7,10 +7,10 @@ from sqlalchemy.orm import sessionmaker
 # 1. Ép đường dẫn hệ thống đi qua phân khu src chính thống bám sát PYTHONPATH gốc
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-# 2. NẠP TUỜNG MINH CẤP CLASS: Kích hoạt trực tiếp Class vào SQLAlchemy Registry toàn cục
+# 2. NẠP TƯỜNG MINH CẤP CLASS: Kích hoạt trực tiếp Class vào SQLAlchemy Registry toàn cục
 from database.base import Base
 from database.models.episode import EpisodeModel
-from database.models.shot import ShotModel  # ÉP NẠP THỰC THỂ CLASS GIẢI QUYẾT TRIỆT ĐỂ KEYERROR
+from database.models.shot import ShotModel  # GIẢI PHÓNG HOÀN TOÀN KEYERROR 'SHOTMODEL'
 from services.package_generator import EpisodePackageGenerator
 
 class TestEpisodePackageSubsystem(unittest.TestCase):
@@ -18,14 +18,14 @@ class TestEpisodePackageSubsystem(unittest.TestCase):
         """Khởi tạo cơ sở dữ liệu Sandbox hoàn toàn cô lập trong khay RAM"""
         self.engine = create_engine("sqlite:///:memory:")
         
-        # Cưỡng ép làm sạch Metadata cục bộ và dựng lại cấu trúc bảng sạch từ đầu
+        # Cưỡng ép làm sạch Metadata cục bộ và dựng lại cấu trúc 4 bảng sạch từ đầu
         Base.metadata.clear()
         Base.metadata.create_all(self.engine)
         
         SessionLocal = sessionmaker(bind=self.engine)
         self.db = SessionLocal()
         
-        # Chèn kịch bản tập phim giả lập bám sát luồng xử lý truyện chữ
+        # Chèn kịch bản tập phim giả lập bám sát luồng xử lý truyện chữ từ GUI
         self.mock_episode = EpisodeModel(
             id=1,
             project_id="ToanDanTaoPhong",
