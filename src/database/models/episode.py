@@ -19,7 +19,7 @@ class EpisodeModel(Base):
 	created_at = Column(DateTime, default=datetime.utcnow)
 	
 	# BẢO VỆ CHUỖI: Sử dụng nháy đơn để bẻ gãy hoàn toàn vòng lặp nạp chéo (Circular Import)
-	shots = relationship('ShotModel', backref='episode', cascade='all, delete-orphan')
+	shots = relationship('ShotModel', back_populates='episode', foreign_keys='ShotModel.scene_id', cascade='all, delete-orphan')
 
 	def __repr__(self):
 		return f"<EpisodeModel(id={self.id}, episode_number={self.episode_number}, status='{self.status}')>"
