@@ -10,7 +10,7 @@ class ShotModel(Base):
 
 	id = Column(Integer, primary_key=True, autoincrement=True)
 	scene_id = Column(Integer, ForeignKey('episodes.id'), nullable=False)
-	
+	shots = relationship('ShotModel', back_populates='episode', foreign_keys='ShotModel.scene_id', cascade='all, delete-orphan')
 	dex = Column(Integer, nullable=False) # Thứ tự cú máy trong phân cảnh
 	context_type = Column(String(50), default="establishing") # establishing, walking, reaction...
 
