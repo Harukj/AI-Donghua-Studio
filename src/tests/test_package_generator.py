@@ -1,17 +1,18 @@
 import unittest
 import sys
 import os
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+import importlib  # TIÊM THƯ VIỆN NẠP CƯỠNG ÉP HỆ THỐNG
 
-# 1. Ép đường dẫn đi qua phân khu src cô lập bám sát PYTHONPATH gốc
+# 1. Ép đường dẫn đi qua phân khu src chính thống bám sát PYTHONPATH
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-# 2. ÉP NẠP TƯỜNG MINH TRỌN GÓI: Kích hoạt toàn bộ danh mục models đăng ký vào SQLAlchemy Registry
+# 2. CƯỠNG ÉP PYTHON RE-HYDRATION: Bẻ gãy hoàn toàn cơ chế cache module bảo thủ
 import database.models
+importlib.reload(database.models)  # Ép nạp lại danh mục để giải phóng dứt điểm KeyError
+
 from database.base import Base
 from database.models.episode import EpisodeModel
-from database.models.shot import ShotModel  # Giải phóng dứt điểm KeyError 'ShotModel'
+from database.models.shot import ShotModel
 from services.package_generator import EpisodePackageGenerator
 
 
