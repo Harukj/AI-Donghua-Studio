@@ -7,11 +7,11 @@ from sqlalchemy.orm import sessionmaker
 # 1. Ép đường dẫn hệ thống đi qua phân khu src chính thống bám sát PYTHONPATH gốc
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-# Sử dụng Root namespace 'src' tường minh để cưỡng ép nạp Class vật lý vào khay RAM Registry
-from src.database.base import Base
-from src.database.models.episode import EpisodeModel
+# 2. CƯỠNG ÉP NẠP CLASS TỪ ROOT: Kích hoạt trực tiếp Class vào SQLAlchemy Registry toàn cục
 from src.database.models.shot import ShotModel
+from src.database.models.episode import EpisodeModel
 from src.services.package_generator import EpisodePackageGenerator
+from src.database.base import Base
 
 class TestEpisodePackageSubsystem(unittest.TestCase):
     def setUp(self):
