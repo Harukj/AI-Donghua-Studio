@@ -1,14 +1,16 @@
 import unittest
 import sys
 import os
-import importlib  # TIÊM THƯ VIỆN NẠP CƯỠNG ÉP HỆ THỐNG
+import importlib
+from sqlalchemy import create_engine  # NẠP BỔ SUNG ĐỂ GIẢI QUYẾT NAMEERROR
+from sqlalchemy.orm import sessionmaker  # NẠP BỔ SUNG ĐỂ GIẢI QUYẾT NAMEERROR
 
 # 1. Ép đường dẫn đi qua phân khu src chính thống bám sát PYTHONPATH
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-# 2. CƯỠNG ÉP PYTHON RE-HYDRATION: Bẻ gãy hoàn toàn cơ chế cache module bảo thủ
+# 2. CƯỠNG ÉP PYTHON RE-HYDRATION: Bẻ gãy hoàn toàn cơ cơ chế cache module bảo thủ
 import database.models
-importlib.reload(database.models)  # Ép nạp lại danh mục để giải phóng dứt điểm KeyError
+importlib.reload(database.models)
 
 from database.base import Base
 from database.models.episode import EpisodeModel
