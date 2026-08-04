@@ -1,7 +1,6 @@
 from src.database.base import Base
 from src.database.engine import engine
 from src.database.models.asset import AssetModel
-from src.database.models.version import AssetVersionModel
 from src.database.models.shot import ShotModel
 from src.database.models.dependency import CharacterDependencyModel
 from src.database.models.asset_component import AssetComponentModel
