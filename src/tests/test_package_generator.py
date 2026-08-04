@@ -4,18 +4,18 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, clear_mappers
 
-# Ép đường dẫn đi qua gói src cô lập
+# 1. Ép đường dẫn đi qua phân khu src cô lập
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-# GIẢI PHÓNG TOÀN DIỆN REGISTRY: Xóa sạch bộ đệm mappers cũ trước khi đăng ký Metadata mới tinh
+# 2. GIẢI PHÓNG TOÀN DIỆN REGISTRY: Xóa bộ đệm mappers cũ trước khi dựng Metadata mới tinh
 clear_mappers()
 
-# Ép đường dẫn đi qua phân khu src chính thống để nạp Metadata vào Registry sạch
-import src.database.models
-from src.database.base import Base
-from src.database.models.episode import EpisodeModel
-from src.database.models.shot import ShotModel
-from src.services.package_generator import EpisodePackageGenerator
+# 3. ÉP NẠP TƯỜNG MINH TRỌN GÓI: Kích hoạt toàn bộ danh mục __all__ đăng ký vào SQLAlchemy Registry
+import database.models
+from database.base import Base
+from database.models.episode import EpisodeModel
+from database.models.shot import ShotModel
+from services.package_generator import EpisodePackageGenerator
 from database.base import Base
 class TestEpisodePackageSubsystem(unittest.TestCase):
     def setUp(self):
