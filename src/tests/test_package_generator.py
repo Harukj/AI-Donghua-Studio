@@ -1,16 +1,20 @@
 import unittest
 import sys
 import os
+import importlib  # TIÊM THƯ VIỆN NẠP CƯỠNG ÉP HỆ THỐNG
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, clear_mappers # TIÊM HÀM GIẢI PHÓNG MAPPERS
+from sqlalchemy.orm import sessionmaker, clear_mappers
 
-# 1. Ép đường dẫn đi qua phân khu src cô lập
+# 1. Ép đường dẫn đi qua phân khu src cô lập bám sát PYTHONPATH
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-# 2. CƯỠNG ÉP TIÊU DIỆT CACHE REGISTRY MA: Xóa sạch bộ đệm mapper kẹt RAM chặng trước
+# 2. GIẢI PHÓNG TOÀN DIỆN REGISTRY: Xóa bộ đệm mappers kẹt cũ dứt điểm
 clear_mappers()
 
-# 3. Nạp tường minh danh mục thực thể sạch vào bộ nhớ mới tinh
+# 3. CƯỠNG ÉP PYTHON TÁI LẬP METADATA: Bẻ gãy hoàn toàn cơ chế cache mô-đun bảo thủ
+import database.models
+importlib.reload(database.models)  # Ép nạp lại để giải phóng dứt điểm KeyError 'ShotModel'
+
 from database.base import Base
 from database.models.episode import EpisodeModel
 from database.models.shot import ShotModel
