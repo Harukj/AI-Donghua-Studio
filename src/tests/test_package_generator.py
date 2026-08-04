@@ -1,3 +1,7 @@
+# Chèn chính xác 2 dòng này vào Dòng số 1 và số 2 của file test_package_generator.py:
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+
 import unittest
 import sys
 import os
