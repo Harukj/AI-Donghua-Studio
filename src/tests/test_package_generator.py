@@ -4,15 +4,15 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-# 1. Ép đường dẫn hệ thống đi qua phân khu src chính thống
+# 1. Ép đường dẫn đi qua phân khu src cô lập
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-# Mở file src/tests/test_package_generator.py và dán đè dải dòng import đầu trang bằng đoạn mã sau:
-
-from src.database.base import Base
-from src.database.models.episode import EpisodeModel
-from src.database.models.shot import ShotModel
-from src.services.package_generator import EpisodePackageGenerator
+# 2. ÉP NẠP TƯỜNG MINH TRỌN GÓI: Kích hoạt toàn bộ danh mục __all__ đăng ký vào SQLAlchemy Registry
+import database.models
+from database.base import Base
+from database.models.episode import EpisodeModel
+from database.models.shot import ShotModel
+from services.package_generator import EpisodePackageGenerator
 
 class TestEpisodePackageSubsystem(unittest.TestCase):
 	def setUp(self):
