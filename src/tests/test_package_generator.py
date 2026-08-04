@@ -7,9 +7,9 @@ from sqlalchemy.orm import sessionmaker
 # 1. Ép đường dẫn hệ thống đi qua phân khu src chính thống bám sát PYTHONPATH gốc
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-# 2. CƯỠNG ÉP NẠP MODULE VẬT LÝ: Đăng ký đầy đủ Metadata các bảng vào SQLAlchemy Registry toàn cục
-import database.models.shot
-import database.models.episode
+# Ép bộ thông dịch nạp trực tiếp Class-Level bẻ gãy hoàn toàn cơ chế cache module của Python
+from src.database.models.shot import ShotModel
+from src.database.models.episode import EpisodeModel
 
 from database.base import Base
 from database.models.episode import EpisodeModel
