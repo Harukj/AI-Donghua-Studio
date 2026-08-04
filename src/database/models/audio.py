@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Text, DateTime
 from datetime import datetime
-from database.base import Base
+from src.database.base import Base
 
 class AudioModel(Base):
 	__tablename__ = "audios" # Khớp chính xác với tên bảng trong sơ đồ Database mới

@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from database.repositories.character_repository import CharacterRepository
+from src.database.repositories.character_repository import CharacterRepository
 
 class CharacterService:
 	def __init__(self, db_session: Session):

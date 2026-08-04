@@ -1,13 +1,13 @@
 from sqlalchemy.orm import Session
-from database.session import SessionLocal
+from src.database.session import SessionLocal
 
 # Import toàn bộ các Service Layer cốt lõi của Studio
-from services.character_service import CharacterService
-from services.environment_service import EnvironmentService
-from core.project_manager import ProjectManager
-from core.plugins.plugin_manager import plugin_registry
-from core.plugins.ltx_video_plugin import LTXVideoPlugin
-from core.plugins.elevenlabs_audio_plugin import ElevenLabsAudioPlugin
+from src.services.character_service import CharacterService
+from src.services.environment_service import EnvironmentService
+from src.core.project_manager import ProjectManager
+from src.core.plugins.plugin_manager import plugin_registry
+from src.core.plugins.ltx_video_plugin import LTXVideoPlugin
+from src.core.plugins.elevenlabs_audio_plugin import ElevenLabsAudioPlugin
 plugin_registry.register_plugin(LTXVideoPlugin())
 plugin_registry.register_plugin(ElevenLabsAudioPlugin())
 class DependencyProvider:

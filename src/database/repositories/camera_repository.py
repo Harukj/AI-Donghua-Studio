@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from database.repositories.base_repository import BaseRepository
-from database.models.camera import CameraModel
+from src.database.repositories.base_repository import BaseRepository
+from src.database.models.camera import CameraModel
 
 class CameraRepository(BaseRepository[CameraModel]):
 	def __init__(self, db_session: Session):

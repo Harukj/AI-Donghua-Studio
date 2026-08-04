@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Text, DateTime
 from datetime import datetime
-from database.base import Base
+from src.database.base import Base
 
 class ProjectModel(Base):
 	__tablename__ = "projects" # Khớp chính xác phân khu Project Management của DreamForge Engine

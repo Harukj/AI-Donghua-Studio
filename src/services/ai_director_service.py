@@ -1,6 +1,6 @@
 import os
 import json
-from core.logger import studio_logger
+from src.core.logger import studio_logger
 
 class AIDirectorService:
 	def __init__(self, provider: str = "gemini"):

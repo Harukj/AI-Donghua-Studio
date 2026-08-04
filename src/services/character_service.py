@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 # Sửa lại đường dẫn import chính xác trỏ thẳng vào thư mục package database viết thường
-from database.repositories.character_repository import CharacterRepository
-from core.logger import studio_logger
+from src.database.repositories.character_repository import CharacterRepository
+from src.core.logger import studio_logger
 
 class CharacterService:
 	def __init__(self, db_session: Session):
@@ -53,7 +53,7 @@ class CharacterService:
 		final_prompt = ", ".join([tags.strip().lower() for tags in components_matrix if tags])
 		
 		# Kích hoạt bộ ghi nhật ký ghi nhận tiến trình Engine
-		from core.logger import studio_logger
+		from src.core.logger import studio_logger
 		studio_logger.logger.info(f"DreamForge Core: Đã tự động sinh Prompt chân dung cơ học cho [{character_name}]")
 		
 		return final_prompt

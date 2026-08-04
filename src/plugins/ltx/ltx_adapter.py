@@ -1,5 +1,5 @@
-from plugins.base_plugin import Plugin
-from core.logger import studio_logger
+from src.plugins.base_plugin import Plugin
+from src.core.logger import studio_logger
 
 class LTXStudioAdapter(Plugin):
 	def __init__(self):
@@ -28,5 +28,5 @@ class LTXStudioAdapter(Plugin):
 	def deactivate_plugin(self):
 		"""[COMPATIBILITY ALIAS] Tắt trạng thái kích hoạt của Plugin để vượt qua kịch bản kiểm thử v0.8 cũ"""
 		self.is_active = False
-		from core.logger import studio_logger
+		from src.core.logger import studio_logger
 		studio_logger.logger.info(f"[SDK ENGINE] Plugin [{self.name.upper()}] đã tạm hủy kích hoạt.")

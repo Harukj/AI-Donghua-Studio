@@ -1,6 +1,6 @@
 import os
 import time
-from core.logger import studio_logger
+from src.core.logger import studio_logger
 
 class EpisodeBuilder:
 	def __init__(self, project_id: str, episode_number: int):

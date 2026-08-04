@@ -84,7 +84,7 @@ class CharacterForm(ctk.CTkFrame):
 	def browse_character_image(self):
 			"""Hàm xử lý khi nhấn nút Import Portrait theo đúng thiết kế của ChatGPT"""
 			from tkinter import filedialog
-			from core.project_manager import ProjectManager
+			from src.core.project_manager import ProjectManager
 			
 			# 1. Cho người dùng chọn file ảnh từ máy tính
 			file_path = filedialog.askopenfilename(
@@ -96,7 +96,7 @@ class CharacterForm(ctk.CTkFrame):
 					# Nạp đầy đủ các thư viện hệ thống và module quản lý dự án nội bộ
 					import shutil
 					import os
-					from core.project_manager import ProjectManager
+					from src.core.project_manager import ProjectManager
 					
 					current_project = "ToanDanTaoPhong"
 					pm = ProjectManager()

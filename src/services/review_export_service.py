@@ -1,8 +1,8 @@
 import os
 from sqlalchemy.orm import Session
-from database.models.shot import ShotModel
-from database.models.episode import EpisodeModel
-from core.logger import studio_logger
+from src.database.models.shot import ShotModel
+from src.database.models.episode import EpisodeModel
+from src.core.logger import studio_logger
 
 class ReviewAndExportService:
 	def __init__(self, db_session: Session):

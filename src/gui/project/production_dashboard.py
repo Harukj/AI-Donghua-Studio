@@ -1,7 +1,7 @@
 import customtkinter as ctk
-from database.session import SessionLocal
-from database.repositories.shot_repository import ShotRepository
-from database.repositories.storyboard_repository import StoryboardRepository
+from src.database.session import SessionLocal
+from src.database.repositories.shot_repository import ShotRepository
+from src.database.repositories.storyboard_repository import StoryboardRepository
 
 class ProductionDashboard(ctk.CTkFrame):
 	def __init__(self, parent):
@@ -77,7 +77,7 @@ class ProductionDashboard(ctk.CTkFrame):
 		"""Luồng ngầm gọi bộ não AI Agent xử lý trọn gói 8 bước điện ảnh"""
 		from tkinter import messagebox
 		try:
-			from ai.dreamforge_agent import DreamForgeAIAgent
+			from src.ai.dreamforge_agent import DreamForgeAIAgent
 			# Gọi luồng điều phối tự trị xử lý khép kín kịch bản Chương 15
 			agent_engine = DreamForgeAIAgent(self.db)
 			mock_novel_text = "Tô Mộc bước vào học viện. Lâm Uyển nhìn cậu."

@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
-from database.models.episode import EpisodeModel
-from database.models.shot import ShotModel
-from core.logger import studio_logger
+from src.database.models.episode import EpisodeModel
+from src.database.models.shot import ShotModel
+from src.core.logger import studio_logger
 
 class EpisodeService:
 	def __init__(self, db_session: Session):

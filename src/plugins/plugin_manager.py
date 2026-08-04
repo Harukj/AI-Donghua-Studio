@@ -1,6 +1,6 @@
 from typing import Dict
-from plugins.base_plugin import Plugin
-from core.logger import studio_logger
+from src.plugins.base_plugin import Plugin
+from src.core.logger import studio_logger
 
 class DreamForgeAPIManager:
 	def __init__(self):

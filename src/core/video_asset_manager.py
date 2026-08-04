@@ -1,6 +1,6 @@
 import os
 import shutil
-from core.logger import studio_logger
+from src.core.logger import studio_logger
 
 class VideoAssetManager:
 	def __init__(self, project_id: str = "ToanDanTaoPhong"):

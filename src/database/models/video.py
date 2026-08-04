@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Text, DateTime
 from datetime import datetime
-from database.base import Base
+from src.database.base import Base
 
 class VideoModel(Base):
 	__tablename__ = "videos" # Khớp chính xác với tên bảng trong sơ đồ Database mới

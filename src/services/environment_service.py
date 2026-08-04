@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from database.repositories.environment_repository import EnvironmentRepository
-from core.logger import studio_logger
+from src.database.repositories.environment_repository import EnvironmentRepository
+from src.core.logger import studio_logger
 
 class EnvironmentService:
 	def __init__(self, db_session: Session):

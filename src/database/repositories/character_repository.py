@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from database.repositories.base_repository import BaseRepository
-from database.models.character import CharacterModel
+from src.database.repositories.base_repository import BaseRepository
+from src.database.models.character import CharacterModel
 
 class CharacterRepository(BaseRepository[CharacterModel]):
 	def __init__(self, db_session: Session):

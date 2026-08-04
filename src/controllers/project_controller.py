@@ -1,4 +1,4 @@
-from services.project_service import ProjectService
+from src.services.project_service import ProjectService
 
 service = ProjectService()
 

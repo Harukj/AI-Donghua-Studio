@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
-from database.repositories.storyboard_repository import StoryboardRepository
-from database.repositories.shot_repository import ShotRepository
-from core.logger import studio_logger
+from src.database.repositories.storyboard_repository import StoryboardRepository
+from src.database.repositories.shot_repository import ShotRepository
+from src.core.logger import studio_logger
 
 class ProductionScheduler:
 	def __init__(self, db_session: Session):

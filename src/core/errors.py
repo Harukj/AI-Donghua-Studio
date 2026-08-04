@@ -1,4 +1,4 @@
-from core.logger import logger
+from src.core.logger import logger
 
 class StudioException(Exception):
 	"""Lớp ngoại lệ cơ sở cho toàn bộ ứng dụng AI Donghua Studio"""

@@ -1,7 +1,7 @@
 import os
-from database.session import get_db
-from core.project_manager import ProjectManager
-from pipeline.production_pipeline import ProductionPipeline
+from src.database.session import get_db
+from src.core.project_manager import ProjectManager
+from src.pipeline.production_pipeline import ProductionPipeline
 
 def test_phase1_integration():
 	print("============ KIỂM TRA NGHIỆM THU PHASE 1 (CORE) ============")

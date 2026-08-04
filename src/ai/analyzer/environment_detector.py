@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from database.models.environment import EnvironmentModel
-from core.logger import studio_logger
+from src.database.models.environment import EnvironmentModel
+from src.core.logger import studio_logger
 
 class RuleBasedEnvironmentDetector:
 	def __init__(self, db_session: Session):

@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from database.models.character import CharacterModel
-from core.logger import studio_logger
+from src.database.models.character import CharacterModel
+from src.core.logger import studio_logger
 
 class RuleBasedCharacterDetector:
 	def __init__(self, db_session: Session):

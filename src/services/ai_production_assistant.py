@@ -1,9 +1,9 @@
 import time
 from sqlalchemy.orm import Session
-from core.logger import studio_logger
-from services.shot_service import ShotService
-from services.prompt_service import PromptComposerService
-from services.render_queue_service import RenderQueueService
+from src.core.logger import studio_logger
+from src.services.shot_service import ShotService
+from src.services.prompt_service import PromptComposerService
+from src.services.render_queue_service import RenderQueueService
 
 class AIProductionAssistant:
 	def __init__(self, db_session: Session):

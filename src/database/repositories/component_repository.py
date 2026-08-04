@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from database.repositories.base_repository import BaseRepository
-from database.models.asset_component import AssetComponentModel
+from src.database.repositories.base_repository import BaseRepository
+from src.database.models.asset_component import AssetComponentModel
 
 class AssetComponentRepository(BaseRepository[AssetComponentModel]):
 	def __init__(self, db_session: Session):

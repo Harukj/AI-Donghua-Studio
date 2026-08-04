@@ -2,7 +2,7 @@ import os
 import shutil
 from sqlalchemy.orm import Session
 from docx import Document
-from database.models.novel import NovelModel
+from src.database.models.novel import NovelModel
 
 class NovelService:
 	def __init__(self, db_session: Session):

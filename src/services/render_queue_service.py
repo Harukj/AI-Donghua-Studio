@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from database.models.shot import ShotModel
-from core.logger import studio_logger
+from src.database.models.shot import ShotModel
+from src.core.logger import studio_logger
 
 class RenderQueueService:
 	def __init__(self, db_session: Session):

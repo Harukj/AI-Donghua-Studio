@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
-from database.models.character import CharacterModel
-from database.repositories.component_repository import AssetComponentRepository
-from core.logger import studio_logger
+from src.database.models.character import CharacterModel
+from src.database.repositories.component_repository import AssetComponentRepository
+from src.core.logger import studio_logger
 
 class AssetDependencyResolver:
 	def __init__(self, db_session: Session):

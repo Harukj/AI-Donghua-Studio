@@ -1,4 +1,4 @@
-from core.logger import studio_logger
+from src.core.logger import studio_logger
 
 class PromptTemplateEngine:
 	def __init__(self):

@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from database.repositories.camera_repository import CameraRepository
-from core.logger import studio_logger
+from src.database.repositories.camera_repository import CameraRepository
+from src.core.logger import studio_logger
 
 class CameraService:
 	def __init__(self, db_session: Session):

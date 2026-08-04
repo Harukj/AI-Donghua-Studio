@@ -1,11 +1,11 @@
 from sqlalchemy.orm import Session
-from services.character_service import CharacterService
-from services.environment_service import EnvironmentService
-from ai.prompt_builder.camera_planner import CameraPlanner
-from ai.prompt_builder.lighting_planner import LightingPlanner
-from ai.prompt_builder.fx_planner import FXPlanner
-from ai.prompt_builder.audio_planner import AudioPlanner
-from core.logger import studio_logger
+from src.services.character_service import CharacterService
+from src.services.environment_service import EnvironmentService
+from src.ai.prompt_builder.camera_planner import CameraPlanner
+from src.ai.prompt_builder.lighting_planner import LightingPlanner
+from src.ai.prompt_builder.fx_planner import FXPlanner
+from src.ai.prompt_builder.audio_planner import AudioPlanner
+from src.core.logger import studio_logger
 
 class PromptBuilder30:
 	def __init__(self, db_session: Session):

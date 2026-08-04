@@ -1,5 +1,5 @@
-from ai.scene_splitter.shot import Shot
-from core.logger import studio_logger
+from src.ai.scene_splitter.shot import Shot
+from src.core.logger import studio_logger
 
 class ShotBuilder:
 	def __init__(self, scene_id: int, raw_scene_text: str):

@@ -1,5 +1,5 @@
-from core.plugins.base_plugin import BasePlugin
-from core.logger import studio_logger
+from src.core.plugins.base_plugin import BasePlugin
+from src.core.logger import studio_logger
 
 class PluginManager:
 	def __init__(self):

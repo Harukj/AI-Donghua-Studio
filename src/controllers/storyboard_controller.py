@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
-from database.repositories.storyboard_repository import StoryboardRepository
-from ai.scene_splitter.storyboard import StoryboardEngine
-from core.logger import studio_logger
+from src.database.repositories.storyboard_repository import StoryboardRepository
+from src.ai.scene_splitter.storyboard import StoryboardEngine
+from src.core.logger import studio_logger
 
 class StoryboardController:
 	def __init__(self, db_session: Session):

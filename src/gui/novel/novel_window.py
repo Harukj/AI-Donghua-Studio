@@ -1,11 +1,11 @@
 import customtkinter as ctk
 from tkinter import messagebox
-from gui.novel.novel_form import NovelForm
+from src.gui.novel.novel_form import NovelForm
 
 class NovelWindow(ctk.CTkFrame):
 	def __init__(self, parent):
 		super().__init__(parent, fg_color="transparent")
-		from database.session import SessionLocal
+		from src.database.session import SessionLocal
 		self.db = SessionLocal() # Khởi tạo session kết nối SQLite
 		
 		# Thiết lập lưới không gian chính
@@ -63,8 +63,8 @@ class NovelWindow(ctk.CTkFrame):
 	def handle_docx_import(self):
 		"""Kích hoạt động cơ lõi 9 bước NovelPipeline khi Import file truyện chữ"""
 		from tkinter import filedialog, messagebox
-		from pipeline.novel_pipeline import NovelPipeline  # Import bộ điều phối luồng mới
-		from core.logger import studio_logger
+		from src.pipeline.novel_pipeline import NovelPipeline  # Import bộ điều phối luồng mới
+		from src.core.logger import studio_logger
 		import os
 				
 			# Kích hoạt bộ ghi nhật ký chuẩn Unreal Engine

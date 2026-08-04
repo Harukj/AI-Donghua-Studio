@@ -1,11 +1,11 @@
 import os
 import time
-from core.logger import studio_logger
-from ai.scene_splitter.splitter import Splitter as SceneSplitter
-from ai.scene_splitter.shot_builder import ShotBuilder
-from ai.prompt_builder.builder_v3 import PromptBuilder30
-from plugins.ltx_automation import LTXAutomationAdapter
-from core.episode_builder import EpisodeBuilder
+from src.core.logger import studio_logger
+from src.ai.scene_splitter.splitter import Splitter as SceneSplitter
+from src.ai.scene_splitter.shot_builder import ShotBuilder
+from src.ai.prompt_builder.builder_v3 import PromptBuilder30
+from src.plugins.ltx_automation import LTXAutomationAdapter
+from src.core.episode_builder import EpisodeBuilder
 
 class DreamForgeAIAgent:
 	def __init__(self, db_session):

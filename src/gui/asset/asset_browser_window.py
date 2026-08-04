@@ -1,7 +1,7 @@
 import customtkinter as ctk
 from tkinter import messagebox
-from database.session import SessionLocal
-from database.repositories.asset_repository import AssetRepository
+from src.database.session import SessionLocal
+from src.database.repositories.asset_repository import AssetRepository
 
 class AssetBrowserWindow(ctk.CTkFrame):
 	def __init__(self, parent):
@@ -48,7 +48,7 @@ class AssetBrowserWindow(ctk.CTkFrame):
 		self.file_scroll.pack(fill="both", expand=True, padx=15, pady=5)
 		
 		# Nhúng trực tiếp bảng AssetInspector vào cột 1 bên lề phải ngoài cùng
-		from gui.asset.asset_inspector import AssetInspector
+		from src.gui.asset.asset_inspector import AssetInspector
 		self.inspector_panel = AssetInspector(self.file_panel, save_callback=self.save_asset_metadata_changes)
 		self.inspector_panel.grid(row=0, column=1, sticky="nsew", padx=5, pady=5)
 		

@@ -1,5 +1,5 @@
-from database.repositories.storyboard_repository import StoryboardRepository
-from core.logger import studio_logger
+from src.database.repositories.storyboard_repository import StoryboardRepository
+from src.core.logger import studio_logger
 
 class StoryboardEngine:
 	def __init__(self, repository: StoryboardRepository):

@@ -1,5 +1,5 @@
 import os
-from core.logger import studio_logger
+from src.core.logger import studio_logger
 
 class SceneIntelligence:
 	def __init__(self):

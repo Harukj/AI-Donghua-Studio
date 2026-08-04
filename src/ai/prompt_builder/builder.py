@@ -1,6 +1,6 @@
 import os
-from ai.prompt_builder.templates_manager import TemplateManager
-from core.logger import studio_logger
+from src.ai.prompt_builder.templates_manager import TemplateManager
+from src.core.logger import studio_logger
 
 class StaticPromptBuilder:
 	def __init__(self):

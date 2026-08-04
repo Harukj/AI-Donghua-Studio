@@ -1,7 +1,7 @@
 import customtkinter as ctk
 from tkinter import messagebox
-from database.session import SessionLocal
-from services.environment_service import EnvironmentService
+from src.database.session import SessionLocal
+from src.services.environment_service import EnvironmentService
 
 class EnvironmentWindow(ctk.CTkFrame):
 	def __init__(self, parent):
@@ -84,7 +84,7 @@ class EnvironmentWindow(ctk.CTkFrame):
 		for widget in self.list_frame.winfo_children():
 			widget.destroy()
 			
-		from database.models.environment import EnvironmentModel
+		from src.database.models.environment import EnvironmentModel
 		db_envs = self.db.query(EnvironmentModel).all()
 		
 		if not db_envs:

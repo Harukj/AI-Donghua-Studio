@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from ai.prompt_builder.prompt_template import PromptTemplateEngine
-from core.logger import studio_logger
+from src.ai.prompt_builder.prompt_template import PromptTemplateEngine
+from src.core.logger import studio_logger
 
 class PromptService:
 	def __init__(self, db_session: Session):

@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from database.repositories.base_repository import BaseRepository
-from database.models.shot import ShotModel
+from src.database.repositories.base_repository import BaseRepository
+from src.database.models.shot import ShotModel
 
 class ShotRepository(BaseRepository[ShotModel]):
 	def __init__(self, db_session: Session):
@@ -35,7 +35,7 @@ class ShotRepository(BaseRepository[ShotModel]):
 			shot.duration = sanitized_duration
 			self.db.commit()
 			
-			from core.logger import studio_logger
+			from src.core.logger import studio_logger
 			studio_logger.logger.info(f"[TIMELINE ENGINE] Cú máy [Shot ID: {shot_id}] đã được cập nhật thời lượng mới -> {sanitized_duration}s")
 			return True
 		return False
@@ -56,7 +56,7 @@ class ShotRepository(BaseRepository[ShotModel]):
 			shot.status = status_lower
 			self.db.commit()
 			
-			from core.logger import studio_logger
+			from src.core.logger import studio_logger
 			studio_logger.logger.info(f"[LTX WORKSPACE] Cú máy [Shot ID: {shot_id}] đã chuyển trạng thái thành công sang -> [{status_lower.upper()}]")
 			return True
 		return False

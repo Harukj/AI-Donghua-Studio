@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from core.logger import studio_logger
+from src.core.logger import studio_logger
 
 class Plugin(ABC):
 	def __init__(self, plugin_name: str):
