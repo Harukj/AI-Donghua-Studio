@@ -1,23 +1,18 @@
 import unittest
 import sys
 import os
-import importlib  # TIÊM THƯ VIỆN NẠP CƯỠNG ÉP TỐI CAO
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, clear_mappers # TIÊM HÀM GIẢI PHÓNG MAPPERS
+from sqlalchemy.orm import sessionmaker
 
-# 1. Ép đường dẫn hệ thống đi qua phân khu src chính thống bám sát PYTHONPATH
+# 1. Ép đường dẫn hệ thống đi qua phân khu src chính thống bám sát PYTHONPATH gốc
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-# 2. GIẢI PHÓNG TOÀN DIỆN REGISTRY: Xóa sạch bộ đệm mapper kẹt RAM chặng trước
-clear_mappers()
-
-# 3. CƯỠNG ÉP PYTHON RE-HYDRATION: Bẻ gãy hoàn toàn cơ chế cache module bảo thủ
-import database.models
-importlib.reload(database.models)  # Ép đọc lại file vật lý để giải phóng dứt điểm KeyError 'ShotModel'
-
+# 2. Nạp tường minh các thực thể lõi tuyệt đối bám sát Root namespace (Tuyệt đối không dùng clear_mappers gây trống Registry)
 from database.base import Base
+import database.models.shot       # Kích hoạt tệp vật lý chứa ShotModel vào registry toàn cục
+import database.models.episode    # Kích hoạt tệp vật lý chứa EpisodeModel vào registry toàn cục
+
 from database.models.episode import EpisodeModel
-from database.models.shot import ShotModel
 from services.package_generator import EpisodePackageGenerator
 
 class TestEpisodePackageSubsystem(unittest.TestCase):
