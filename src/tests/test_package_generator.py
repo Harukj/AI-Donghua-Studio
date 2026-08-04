@@ -4,13 +4,14 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-# 1. Ép đường dẫn hệ thống đi qua phân khu src chính thống bám sát PYTHONPATH gốc
+# 1. Ép đường dẫn đi qua phân khu src cô lập bám sát PYTHONPATH gốc của hệ thống
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-# 2. Nạp tường minh các thực thể lõi tuyệt đối bám sát Root namespace (Tuyệt đối không dùng clear_mappers gây trống Registry)
+# 2. ÉP NẠP TƯỜNG MINH TRỌN GÓI: Kích hoạt toàn bộ danh mục models đăng ký vào Registry sạch
+import database.models
 from database.base import Base
 from database.models.episode import EpisodeModel
-from database.models.shot import ShotModel
+from database.models.shot import ShotModel  # Giải phóng dứt điểm KeyError 'ShotModel'
 from services.package_generator import EpisodePackageGenerator
 
 class TestEpisodePackageSubsystem(unittest.TestCase):
