@@ -15,7 +15,7 @@ import database.models
 from database.models.episode import EpisodeModel
 from database.models.shot import ShotModel  # Giải phóng dứt điểm KeyError 'ShotModel'
 from src.services.package_generator import EpisodePackageGenerator
-
+from database.base import Base
 class TestEpisodePackageSubsystem(unittest.TestCase):
     def setUp(self):
         """Khởi tạo cơ sở dữ liệu giả lập cô lập tuyệt đối trên khay RAM"""
