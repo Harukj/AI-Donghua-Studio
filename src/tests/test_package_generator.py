@@ -7,11 +7,12 @@ from sqlalchemy.orm import sessionmaker
 # 1. Ép đường dẫn hệ thống đi qua phân khu src chính thống
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-# 2. Nạp tường minh các thực thể lõi (Tuyệt đối không sử dụng hàm clear_mappers gây trống Registry)
-from database.base import Base
-from database.models.episode import EpisodeModel
-from database.models.shot import ShotModel
-from services.package_generator import EpisodePackageGenerator
+# Mở file src/tests/test_package_generator.py và dán đè dải dòng import đầu trang bằng đoạn mã sau:
+
+from src.database.base import Base
+from src.database.models.episode import EpisodeModel
+from src.database.models.shot import ShotModel
+from src.services.package_generator import EpisodePackageGenerator
 
 class TestEpisodePackageSubsystem(unittest.TestCase):
 	def setUp(self):

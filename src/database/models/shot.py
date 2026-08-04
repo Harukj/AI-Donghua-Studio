@@ -10,8 +10,7 @@ class ShotModel(Base):
 
 	id = Column(Integer, primary_key=True, autoincrement=True)
 	scene_id = Column(Integer, ForeignKey('episodes.id'), nullable=False)
-	episode = relationship('EpisodeModel', back_populates='shots', foreign_keys='[ShotModel.scene_id]')
-	index = Column(Integer, nullable=False) # Thứ tự cú máy trong phân cảnh
+	dex = Column(Integer, nullable=False) # Thứ tự cú máy trong phân cảnh
 	context_type = Column(String(50), default="establishing") # establishing, walking, reaction...
 
 	# --- MODULE 4: 6-STATES LTX WORKSPACE LIFECYCLE ---
