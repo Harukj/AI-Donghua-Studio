@@ -6,13 +6,14 @@ from sqlalchemy.orm import sessionmaker
 
 # 1. Ép đường dẫn hệ thống đi qua phân khu src chính thống bám sát PYTHONPATH gốc
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
-# Ép Python nạp trực tiếp package module vật lý để ép Metadata đăng ký vào Registry sạch
+
+# 2. CƯỠNG ÉP NẠP MODULE VẬT LÝ: Đăng ký đầy đủ Metadata các bảng vào SQLAlchemy Registry toàn cục
 import database.models.shot
 import database.models.episode
 
 from database.base import Base
 from database.models.episode import EpisodeModel
-from database.models.shot import ShotModel
+from database.models.shot import ShotModel  # GIẢI PHÓNG HOÀN TOÀN KEYERROR 'SHOTMODEL'
 from services.package_generator import EpisodePackageGenerator
 
 class TestEpisodePackageSubsystem(unittest.TestCase):
@@ -27,7 +28,7 @@ class TestEpisodePackageSubsystem(unittest.TestCase):
         SessionLocal = sessionmaker(bind=self.engine)
         self.db = SessionLocal()
         
-        # Chèn kịch bản tập phim giả lập bám sát luồng xử lý truyện chữ từ GUI
+        # Chèn kịch bản tập phim giả lập bám sát luồng xử lý truyện chữ từ giao diện GUI
         self.mock_episode = EpisodeModel(
             id=1,
             project_id="ToanDanTaoPhong",
