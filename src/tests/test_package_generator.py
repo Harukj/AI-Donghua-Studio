@@ -7,12 +7,10 @@ from sqlalchemy.orm import sessionmaker
 # 1. Ép đường dẫn hệ thống đi qua phân khu src chính thống bám sát PYTHONPATH gốc
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-# 2. Nạp tường minh các thực thể lõi tuyệt đối bám sát Root namespace (Tuyệt đối không dùng clear_mappers gây trống Registry)
+# 2. NẠP TUỜNG MINH CẤP CLASS: Kích hoạt trực tiếp Class vào SQLAlchemy Registry toàn cục
 from database.base import Base
-import database.models.shot       # Kích hoạt tệp vật lý chứa ShotModel vào registry toàn cục
-import database.models.episode    # Kích hoạt tệp vật lý chứa EpisodeModel vào registry toàn cục
-
 from database.models.episode import EpisodeModel
+from database.models.shot import ShotModel  # ÉP NẠP THỰC THỂ CLASS GIẢI QUYẾT TRIỆT ĐỂ KEYERROR
 from services.package_generator import EpisodePackageGenerator
 
 class TestEpisodePackageSubsystem(unittest.TestCase):
