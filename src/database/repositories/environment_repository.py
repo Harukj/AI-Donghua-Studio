@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from database.repositories.base_repository import BaseRepository
-from database.models.environment import EnvironmentModel
+from src.database.repositories.base_repository import BaseRepository
+from src.database.models.environment import EnvironmentModel
 
 class EnvironmentRepository(BaseRepository[EnvironmentModel]):
 	def __init__(self, db_session: Session):
