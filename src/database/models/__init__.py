@@ -6,7 +6,7 @@ from .asset import AssetModel
 from .character import CharacterModel
 from .dependency import CharacterDependencyModel
 
-# Đóng băng danh sách thực thể sản xuất chính thống, loại bỏ vĩnh viễn các file ma cũ
+# Đóng băng danh sách thực thể sản xuất chính thống, khai trừ vĩnh viễn các tham chiếu ma cũ
 __all__ = [
 	"EpisodeModel", 
 	"ShotModel", 
