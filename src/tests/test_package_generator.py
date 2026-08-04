@@ -10,10 +10,11 @@ sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__f
 # GIẢI PHÓNG TOÀN DIỆN REGISTRY: Xóa sạch bộ đệm mappers cũ trước khi đăng ký Metadata mới tinh
 clear_mappers()
 
-from database.base import Base
+# Ép hệ thống nạp toàn bộ danh mục __all__ sạch để đăng ký đầy đủ vào SQLAlchemy Registry
+import database.models
 from database.models.episode import EpisodeModel
-from database.models.shot import ShotModel
-from services.package_generator import EpisodePackageGenerator
+from database.models.shot import ShotModel  # Giải phóng dứt điểm KeyError 'ShotModel'
+from src.services.package_generator import EpisodePackageGenerator
 
 class TestEpisodePackageSubsystem(unittest.TestCase):
     def setUp(self):
