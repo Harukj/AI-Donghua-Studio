@@ -8,11 +8,10 @@ from sqlalchemy.orm import sessionmaker
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
 # 2. CƯỠNG ÉP NẠP CLASS TỪ ROOT: Kích hoạt trực tiếp Class vào SQLAlchemy Registry toàn cục
-# Ép bộ thông dịch nạp trực tiếp Class-Level bẻ gãy hoàn toàn lỗi tra cứu Registry của SQLAlchemy
-from src.database.base import Base
-from src.database.models.shot import ShotModel       # ÉP NẠP TRỰC TIẾP LỚP CÚ MÁY
-from src.database.models.episode import EpisodeModel   # ÉP NẠP TRỰC TIẾP LỚP TẬP PHIM
+from src.database.models.shot import ShotModel
+from src.database.models.episode import EpisodeModel
 from src.services.package_generator import EpisodePackageGenerator
+from src.database.base import Base
 
 class TestEpisodePackageSubsystem(unittest.TestCase):
     def setUp(self):
