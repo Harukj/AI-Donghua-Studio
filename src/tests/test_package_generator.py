@@ -1,32 +1,24 @@
 import unittest
 import sys
 import os
-import importlib  # TIÊM THƯ VIỆN NẠP CƯỠNG ÉP HỆ THỐNG
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, clear_mappers
+from sqlalchemy.orm import sessionmaker
 
-# 1. Ép đường dẫn đi qua phân khu src cô lập bám sát PYTHONPATH
+# 1. Ép đường dẫn hệ thống đi qua phân khu src chính thống
 sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-# 2. GIẢI PHÓNG TOÀN DIỆN REGISTRY: Xóa bộ đệm mappers kẹt cũ dứt điểm
-clear_mappers()
-
-# 3. CƯỠNG ÉP PYTHON TÁI LẬP METADATA: Bẻ gãy hoàn toàn cơ chế cache mô-đun bảo thủ
-import database.models
-importlib.reload(database.models)  # Ép nạp lại để giải phóng dứt điểm KeyError 'ShotModel'
-
+# 2. Nạp tường minh các thực thể lõi (Tuyệt đối không sử dụng hàm clear_mappers gây trống Registry)
 from database.base import Base
 from database.models.episode import EpisodeModel
 from database.models.shot import ShotModel
 from services.package_generator import EpisodePackageGenerator
-
 
 class TestEpisodePackageSubsystem(unittest.TestCase):
 	def setUp(self):
 		"""Khởi tạo cơ sở dữ liệu Sandbox hoàn toàn cô lập trong khay RAM"""
 		self.engine = create_engine("sqlite:///:memory:")
 		
-		# Cưỡng ép làm sạch Metadata cục bộ và dựng lại cấu trúc 4 bảng sạch từ đầu
+		# Cưỡng ép làm sạch Metadata cục bộ và dựng lại cấu trúc bảng sạch từ đầu
 		Base.metadata.clear()
 		Base.metadata.create_all(self.engine)
 		
